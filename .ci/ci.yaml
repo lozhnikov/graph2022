@@ -1,0 +1,136 @@
+trigger:
+  branches:
+    include:
+    - '*'
+pr:
+  branches:
+    include:
+    - '*'
+
+jobs:
+- job: StyleChecks
+  timeoutInMinutes: 3
+  pool:
+    vmImage: 'ubuntu-20.04'
+
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.7'
+      addToPath: true
+
+  - script: |
+      # pip is already installed.
+      #sudo apt-get update
+
+      #sudo apt-get install -y python3-pip
+
+      sudo pip3 install cpplint
+    displayName: 'Install build dependencies'
+
+  - script: |
+      cpplint --recursive --filter="-legal/copyright,-build/c++11,-build/c++14,-build/include_subdir" methods/ tests/ include/
+    displayName: 'Run linter'
+
+
+- job: ClangStaticAnalysis
+  timeoutInMinutes: 3
+  pool:
+    vmImage: 'ubuntu-20.04'
+
+  steps:
+  - script: |
+      sudo apt-get update
+
+      sudo apt-get install -y clang-tools-9
+    displayName: 'Install build dependencies'
+
+  - script: |
+      mkdir build && cd build
+
+      scan-build-9 --use-c++=g++-9 cmake -G "Unix Makefiles" -D CMAKE_EXPORT_COMPILE_COMMANDS=ON ../
+    displayName: 'Run CMake'
+
+  - script: cd build && scan-build-9 --use-c++=g++-9 --status-bugs make -j2
+    displayName: 'Run static analysis with clang'
+
+- job: Linux
+  timeoutInMinutes: 10
+  pool:
+    vmImage: 'ubuntu-20.04'
+  strategy:
+    matrix:
+      GCC:
+        CMakeArgs: '-D CMAKE_CXX_COMPILER=g++-9 -D CMAKE_BUILD_TYPE=Release'
+        TestsEnvArgs: ''
+        ExtraPackages: ''
+      libstdc++DebugDefines:
+        CMakeArgs: '-D CMAKE_CXX_COMPILER=g++-9 -D CMAKE_BUILD_TYPE=Debug -D CMAKE_CXX_FLAGS="-O1 -D _GLIBCXX_DEBUG -D _GLIBCXX_DEBUG_PEDANTIC"'
+        TestsEnvArgs: ''
+        ExtraPackages: ''
+      libc++DebugDefines:
+        CMakeArgs: '-D CMAKE_CXX_COMPILER=clang++-10 -D CMAKE_BUILD_TYPE=Debug -D CMAKE_CXX_FLAGS="-O1 -D _LIBCPP_DEBUG=1 -stdlib=libc++"'
+        TestsEnvArgs: ''
+        ExtraPackages: 'libc++-10-dev libc++abi-10-dev'
+      AddressSanitizer:
+        CMakeArgs: '-D CMAKE_CXX_COMPILER=clang++-10 -D CMAKE_BUILD_TYPE=Debug -D CMAKE_CXX_FLAGS="-O1 -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls"'
+        TestsEnvArgs: 'ASAN_OPTIONS=detect_stack_use_after_return=1'
+        ExtraPackages: ''
+      UndefinedBehaviourSanitizer:
+        CMakeArgs: '-D CMAKE_CXX_COMPILER=clang++-10 -D CMAKE_BUILD_TYPE=Debug -D CMAKE_CXX_FLAGS="-O1 -fsanitize=undefined -fno-omit-frame-pointer -fno-optimize-sibling-calls" -D CMAKE_EXE_LINKER_FLAGS="-lubsan"'
+        TestsEnvArgs: 'UBSAN_OPTIONS=print_stacktrace=1'
+        ExtraPackages: ''
+  steps:
+  - template: linux-steps.yaml
+
+- job: macOS
+  timeoutInMinutes: 10
+  pool:
+    vmImage: 'macOS-10.15'
+  steps:
+  - script: |
+      mkdir build && cd build
+
+      cmake -D CMAKE_BUILD_TYPE=Release ../
+    displayName: 'Run CMake'
+
+  - script: |
+      cd build && make -j2
+    displayName: 'Build'
+
+  - script: |
+      cd build
+      ./graph_server &
+      sleep 3 && ./graph_test
+    displayName: 'Run tests'
+
+- job: WindowsMSVS2019
+  timeoutInMinutes: 10
+  displayName: Windows MSVS 2019
+  pool:
+    vmImage: windows-2019
+  steps:
+  - powershell: |
+      mkdir build
+      cd build
+      cmake -G "Visual Studio 16 2019" -D CMAKE_BUILD_TYPE=Release ../
+    displayName: 'Run CMake'
+
+  - task: MSBuild@1
+    inputs:
+      solution: 'build/*.sln'
+      msbuildLocationMethod: 'location'
+      msbuildVersion: '16.0'
+      configuration: 'Release'
+      msbuildArchitecture: 'x64'
+      msbuildArguments: /m /p:BuildInParallel=true
+      maximumCpuCount: false
+      clean: false
+    displayName: 'Build'
+
+  - bash: |
+      cd build
+      Release/graph_server.exe &
+      sleep 3 && Release/graph_test.exe
+    displayName: 'Run tests'
+
