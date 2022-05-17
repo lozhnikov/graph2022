@@ -8,10 +8,11 @@
 #define INCLUDE_FIND_BRIDGES_HPP_
 #include <iostream>
 #include <map>
+#include <vector>
+#include <algorithm>
 #include "graph.hpp"
 #include "weighted_graph.hpp"
 #include "iterators.hpp"
-
 
 using std::vector;
 

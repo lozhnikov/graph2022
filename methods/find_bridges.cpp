@@ -9,9 +9,9 @@
 #define METHODS_METHODS_HPP_
 
 #include <string>
+#include <iostream>
 #include <nlohmann/json.hpp>
 #include "find_bridges.hpp"
-#include <iostream>
 
 namespace graph {
 

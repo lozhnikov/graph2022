@@ -122,18 +122,15 @@ static void RandomTest(httplib::Client* cli) {
     size_t numEdges = size-2;
     input["numEdges"] = numEdges;
 
-    size_t* vertices = new size_t[size];
 
     for (size_t i = 0; i < size; i++) {
-    //Нумеруем вершины от 1 до n.
-      vertices[i] = i+1;
       // Записываем элемент в JSON.
-      input["vertices"][i] = vertices[i];
+      input["vertices"][i] = i+1;
     }
     // Генирируем ребра случайный образом.
     for (size_t i = 0; i < numEdges-1; i++) {
-        input["edges"][i][0] = vertices[vert(gen)];
-        input["edges"][i][1] = vertices[vert(gen)];
+        input["edges"][i][0] = vert(gen);
+        input["edges"][i][1] = vert(gen);
     }
     // Добавляем мост.
     input["edges"][numEdges-1][0] =  size;
@@ -148,7 +145,7 @@ static void RandomTest(httplib::Client* cli) {
     nlohmann::json output = nlohmann::json::parse(res->body);
 
     /* Проверка результатов метода. */
-    
+
     bool find = false;
     size_t i = 0;
     while ((i < output["data"].size())&&(!find)) {
