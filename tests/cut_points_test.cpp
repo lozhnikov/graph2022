@@ -1,6 +1,6 @@
 /**
  * @file tests/cut_points_test.cpp
- * @author Daniil Morozov
+ * @author Daniil Morozov 
  */
 
 #include <cut_points.hpp>

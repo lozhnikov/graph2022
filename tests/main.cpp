@@ -1,6 +1,6 @@
 /**
  * @file tests/main.cpp
- * @author Mikhail Lozhnikov
+ * @author Mikhail Lozhnikov/Daniil Morozov
  *
  * Файл с функией main() для клиентской части программы (набора тестов).
  */
@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
 
   /* Сюда нужно вставить вызов набора тестов для алгоритма. */
 
-
+  TestCutPoints(&cli);
 
   /* Конец вставки. */
 

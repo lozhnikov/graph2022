@@ -14,7 +14,7 @@ namespace graph {
 
 template<class T>
 
-void Dfs_Cut_Points(int* timer, std::map<size_t, bool>* used, std::map<size_t, int>* entry_time, std::map<size_t, int>* min_of_time, vector<size_t>* points, T graph, size_t v, size_t p = -1) {
+void Dfs_Cut_Points(int* timer, std::map<size_t, bool>* used, std::map<size_t, int>* entry_time, std::map<size_t, int>* min_of_time, vector<size_t>* points, T graph, size_t v, size_t p = static_cast<size_t>(-1)) {
 
   (*used)[v] = true;
   (*entry_time)[v] = (*timer)++;
@@ -29,12 +29,12 @@ void Dfs_Cut_Points(int* timer, std::map<size_t, bool>* used, std::map<size_t, i
     else {
       Dfs_Cut_Points(timer, used, entry_time, min_of_time, points, graph, to, v);
       (*min_of_time)[v] = std::min ((*min_of_time)[v], (*min_of_time)[to]);
-      if ((*min_of_time)[to] >= (*entry_time)[v] && p != -1)
+      if ((*min_of_time)[to] >= (*entry_time)[v] && p != static_cast<size_t>(-1))
         (*points).push_back(v);
       ++children;
     }
   }
-  if (p == -1 && children > 1)
+  if (p == static_cast<size_t>(-1) && children > 1)
     (*points).push_back(v);
 }
  

@@ -1,6 +1,6 @@
 /**
  * @file methods/cut_points_method.cpp
- * @author Daniil Morozov
+ * @author Daniil Morozov 
  *
  * Реализация серверной части метода.
  */

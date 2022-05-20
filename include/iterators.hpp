@@ -1,6 +1,6 @@
 /**
  * @file iterators.hpp
- * @author Mikhail Lozhnikov
+ * @author Mikhail Lozhnikov/Daniil Morozov
  *
  * Реализация итераторов для различных классов графов.
  */
@@ -11,6 +11,7 @@
 #include <unordered_set>
 #include <unordered_map>
 
+using namespace std;
 namespace graph {
 
 /**
