@@ -1,0 +1,234 @@
+\hypertarget{classgraph_1_1OrientedGraph}{}\doxysection{Класс graph\+::Oriented\+Graph}
+\label{classgraph_1_1OrientedGraph}\index{graph::OrientedGraph@{graph::OrientedGraph}}
+
+
+Простой ориентированный граф.  
+
+
+
+
+{\ttfamily \#include $<$oriented\+\_\+graph.\+hpp$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgraph_1_1OrientedGraph_a6ee8b2d014801125cd7618e331319b17}\label{classgraph_1_1OrientedGraph_a6ee8b2d014801125cd7618e331319b17}} 
+\mbox{\hyperlink{classgraph_1_1OrientedGraph_a6ee8b2d014801125cd7618e331319b17}{Oriented\+Graph}} ()
+\begin{DoxyCompactList}\small\item\em Конструктор класса \mbox{\hyperlink{classgraph_1_1OrientedGraph}{Oriented\+Graph}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgraph_1_1OrientedGraph_ae5c1472b6f3182a58b3630afaccc3c5b}{Add\+Vertex}} (size\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em Добавить вершину в граф. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgraph_1_1OrientedGraph_ab4e8a6be3ea77302104204a053907ace}{Add\+Edge}} (size\+\_\+t id1, size\+\_\+t id2)
+\begin{DoxyCompactList}\small\item\em Добавить ребро в граф. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgraph_1_1OrientedGraph_a028f6d5478f93f8016cf9aeffd88cd1a}{Has\+Vertex}} (size\+\_\+t id) const
+\begin{DoxyCompactList}\small\item\em Функция проверяет, есть ли вершина в графе. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgraph_1_1OrientedGraph_a09ec597a822140897fb7f5b95f24fdb0}{Has\+Edge}} (size\+\_\+t id1, size\+\_\+t id2) const
+\begin{DoxyCompactList}\small\item\em Функция проверяет, есть ли ребро в графе. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgraph_1_1OrientedGraph_a95b306761f22b56da2ed437158ad6021}{Remove\+Vertex}} (size\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em Удалить вершину из графа. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgraph_1_1OrientedGraph_a20844b0579c5ec390965b7662eaea235}{Remove\+Edge}} (size\+\_\+t id1, size\+\_\+t id2)
+\begin{DoxyCompactList}\small\item\em Удалить ребро из графа. \end{DoxyCompactList}\item 
+const std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ \& \mbox{\hyperlink{classgraph_1_1OrientedGraph_adc83c01be0f3287375aa5235a8f5b8c3}{Edges}} (size\+\_\+t id) const
+\begin{DoxyCompactList}\small\item\em Получить множество вершин, с которыми соединена указанная вершина. \end{DoxyCompactList}\item 
+const std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ \& \mbox{\hyperlink{classgraph_1_1OrientedGraph_ae1d060a4a4c30d2027a2e5778f3f0973}{Incoming\+Edges}} (size\+\_\+t id) const
+\begin{DoxyCompactList}\small\item\em Получить множество вершин, соединённых ребром с указанной вершиной. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgraph_1_1VerticesRange}{Vertices\+Range}} \mbox{\hyperlink{classgraph_1_1OrientedGraph_a173db3fa3f31034971182f1832b71d92}{Vertices}} () const
+\begin{DoxyCompactList}\small\item\em Функция для итерирования по вершинам графа. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgraph_1_1OrientedGraph_a71fc4eab7315a985d8ff869b25dc7c07}\label{classgraph_1_1OrientedGraph_a71fc4eab7315a985d8ff869b25dc7c07}} 
+size\+\_\+t \mbox{\hyperlink{classgraph_1_1OrientedGraph_a71fc4eab7315a985d8ff869b25dc7c07}{Num\+Vertices}} () const
+\begin{DoxyCompactList}\small\item\em Функция возвращает количество вершин в графе. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgraph_1_1OrientedGraph_ad0552148614b28527ba0891acfa37e0c}\label{classgraph_1_1OrientedGraph_ad0552148614b28527ba0891acfa37e0c}} 
+std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ $>$ \mbox{\hyperlink{classgraph_1_1OrientedGraph_ad0552148614b28527ba0891acfa37e0c}{edges}}
+\begin{DoxyCompactList}\small\item\em Разреженная матрица связности. Словарь исходящих рёбер. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgraph_1_1OrientedGraph_aabd2f0cceb6e97d6eb78f015e8f46073}\label{classgraph_1_1OrientedGraph_aabd2f0cceb6e97d6eb78f015e8f46073}} 
+std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ $>$ \mbox{\hyperlink{classgraph_1_1OrientedGraph_aabd2f0cceb6e97d6eb78f015e8f46073}{incoming\+Edges}}
+\begin{DoxyCompactList}\small\item\em Разреженная матрица связности. Словарь входящих рёбер. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Простой ориентированный граф. 
+
+См. определение в файле oriented\+\_\+graph.\+hpp строка 20
+
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classgraph_1_1OrientedGraph_ab4e8a6be3ea77302104204a053907ace}\label{classgraph_1_1OrientedGraph_ab4e8a6be3ea77302104204a053907ace}} 
+\index{graph::OrientedGraph@{graph::OrientedGraph}!AddEdge@{AddEdge}}
+\index{AddEdge@{AddEdge}!graph::OrientedGraph@{graph::OrientedGraph}}
+\doxysubsubsection{\texorpdfstring{AddEdge()}{AddEdge()}}
+{\footnotesize\ttfamily void graph\+::\+Oriented\+Graph\+::\+Add\+Edge (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id1,  }\item[{size\+\_\+t}]{id2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Добавить ребро в граф. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id1} & Номер вершины, из которой выходит ребро. \\
+\hline
+{\em id2} & Номер вершины, в которую входит ребро.\\
+\hline
+\end{DoxyParams}
+Функция добавляет ребро, выходящее из вершины id1 и входящее в вершину id2 в граф. Если такое ребро в графе уже есть, то функция ничего не делает. 
+
+См. определение в файле oriented\+\_\+graph.\+hpp строка 52
+
+\mbox{\Hypertarget{classgraph_1_1OrientedGraph_ae5c1472b6f3182a58b3630afaccc3c5b}\label{classgraph_1_1OrientedGraph_ae5c1472b6f3182a58b3630afaccc3c5b}} 
+\index{graph::OrientedGraph@{graph::OrientedGraph}!AddVertex@{AddVertex}}
+\index{AddVertex@{AddVertex}!graph::OrientedGraph@{graph::OrientedGraph}}
+\doxysubsubsection{\texorpdfstring{AddVertex()}{AddVertex()}}
+{\footnotesize\ttfamily void graph\+::\+Oriented\+Graph\+::\+Add\+Vertex (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Добавить вершину в граф. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Уникальный номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция добавляет вершину с номером id в граф. Если вершина с таким номером в графе уже есть, то функция ничего не делает. 
+
+См. определение в файле oriented\+\_\+graph.\+hpp строка 38
+
+\mbox{\Hypertarget{classgraph_1_1OrientedGraph_adc83c01be0f3287375aa5235a8f5b8c3}\label{classgraph_1_1OrientedGraph_adc83c01be0f3287375aa5235a8f5b8c3}} 
+\index{graph::OrientedGraph@{graph::OrientedGraph}!Edges@{Edges}}
+\index{Edges@{Edges}!graph::OrientedGraph@{graph::OrientedGraph}}
+\doxysubsubsection{\texorpdfstring{Edges()}{Edges()}}
+{\footnotesize\ttfamily const std\+::unordered\+\_\+set$<$size\+\_\+t$>$\& graph\+::\+Oriented\+Graph\+::\+Edges (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Получить множество вершин, с которыми соединена указанная вершина. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция возвращает множество вершин в виде хеш-\/таблицы, с которыми соединена вершина id, то есть множество таких вершин V, что ребро (id, V) присутствует в графе. Если указанной вершини в графе нет, то функция выбрасывает исключение std\+::out\+\_\+of\+\_\+range. 
+
+См. определение в файле oriented\+\_\+graph.\+hpp строка 148
+
+\mbox{\Hypertarget{classgraph_1_1OrientedGraph_a09ec597a822140897fb7f5b95f24fdb0}\label{classgraph_1_1OrientedGraph_a09ec597a822140897fb7f5b95f24fdb0}} 
+\index{graph::OrientedGraph@{graph::OrientedGraph}!HasEdge@{HasEdge}}
+\index{HasEdge@{HasEdge}!graph::OrientedGraph@{graph::OrientedGraph}}
+\doxysubsubsection{\texorpdfstring{HasEdge()}{HasEdge()}}
+{\footnotesize\ttfamily bool graph\+::\+Oriented\+Graph\+::\+Has\+Edge (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id1,  }\item[{size\+\_\+t}]{id2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Функция проверяет, есть ли ребро в графе. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id1} & Номер вершины, из которой выходит ребро. \\
+\hline
+{\em id2} & Номер вершины, в которую входит ребро.\\
+\hline
+\end{DoxyParams}
+Функция возвращает true, если ребро, выходящее из вершины id1 и входящее в вершину id2 есть в графе, в противном случае функция возвращает false. 
+
+См. определение в файле oriented\+\_\+graph.\+hpp строка 78
+
+\mbox{\Hypertarget{classgraph_1_1OrientedGraph_a028f6d5478f93f8016cf9aeffd88cd1a}\label{classgraph_1_1OrientedGraph_a028f6d5478f93f8016cf9aeffd88cd1a}} 
+\index{graph::OrientedGraph@{graph::OrientedGraph}!HasVertex@{HasVertex}}
+\index{HasVertex@{HasVertex}!graph::OrientedGraph@{graph::OrientedGraph}}
+\doxysubsubsection{\texorpdfstring{HasVertex()}{HasVertex()}}
+{\footnotesize\ttfamily bool graph\+::\+Oriented\+Graph\+::\+Has\+Vertex (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Функция проверяет, есть ли вершина в графе. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция возвращает true, если вершина id есть в графе, в противном случае функция возвращает false. 
+
+См. определение в файле oriented\+\_\+graph.\+hpp строка 65
+
+\mbox{\Hypertarget{classgraph_1_1OrientedGraph_ae1d060a4a4c30d2027a2e5778f3f0973}\label{classgraph_1_1OrientedGraph_ae1d060a4a4c30d2027a2e5778f3f0973}} 
+\index{graph::OrientedGraph@{graph::OrientedGraph}!IncomingEdges@{IncomingEdges}}
+\index{IncomingEdges@{IncomingEdges}!graph::OrientedGraph@{graph::OrientedGraph}}
+\doxysubsubsection{\texorpdfstring{IncomingEdges()}{IncomingEdges()}}
+{\footnotesize\ttfamily const std\+::unordered\+\_\+set$<$size\+\_\+t$>$\& graph\+::\+Oriented\+Graph\+::\+Incoming\+Edges (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Получить множество вершин, соединённых ребром с указанной вершиной. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция возвращает множество вершин в виде хеш-\/таблицы, соединённых с вершиной id, то есть множество таких вершин V, что ребро (V, id) присутствует в графе. Если указанной вершини в графе нет, то функция выбрасывает исключение std\+::out\+\_\+of\+\_\+range. 
+
+См. определение в файле oriented\+\_\+graph.\+hpp строка 162
+
+\mbox{\Hypertarget{classgraph_1_1OrientedGraph_a20844b0579c5ec390965b7662eaea235}\label{classgraph_1_1OrientedGraph_a20844b0579c5ec390965b7662eaea235}} 
+\index{graph::OrientedGraph@{graph::OrientedGraph}!RemoveEdge@{RemoveEdge}}
+\index{RemoveEdge@{RemoveEdge}!graph::OrientedGraph@{graph::OrientedGraph}}
+\doxysubsubsection{\texorpdfstring{RemoveEdge()}{RemoveEdge()}}
+{\footnotesize\ttfamily void graph\+::\+Oriented\+Graph\+::\+Remove\+Edge (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id1,  }\item[{size\+\_\+t}]{id2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Удалить ребро из графа. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id1} & Номер вершины, из которой выходит ребро. \\
+\hline
+{\em id2} & Номер вершины, в которую входит ребро.\\
+\hline
+\end{DoxyParams}
+Функция удаляет ребро, выходящее из вершины id1 и входящее в вершину id2 из графа. Если такого ребра в графе нет, то функция ничего не делает. 
+
+См. определение в файле oriented\+\_\+graph.\+hpp строка 130
+
+\mbox{\Hypertarget{classgraph_1_1OrientedGraph_a95b306761f22b56da2ed437158ad6021}\label{classgraph_1_1OrientedGraph_a95b306761f22b56da2ed437158ad6021}} 
+\index{graph::OrientedGraph@{graph::OrientedGraph}!RemoveVertex@{RemoveVertex}}
+\index{RemoveVertex@{RemoveVertex}!graph::OrientedGraph@{graph::OrientedGraph}}
+\doxysubsubsection{\texorpdfstring{RemoveVertex()}{RemoveVertex()}}
+{\footnotesize\ttfamily void graph\+::\+Oriented\+Graph\+::\+Remove\+Vertex (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Удалить вершину из графа. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция удаляет вершину с номером id из графа. Если вершины с таким номером в графе нет, то функция ничего не делает. 
+
+См. определение в файле oriented\+\_\+graph.\+hpp строка 95
+
+\mbox{\Hypertarget{classgraph_1_1OrientedGraph_a173db3fa3f31034971182f1832b71d92}\label{classgraph_1_1OrientedGraph_a173db3fa3f31034971182f1832b71d92}} 
+\index{graph::OrientedGraph@{graph::OrientedGraph}!Vertices@{Vertices}}
+\index{Vertices@{Vertices}!graph::OrientedGraph@{graph::OrientedGraph}}
+\doxysubsubsection{\texorpdfstring{Vertices()}{Vertices()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classgraph_1_1VerticesRange}{Vertices\+Range}} graph\+::\+Oriented\+Graph\+::\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Функция для итерирования по вершинам графа. 
+
+Функция возвращает специальный класс-\/промежуток, по которому можно проитерироваться при помощи цикла range-\/base for. 
+
+См. определение в файле oriented\+\_\+graph.\+hpp строка 172
+
+
+
+Объявления и описания членов класса находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{oriented__graph_8hpp}{oriented\+\_\+graph.\+hpp}}\end{DoxyCompactItemize}

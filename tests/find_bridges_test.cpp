@@ -83,11 +83,11 @@ static void SimpleTest(httplib::Client* cli) {
     "edges": []
   }
 )"_json;
- 
+
     httplib::Result res1 = cli->Post("/FindBridges", input1.dump(),
         "application/json");
-    nlohmann::json output1 = nlohmann::json::parse(res1->body);  
-      
+    nlohmann::json output1 = nlohmann::json::parse(res1->body);
+
     REQUIRE_EQUAL(5, output1["size"]);
     REQUIRE_EQUAL(2, output1["id"]);
     REQUIRE_EQUAL("graph", output1["type"]);
@@ -104,11 +104,11 @@ static void SimpleTest(httplib::Client* cli) {
     "edges": []
   }
 )"_json;
- 
+
     httplib::Result res2 = cli->Post("/FindBridges", input2.dump(),
         "application/json");
-    nlohmann::json output2 = nlohmann::json::parse(res2->body);  
-      
+    nlohmann::json output2 = nlohmann::json::parse(res2->body);
+
     REQUIRE_EQUAL(0, output2["size"]);
     REQUIRE_EQUAL(3, output2["id"]);
     REQUIRE_EQUAL("graph", output2["type"]);

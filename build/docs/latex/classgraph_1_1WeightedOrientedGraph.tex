@@ -1,0 +1,320 @@
+\hypertarget{classgraph_1_1WeightedOrientedGraph}{}\doxysection{Шаблон класса graph\+::Weighted\+Oriented\+Graph$<$ Weight $>$}
+\label{classgraph_1_1WeightedOrientedGraph}\index{graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}}
+
+
+Взвешенный ориентированный граф.  
+
+
+
+
+{\ttfamily \#include $<$weighted\+\_\+oriented\+\_\+graph.\+hpp$>$}
+
+\doxysubsection*{Классы}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_1_1Hash}{Hash}}
+\begin{DoxyCompactList}\small\item\em Класс для вычисления хеш кода ребра. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Открытые типы}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_a8eb05d65db6500dd696d72d13fb1d615}\label{classgraph_1_1WeightedOrientedGraph_a8eb05d65db6500dd696d72d13fb1d615}} 
+using \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_a8eb05d65db6500dd696d72d13fb1d615}{Weight\+Type}} = Weight
+\begin{DoxyCompactList}\small\item\em Тип данных для веса ребра. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_aad25ebfe83fa5fd90070434fdd1d0191}\label{classgraph_1_1WeightedOrientedGraph_aad25ebfe83fa5fd90070434fdd1d0191}} 
+\mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_aad25ebfe83fa5fd90070434fdd1d0191}{Weighted\+Oriented\+Graph}} ()
+\begin{DoxyCompactList}\small\item\em Конструктор класса \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph}{Weighted\+Oriented\+Graph}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_a535bb4b71ceb5c25cfbbb750af3d34dd}\label{classgraph_1_1WeightedOrientedGraph_a535bb4b71ceb5c25cfbbb750af3d34dd}} 
+\mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_a535bb4b71ceb5c25cfbbb750af3d34dd}{$\sim$\+Weighted\+Oriented\+Graph}} ()
+\begin{DoxyCompactList}\small\item\em Деструктор класса \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph}{Weighted\+Oriented\+Graph}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_a1fc9949440797f00525c094015a18fcb}{Add\+Vertex}} (size\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em Добавить вершину в граф. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_a7c3f377bb3398a66c29350311c147010}{Add\+Edge}} (size\+\_\+t id1, size\+\_\+t id2, Weight weight)
+\begin{DoxyCompactList}\small\item\em Добавить ребро в граф. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_acf334bd0449517d837986280d4ef3632}{Has\+Vertex}} (size\+\_\+t id) const
+\begin{DoxyCompactList}\small\item\em Функция проверяет, есть ли вершина в графе. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_a0e1b6c0f794365d0a93f836e580532f4}{Has\+Edge}} (size\+\_\+t id1, size\+\_\+t id2) const
+\begin{DoxyCompactList}\small\item\em Функция проверяет, есть ли ребро в графе. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_aad09ea5def10f2aa4fc172d2fc79083e}{Remove\+Vertex}} (size\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em Удалить вершину из графа. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_aa011492b55f9f29a6ed774085c616a95}{Remove\+Edge}} (size\+\_\+t id1, size\+\_\+t id2)
+\begin{DoxyCompactList}\small\item\em Удалить ребро из графа. \end{DoxyCompactList}\item 
+const std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ \& \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_ac293026158b9675021a66ae50488c2ae}{Edges}} (size\+\_\+t id) const
+\begin{DoxyCompactList}\small\item\em Получить множество вершин, с которыми соединена указанная вершина. \end{DoxyCompactList}\item 
+const std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ \& \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_a0b8cc97f7f9931ce2f65e186b3c2f6f6}{Incoming\+Edges}} (size\+\_\+t id) const
+\begin{DoxyCompactList}\small\item\em Получить множество вершин, соединённых ребром с указанной вершиной. \end{DoxyCompactList}\item 
+const Weight \& \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_ae5d00ea5246175fb946fbb3cb5388d3c}{Edge\+Weight}} (size\+\_\+t id1, size\+\_\+t id2) const
+\begin{DoxyCompactList}\small\item\em Получить вес ребра. \end{DoxyCompactList}\item 
+Weight \& \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_ae621ec0d86f5b3c71f234df8964cac8d}{Edge\+Weight}} (size\+\_\+t id1, size\+\_\+t id2)
+\begin{DoxyCompactList}\small\item\em Изменить вес ребра. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgraph_1_1VerticesRange}{Vertices\+Range}} \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_a871a2a423799f5a9ee2963923505a12e}{Vertices}} () const
+\begin{DoxyCompactList}\small\item\em Функция для итерирования по вершинам графа. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_a5be97206ced1d7be0ab7802e6dc450fa}\label{classgraph_1_1WeightedOrientedGraph_a5be97206ced1d7be0ab7802e6dc450fa}} 
+size\+\_\+t \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_a5be97206ced1d7be0ab7802e6dc450fa}{Num\+Vertices}} () const
+\begin{DoxyCompactList}\small\item\em Функция возвращает количество вершин в графе. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_afa3f4a8ef499ba12991994642d7ced3d}\label{classgraph_1_1WeightedOrientedGraph_afa3f4a8ef499ba12991994642d7ced3d}} 
+std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ $>$ \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_afa3f4a8ef499ba12991994642d7ced3d}{edges}}
+\begin{DoxyCompactList}\small\item\em Разреженная матрица связности. Словарь исходящих рёбер. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_ad2815f48356c2b6cb65c321d933da0d3}\label{classgraph_1_1WeightedOrientedGraph_ad2815f48356c2b6cb65c321d933da0d3}} 
+std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ $>$ \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_ad2815f48356c2b6cb65c321d933da0d3}{incoming\+Edges}}
+\begin{DoxyCompactList}\small\item\em Разреженная матрица связности. Словарь входящих рёбер. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_aee54454205ff157c0b7f55f4615243e6}\label{classgraph_1_1WeightedOrientedGraph_aee54454205ff157c0b7f55f4615243e6}} 
+std\+::unordered\+\_\+map$<$ std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$, Weight, \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_1_1Hash}{Hash}} $>$ \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph_aee54454205ff157c0b7f55f4615243e6}{weights}}
+\begin{DoxyCompactList}\small\item\em Словарь весов рёбер. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+\subsubsection*{template$<$typename Weight$>$\newline
+class graph\+::\+Weighted\+Oriented\+Graph$<$ Weight $>$}
+
+Взвешенный ориентированный граф. 
+
+
+\begin{DoxyTemplParams}{Параметры шаблона}
+{\em Weight} & Тип веса графа. \\
+\hline
+\end{DoxyTemplParams}
+
+
+См. определение в файле weighted\+\_\+oriented\+\_\+graph.\+hpp строка 24
+
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_a7c3f377bb3398a66c29350311c147010}\label{classgraph_1_1WeightedOrientedGraph_a7c3f377bb3398a66c29350311c147010}} 
+\index{graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}!AddEdge@{AddEdge}}
+\index{AddEdge@{AddEdge}!graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}}
+\doxysubsubsection{\texorpdfstring{AddEdge()}{AddEdge()}}
+{\footnotesize\ttfamily template$<$typename Weight $>$ \\
+void \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph}{graph\+::\+Weighted\+Oriented\+Graph}}$<$ Weight $>$\+::Add\+Edge (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id1,  }\item[{size\+\_\+t}]{id2,  }\item[{Weight}]{weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Добавить ребро в граф. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id1} & Номер вершины, из которой выходит ребро. \\
+\hline
+{\em id2} & Номер вершины, в которую входит ребро. \\
+\hline
+{\em weight} & Вес ребра.\\
+\hline
+\end{DoxyParams}
+Функция добавляет ребро с весом weight, выходящее из вершины id1 и входящее в вершину id2 в граф. Если такое ребро в графе уже есть, то функция ничего не делает. 
+
+См. определение в файле weighted\+\_\+oriented\+\_\+graph.\+hpp строка 68
+
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_a1fc9949440797f00525c094015a18fcb}\label{classgraph_1_1WeightedOrientedGraph_a1fc9949440797f00525c094015a18fcb}} 
+\index{graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}!AddVertex@{AddVertex}}
+\index{AddVertex@{AddVertex}!graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}}
+\doxysubsubsection{\texorpdfstring{AddVertex()}{AddVertex()}}
+{\footnotesize\ttfamily template$<$typename Weight $>$ \\
+void \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph}{graph\+::\+Weighted\+Oriented\+Graph}}$<$ Weight $>$\+::Add\+Vertex (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Добавить вершину в граф. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Уникальный номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция добавляет вершину с номером id в граф. Если вершина с таким номером в графе уже есть, то функция ничего не делает. 
+
+См. определение в файле weighted\+\_\+oriented\+\_\+graph.\+hpp строка 52
+
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_ac293026158b9675021a66ae50488c2ae}\label{classgraph_1_1WeightedOrientedGraph_ac293026158b9675021a66ae50488c2ae}} 
+\index{graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}!Edges@{Edges}}
+\index{Edges@{Edges}!graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}}
+\doxysubsubsection{\texorpdfstring{Edges()}{Edges()}}
+{\footnotesize\ttfamily template$<$typename Weight $>$ \\
+const std\+::unordered\+\_\+set$<$size\+\_\+t$>$\& \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph}{graph\+::\+Weighted\+Oriented\+Graph}}$<$ Weight $>$\+::Edges (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Получить множество вершин, с которыми соединена указанная вершина. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция возвращает множество вершин в виде хеш-\/таблицы, с которыми соединена вершина id, то есть множество таких вершин V, что ребро (id, V) присутствует в графе. Если указанной вершини в графе нет, то функция выбрасывает исключение std\+::out\+\_\+of\+\_\+range. 
+
+См. определение в файле weighted\+\_\+oriented\+\_\+graph.\+hpp строка 171
+
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_ae621ec0d86f5b3c71f234df8964cac8d}\label{classgraph_1_1WeightedOrientedGraph_ae621ec0d86f5b3c71f234df8964cac8d}} 
+\index{graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}!EdgeWeight@{EdgeWeight}}
+\index{EdgeWeight@{EdgeWeight}!graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}}
+\doxysubsubsection{\texorpdfstring{EdgeWeight()}{EdgeWeight()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Weight $>$ \\
+Weight\& \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph}{graph\+::\+Weighted\+Oriented\+Graph}}$<$ Weight $>$\+::Edge\+Weight (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id1,  }\item[{size\+\_\+t}]{id2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Изменить вес ребра. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id1} & Номер первой вершины. \\
+\hline
+{\em id2} & Номер второй вершины.\\
+\hline
+\end{DoxyParams}
+Функция возвращает ссылку на вес ребра, соединяющего вершины id1 и id2. Если такого ребра в графе нет, то функция генерирует исключение std\+::out\+\_\+of\+\_\+range. 
+
+См. определение в файле weighted\+\_\+oriented\+\_\+graph.\+hpp строка 213
+
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_ae5d00ea5246175fb946fbb3cb5388d3c}\label{classgraph_1_1WeightedOrientedGraph_ae5d00ea5246175fb946fbb3cb5388d3c}} 
+\index{graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}!EdgeWeight@{EdgeWeight}}
+\index{EdgeWeight@{EdgeWeight}!graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}}
+\doxysubsubsection{\texorpdfstring{EdgeWeight()}{EdgeWeight()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Weight $>$ \\
+const Weight\& \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph}{graph\+::\+Weighted\+Oriented\+Graph}}$<$ Weight $>$\+::Edge\+Weight (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id1,  }\item[{size\+\_\+t}]{id2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Получить вес ребра. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id1} & Номер вершины, из которой выходит ребро. \\
+\hline
+{\em id2} & Номер вершины, в которую входит ребро.\\
+\hline
+\end{DoxyParams}
+Функция возвращает вес ребра, выходящее из вершины id1 и входящее в вершину id2. Если такого ребра в графе нет, то функция генерирует исключение std\+::out\+\_\+of\+\_\+range. 
+
+См. определение в файле weighted\+\_\+oriented\+\_\+graph.\+hpp строка 199
+
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_a0e1b6c0f794365d0a93f836e580532f4}\label{classgraph_1_1WeightedOrientedGraph_a0e1b6c0f794365d0a93f836e580532f4}} 
+\index{graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}!HasEdge@{HasEdge}}
+\index{HasEdge@{HasEdge}!graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}}
+\doxysubsubsection{\texorpdfstring{HasEdge()}{HasEdge()}}
+{\footnotesize\ttfamily template$<$typename Weight $>$ \\
+bool \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph}{graph\+::\+Weighted\+Oriented\+Graph}}$<$ Weight $>$\+::Has\+Edge (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id1,  }\item[{size\+\_\+t}]{id2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Функция проверяет, есть ли ребро в графе. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id1} & Номер вершины, из которой выходит ребро. \\
+\hline
+{\em id2} & Номер вершины, в которую входит ребро.\\
+\hline
+\end{DoxyParams}
+Функция возвращает true, если ребро, выходящее из вершины id1 и входящее в вершину id2 есть в графе, в противном случае функция возвращает false. 
+
+См. определение в файле weighted\+\_\+oriented\+\_\+graph.\+hpp строка 95
+
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_acf334bd0449517d837986280d4ef3632}\label{classgraph_1_1WeightedOrientedGraph_acf334bd0449517d837986280d4ef3632}} 
+\index{graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}!HasVertex@{HasVertex}}
+\index{HasVertex@{HasVertex}!graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}}
+\doxysubsubsection{\texorpdfstring{HasVertex()}{HasVertex()}}
+{\footnotesize\ttfamily template$<$typename Weight $>$ \\
+bool \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph}{graph\+::\+Weighted\+Oriented\+Graph}}$<$ Weight $>$\+::Has\+Vertex (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Функция проверяет, есть ли вершина в графе. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция возвращает true, если вершина id есть в графе, в противном случае функция возвращает false. 
+
+См. определение в файле weighted\+\_\+oriented\+\_\+graph.\+hpp строка 82
+
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_a0b8cc97f7f9931ce2f65e186b3c2f6f6}\label{classgraph_1_1WeightedOrientedGraph_a0b8cc97f7f9931ce2f65e186b3c2f6f6}} 
+\index{graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}!IncomingEdges@{IncomingEdges}}
+\index{IncomingEdges@{IncomingEdges}!graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}}
+\doxysubsubsection{\texorpdfstring{IncomingEdges()}{IncomingEdges()}}
+{\footnotesize\ttfamily template$<$typename Weight $>$ \\
+const std\+::unordered\+\_\+set$<$size\+\_\+t$>$\& \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph}{graph\+::\+Weighted\+Oriented\+Graph}}$<$ Weight $>$\+::Incoming\+Edges (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Получить множество вершин, соединённых ребром с указанной вершиной. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция возвращает множество вершин в виде хеш-\/таблицы, соединённых с вершиной id, то есть множество таких вершин V, что ребро (V, id) присутствует в графе. Если указанной вершини в графе нет, то функция выбрасывает исключение std\+::out\+\_\+of\+\_\+range. 
+
+См. определение в файле weighted\+\_\+oriented\+\_\+graph.\+hpp строка 185
+
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_aa011492b55f9f29a6ed774085c616a95}\label{classgraph_1_1WeightedOrientedGraph_aa011492b55f9f29a6ed774085c616a95}} 
+\index{graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}!RemoveEdge@{RemoveEdge}}
+\index{RemoveEdge@{RemoveEdge}!graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}}
+\doxysubsubsection{\texorpdfstring{RemoveEdge()}{RemoveEdge()}}
+{\footnotesize\ttfamily template$<$typename Weight $>$ \\
+void \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph}{graph\+::\+Weighted\+Oriented\+Graph}}$<$ Weight $>$\+::Remove\+Edge (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id1,  }\item[{size\+\_\+t}]{id2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Удалить ребро из графа. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id1} & Номер вершины, из которой выходит ребро. \\
+\hline
+{\em id2} & Номер вершины, в которую входит ребро.\\
+\hline
+\end{DoxyParams}
+Функция удаляет ребро, выходящее из вершины id1 и входящее в вершину id2 из графа. Если такого ребра в графе нет, то функция ничего не делает. 
+
+См. определение в файле weighted\+\_\+oriented\+\_\+graph.\+hpp строка 151
+
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_aad09ea5def10f2aa4fc172d2fc79083e}\label{classgraph_1_1WeightedOrientedGraph_aad09ea5def10f2aa4fc172d2fc79083e}} 
+\index{graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}!RemoveVertex@{RemoveVertex}}
+\index{RemoveVertex@{RemoveVertex}!graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}}
+\doxysubsubsection{\texorpdfstring{RemoveVertex()}{RemoveVertex()}}
+{\footnotesize\ttfamily template$<$typename Weight $>$ \\
+void \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph}{graph\+::\+Weighted\+Oriented\+Graph}}$<$ Weight $>$\+::Remove\+Vertex (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Удалить вершину из графа. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция удаляет вершину с номером id из графа. Если вершины с таким номером в графе нет, то функция ничего не делает. 
+
+См. определение в файле weighted\+\_\+oriented\+\_\+graph.\+hpp строка 112
+
+\mbox{\Hypertarget{classgraph_1_1WeightedOrientedGraph_a871a2a423799f5a9ee2963923505a12e}\label{classgraph_1_1WeightedOrientedGraph_a871a2a423799f5a9ee2963923505a12e}} 
+\index{graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}!Vertices@{Vertices}}
+\index{Vertices@{Vertices}!graph::WeightedOrientedGraph$<$ Weight $>$@{graph::WeightedOrientedGraph$<$ Weight $>$}}
+\doxysubsubsection{\texorpdfstring{Vertices()}{Vertices()}}
+{\footnotesize\ttfamily template$<$typename Weight $>$ \\
+\mbox{\hyperlink{classgraph_1_1VerticesRange}{Vertices\+Range}} \mbox{\hyperlink{classgraph_1_1WeightedOrientedGraph}{graph\+::\+Weighted\+Oriented\+Graph}}$<$ Weight $>$\+::Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Функция для итерирования по вершинам графа. 
+
+Функция возвращает специальный класс-\/промежуток, по которому можно проитерироваться при помощи цикла range-\/base for. 
+
+См. определение в файле weighted\+\_\+oriented\+\_\+graph.\+hpp строка 223
+
+
+
+Объявления и описания членов класса находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{weighted__oriented__graph_8hpp}{weighted\+\_\+oriented\+\_\+graph.\+hpp}}\end{DoxyCompactItemize}

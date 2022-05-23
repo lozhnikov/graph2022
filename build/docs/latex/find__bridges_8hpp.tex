@@ -1,0 +1,87 @@
+\hypertarget{find__bridges_8hpp}{}\doxysection{Файл include/find\+\_\+bridges.hpp}
+\label{find__bridges_8hpp}\index{include/find\_bridges.hpp@{include/find\_bridges.hpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include \char`\"{}graph.\+hpp\char`\"{}}\newline
+\doxysubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{find__bridges_8hpp_a6dd220c3f9e795c819d126fab8d219c1}{graph\+::\+Deep\+Search}} (int $\ast$timer, std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ $\ast$used, std\+::map$<$ size\+\_\+t, int $>$ $\ast$timer\+In, std\+::map$<$ size\+\_\+t, int $>$ $\ast$min\+Time, std\+::vector$<$ std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$$>$ $\ast$bridges, T graph, size\+\_\+t v, size\+\_\+t p=0)
+\begin{DoxyCompactList}\small\item\em Поиск в глубину в графе. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{find__bridges_8hpp_a88ccd63c0b2c8f7633ff6874ef967d6a}{graph\+::\+Find\+Bridges}} (T graph, std\+::vector$<$ std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$$>$ $\ast$bridges)
+\begin{DoxyCompactList}\small\item\em Функция поиска мостов. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+\begin{DoxyAuthor}{Автор}
+Eugene Semennikov
+\end{DoxyAuthor}
+Реализация метода поиска мостов. 
+
+\doxysubsection{Функции}
+\mbox{\Hypertarget{find__bridges_8hpp_a6dd220c3f9e795c819d126fab8d219c1}\label{find__bridges_8hpp_a6dd220c3f9e795c819d126fab8d219c1}} 
+\index{find\_bridges.hpp@{find\_bridges.hpp}!DeepSearch@{DeepSearch}}
+\index{DeepSearch@{DeepSearch}!find\_bridges.hpp@{find\_bridges.hpp}}
+\doxysubsubsection{\texorpdfstring{DeepSearch()}{DeepSearch()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void graph\+::\+Deep\+Search (\begin{DoxyParamCaption}\item[{int $\ast$}]{timer,  }\item[{std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ $\ast$}]{used,  }\item[{std\+::map$<$ size\+\_\+t, int $>$ $\ast$}]{timer\+In,  }\item[{std\+::map$<$ size\+\_\+t, int $>$ $\ast$}]{min\+Time,  }\item[{std\+::vector$<$ std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$$>$ $\ast$}]{bridges,  }\item[{T}]{graph,  }\item[{size\+\_\+t}]{v,  }\item[{size\+\_\+t}]{p = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Поиск в глубину в графе. 
+
+
+\begin{DoxyTemplParams}{Параметры шаблона}
+{\em T} & тип графа.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Аргументы}
+{\em timer} & переменная, служащая для отслеживания времени входа в вершину. \\
+\hline
+{\em used} & список использованных вершин при работе метода. \\
+\hline
+{\em timer\+In} & список времен входа в вершину. \\
+\hline
+{\em min\+Time} & список минимальный времен входа в вершину. \\
+\hline
+{\em v} & вершина, из которой идет поиск. \\
+\hline
+{\em p} & предок вершины v. \\
+\hline
+{\em bridges} & вектор, в котором хранится ответ. \\
+\hline
+\end{DoxyParams}
+
+
+См. определение в файле find\+\_\+bridges.\+hpp строка 33
+
+\mbox{\Hypertarget{find__bridges_8hpp_a88ccd63c0b2c8f7633ff6874ef967d6a}\label{find__bridges_8hpp_a88ccd63c0b2c8f7633ff6874ef967d6a}} 
+\index{find\_bridges.hpp@{find\_bridges.hpp}!FindBridges@{FindBridges}}
+\index{FindBridges@{FindBridges}!find\_bridges.hpp@{find\_bridges.hpp}}
+\doxysubsubsection{\texorpdfstring{FindBridges()}{FindBridges()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void graph\+::\+Find\+Bridges (\begin{DoxyParamCaption}\item[{T}]{graph,  }\item[{std\+::vector$<$ std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$$>$ $\ast$}]{bridges }\end{DoxyParamCaption})}
+
+
+
+Функция поиска мостов. 
+
+
+\begin{DoxyTemplParams}{Параметры шаблона}
+{\em T} & тип графа.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Аргументы}
+{\em bridges} & вектор, в котором хранится ответ. \\
+\hline
+\end{DoxyParams}
+
+
+См. определение в файле find\+\_\+bridges.\+hpp строка 65
+

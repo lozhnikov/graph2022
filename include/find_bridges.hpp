@@ -10,6 +10,8 @@
 #include <map>
 #include <vector>
 #include <algorithm>
+#include <utility>
+#include <unordered_set>
 #include "graph.hpp"
 
 namespace graph {
@@ -30,7 +32,8 @@ template<class T>
 
 void DeepSearch(int* timer, std::unordered_set<size_t>* used,
          std::map<size_t, int>* timerIn, std::map<size_t, int>* minTime,
-         std::vector<std::pair<size_t, size_t>>* bridges, T graph, size_t v, size_t p = 0) {
+         std::vector<std::pair<size_t, size_t>>* bridges, T graph, size_t v,
+                size_t p = 0) {
     (*timerIn)[v] = (*timer)++;
     (*minTime)[v] = (*timer)++;
     (*used).insert(v);

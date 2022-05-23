@@ -1,0 +1,40 @@
+\hypertarget{methods_8hpp}{}\doxysection{Файл methods/methods.hpp}
+\label{methods_8hpp}\index{methods/methods.hpp@{methods/methods.hpp}}
+\doxysubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{find__bridges_8cpp_abf513e384ae11b87775b766dc627fbbd}{graph\+::\+Find\+Bridges\+Method}} (const nlohmann\+::json \&input, nlohmann\+::json $\ast$output)
+\begin{DoxyCompactList}\small\item\em Метод поиска мостов. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+\begin{DoxyAuthor}{Автор}
+Mikhail Lozhnikov
+\end{DoxyAuthor}
+Объявления функий для серверной части алгоритмов. Эти функции должны считать JSON, который прислал клиент, выполнить алгоритм и отправить клиенту JSON с результатом работы алгоритма. 
+
+\doxysubsection{Функции}
+\mbox{\Hypertarget{find__bridges_8cpp_abf513e384ae11b87775b766dc627fbbd}\label{find__bridges_8cpp_abf513e384ae11b87775b766dc627fbbd}} 
+\index{methods.hpp@{methods.hpp}!FindBridgesMethod@{FindBridgesMethod}}
+\index{FindBridgesMethod@{FindBridgesMethod}!methods.hpp@{methods.hpp}}
+\doxysubsubsection{\texorpdfstring{FindBridgesMethod()}{FindBridgesMethod()}}
+{\footnotesize\ttfamily int graph\+::\+Find\+Bridges\+Method (\begin{DoxyParamCaption}\item[{const nlohmann\+::json \&}]{input,  }\item[{nlohmann\+::json $\ast$}]{output }\end{DoxyParamCaption})}
+
+
+
+Метод поиска мостов. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em input} & Входные данные в формате JSON. \\
+\hline
+{\em output} & Выходные данные в формате JSON. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Функция возвращает 0 в случае успеха и отрицательное число если входные данные заданы некорректно.
+\end{DoxyReturn}
+Функция запускает алгоритм сортировки вставками, используя входные данные в JSON формате. Результат также выдаётся в JSON формате. 
+
+См. определение в файле find\+\_\+bridges.\+cpp строка 30
+

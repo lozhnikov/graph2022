@@ -1,0 +1,257 @@
+\hypertarget{classgraph_1_1Graph}{}\doxysection{Класс graph\+::Graph}
+\label{classgraph_1_1Graph}\index{graph::Graph@{graph::Graph}}
+
+
+Простой неориентированный граф.  
+
+
+
+
+{\ttfamily \#include $<$graph.\+hpp$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgraph_1_1Graph_a131b2852694f1cb38d30188e43a3d3d4}\label{classgraph_1_1Graph_a131b2852694f1cb38d30188e43a3d3d4}} 
+\mbox{\hyperlink{classgraph_1_1Graph_a131b2852694f1cb38d30188e43a3d3d4}{Graph}} ()
+\begin{DoxyCompactList}\small\item\em Конструктор класса \mbox{\hyperlink{classgraph_1_1Graph}{Graph}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgraph_1_1Graph_a864323911462d3adf093943857f0f306}{Add\+Vertex}} (size\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em Добавить вершину в граф. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgraph_1_1Graph_a3b36e00d026e5057dbae4f38d8f1b0e2}{Add\+Edge}} (size\+\_\+t id1, size\+\_\+t id2)
+\begin{DoxyCompactList}\small\item\em Добавить ребро в граф. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgraph_1_1Graph_afc9f686f154975ef2b3f88ac595b51ba}{Has\+Vertex}} (size\+\_\+t id) const
+\begin{DoxyCompactList}\small\item\em Функция проверяет, есть ли вершина в графе. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgraph_1_1Graph_a6f6042471baa7550446fa2936d8e0a1d}{Has\+Edge}} (size\+\_\+t id1, size\+\_\+t id2) const
+\begin{DoxyCompactList}\small\item\em Функция проверяет, есть ли ребро в графе. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgraph_1_1Graph_a34bc6b6957e7b5a200e79d5ef87031d1}{Remove\+Vertex}} (size\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em Удалить вершину из графа. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgraph_1_1Graph_a1e60931b66c01079177549bd00026fc4}{Remove\+Edge}} (size\+\_\+t id1, size\+\_\+t id2)
+\begin{DoxyCompactList}\small\item\em Удалить ребро из графа. \end{DoxyCompactList}\item 
+const std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ \& \mbox{\hyperlink{classgraph_1_1Graph_a472739363cbbf6f65f118a8e6e7ad073}{Edges}} (size\+\_\+t id) const
+\begin{DoxyCompactList}\small\item\em Получить множество вершин, с которыми соединена указанная вершина. \end{DoxyCompactList}\item 
+const std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ \& \mbox{\hyperlink{classgraph_1_1Graph_a208b19f4c9e786980f89bfef69370ab7}{Incoming\+Edges}} (size\+\_\+t id) const
+\begin{DoxyCompactList}\small\item\em Получить множество вершин, соединённых ребром с указанной вершиной. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgraph_1_1VerticesRange}{Vertices\+Range}} \mbox{\hyperlink{classgraph_1_1Graph_a32a71b7c3e96ec4da53945d30f7db6f9}{Vertices}} () const
+\begin{DoxyCompactList}\small\item\em Функция для итерирования по вершинам графа. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgraph_1_1Graph_ae9eb29726abcfff5ce9c3d5e9fcb97a0}\label{classgraph_1_1Graph_ae9eb29726abcfff5ce9c3d5e9fcb97a0}} 
+size\+\_\+t \mbox{\hyperlink{classgraph_1_1Graph_ae9eb29726abcfff5ce9c3d5e9fcb97a0}{Num\+Vertices}} () const
+\begin{DoxyCompactList}\small\item\em Функция возвращает количество вершин в графе. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые члены}
+\begin{DoxyCompactItemize}
+\item 
+std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ \mbox{\hyperlink{classgraph_1_1Graph_a2ac2f0ac79e9ae3aec8c39bacf43c0b7}{Make\+Edge\+Id}} (size\+\_\+t id1, size\+\_\+t id2) const
+\begin{DoxyCompactList}\small\item\em Вспомогательная функция для получения идентификатора ребра. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgraph_1_1Graph_a670857b56c76cb9a9ba834a89ac8d89a}\label{classgraph_1_1Graph_a670857b56c76cb9a9ba834a89ac8d89a}} 
+std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ $>$ \mbox{\hyperlink{classgraph_1_1Graph_a670857b56c76cb9a9ba834a89ac8d89a}{edges}}
+\begin{DoxyCompactList}\small\item\em Разреженная матрица связности. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Простой неориентированный граф. 
+
+См. определение в файле graph.\+hpp строка 22
+
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classgraph_1_1Graph_a3b36e00d026e5057dbae4f38d8f1b0e2}\label{classgraph_1_1Graph_a3b36e00d026e5057dbae4f38d8f1b0e2}} 
+\index{graph::Graph@{graph::Graph}!AddEdge@{AddEdge}}
+\index{AddEdge@{AddEdge}!graph::Graph@{graph::Graph}}
+\doxysubsubsection{\texorpdfstring{AddEdge()}{AddEdge()}}
+{\footnotesize\ttfamily void graph\+::\+Graph\+::\+Add\+Edge (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id1,  }\item[{size\+\_\+t}]{id2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Добавить ребро в граф. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id1} & Номер первой вершины. \\
+\hline
+{\em id2} & Номер второй вершины.\\
+\hline
+\end{DoxyParams}
+Функция добавляет ребро, соединяющее вершины id1 и id2 в граф. Если такое ребро в графе уже есть, то функция ничего не делает. 
+
+См. определение в файле graph.\+hpp строка 52
+
+\mbox{\Hypertarget{classgraph_1_1Graph_a864323911462d3adf093943857f0f306}\label{classgraph_1_1Graph_a864323911462d3adf093943857f0f306}} 
+\index{graph::Graph@{graph::Graph}!AddVertex@{AddVertex}}
+\index{AddVertex@{AddVertex}!graph::Graph@{graph::Graph}}
+\doxysubsubsection{\texorpdfstring{AddVertex()}{AddVertex()}}
+{\footnotesize\ttfamily void graph\+::\+Graph\+::\+Add\+Vertex (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Добавить вершину в граф. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Уникальный номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция добавляет вершину с номером id в граф. Если вершина с таким номером в графе уже есть, то функция ничего не делает. 
+
+См. определение в файле graph.\+hpp строка 39
+
+\mbox{\Hypertarget{classgraph_1_1Graph_a472739363cbbf6f65f118a8e6e7ad073}\label{classgraph_1_1Graph_a472739363cbbf6f65f118a8e6e7ad073}} 
+\index{graph::Graph@{graph::Graph}!Edges@{Edges}}
+\index{Edges@{Edges}!graph::Graph@{graph::Graph}}
+\doxysubsubsection{\texorpdfstring{Edges()}{Edges()}}
+{\footnotesize\ttfamily const std\+::unordered\+\_\+set$<$size\+\_\+t$>$\& graph\+::\+Graph\+::\+Edges (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Получить множество вершин, с которыми соединена указанная вершина. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция возвращает множество вершин в виде хеш-\/таблицы, с которыми соединена вершина id, то есть множество таких вершин V, что ребро (id, V) присутствует в графе. Если указанной вершини в графе нет, то функция выбрасывает исключение std\+::out\+\_\+of\+\_\+range. 
+
+См. определение в файле graph.\+hpp строка 137
+
+\mbox{\Hypertarget{classgraph_1_1Graph_a6f6042471baa7550446fa2936d8e0a1d}\label{classgraph_1_1Graph_a6f6042471baa7550446fa2936d8e0a1d}} 
+\index{graph::Graph@{graph::Graph}!HasEdge@{HasEdge}}
+\index{HasEdge@{HasEdge}!graph::Graph@{graph::Graph}}
+\doxysubsubsection{\texorpdfstring{HasEdge()}{HasEdge()}}
+{\footnotesize\ttfamily bool graph\+::\+Graph\+::\+Has\+Edge (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id1,  }\item[{size\+\_\+t}]{id2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Функция проверяет, есть ли ребро в графе. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id1} & Номер первой вершины. \\
+\hline
+{\em id2} & Номер второй вершины.\\
+\hline
+\end{DoxyParams}
+Функция возвращает true, если ребро, соединяющее вершины id1 и id2 есть в графе, в противном случае функция возвращает false. 
+
+См. определение в файле graph.\+hpp строка 78
+
+\mbox{\Hypertarget{classgraph_1_1Graph_afc9f686f154975ef2b3f88ac595b51ba}\label{classgraph_1_1Graph_afc9f686f154975ef2b3f88ac595b51ba}} 
+\index{graph::Graph@{graph::Graph}!HasVertex@{HasVertex}}
+\index{HasVertex@{HasVertex}!graph::Graph@{graph::Graph}}
+\doxysubsubsection{\texorpdfstring{HasVertex()}{HasVertex()}}
+{\footnotesize\ttfamily bool graph\+::\+Graph\+::\+Has\+Vertex (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Функция проверяет, есть ли вершина в графе. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция возвращает true, если вершина id есть в графе, в противном случае функция возвращает false. 
+
+См. определение в файле graph.\+hpp строка 65
+
+\mbox{\Hypertarget{classgraph_1_1Graph_a208b19f4c9e786980f89bfef69370ab7}\label{classgraph_1_1Graph_a208b19f4c9e786980f89bfef69370ab7}} 
+\index{graph::Graph@{graph::Graph}!IncomingEdges@{IncomingEdges}}
+\index{IncomingEdges@{IncomingEdges}!graph::Graph@{graph::Graph}}
+\doxysubsubsection{\texorpdfstring{IncomingEdges()}{IncomingEdges()}}
+{\footnotesize\ttfamily const std\+::unordered\+\_\+set$<$size\+\_\+t$>$\& graph\+::\+Graph\+::\+Incoming\+Edges (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Получить множество вершин, соединённых ребром с указанной вершиной. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция возвращает множество вершин в виде хеш-\/таблицы, соединённых с вершиной id, то есть множество таких вершин V, что ребро (V, id) присутствует в графе. Если указанной вершини в графе нет, то функция выбрасывает исключение std\+::out\+\_\+of\+\_\+range. 
+
+См. определение в файле graph.\+hpp строка 151
+
+\mbox{\Hypertarget{classgraph_1_1Graph_a2ac2f0ac79e9ae3aec8c39bacf43c0b7}\label{classgraph_1_1Graph_a2ac2f0ac79e9ae3aec8c39bacf43c0b7}} 
+\index{graph::Graph@{graph::Graph}!MakeEdgeId@{MakeEdgeId}}
+\index{MakeEdgeId@{MakeEdgeId}!graph::Graph@{graph::Graph}}
+\doxysubsubsection{\texorpdfstring{MakeEdgeId()}{MakeEdgeId()}}
+{\footnotesize\ttfamily std\+::pair$<$size\+\_\+t, size\+\_\+t$>$ graph\+::\+Graph\+::\+Make\+Edge\+Id (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id1,  }\item[{size\+\_\+t}]{id2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Вспомогательная функция для получения идентификатора ребра. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id1} & Номер первой вершины. \\
+\hline
+{\em id2} & Номер второй вершины.\\
+\hline
+\end{DoxyParams}
+Функция возвращает внутренний идентификатор ребра, используемый в классе. 
+
+См. определение в файле graph.\+hpp строка 181
+
+\mbox{\Hypertarget{classgraph_1_1Graph_a1e60931b66c01079177549bd00026fc4}\label{classgraph_1_1Graph_a1e60931b66c01079177549bd00026fc4}} 
+\index{graph::Graph@{graph::Graph}!RemoveEdge@{RemoveEdge}}
+\index{RemoveEdge@{RemoveEdge}!graph::Graph@{graph::Graph}}
+\doxysubsubsection{\texorpdfstring{RemoveEdge()}{RemoveEdge()}}
+{\footnotesize\ttfamily void graph\+::\+Graph\+::\+Remove\+Edge (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id1,  }\item[{size\+\_\+t}]{id2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Удалить ребро из графа. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id1} & Номер первой вершины. \\
+\hline
+{\em id2} & Номер второй вершины.\\
+\hline
+\end{DoxyParams}
+Функция удаляет ребро, соединяющее вершины id1 и id2 из графа. Если такого ребра в графе нет, то функция ничего не делает. 
+
+См. определение в файле graph.\+hpp строка 119
+
+\mbox{\Hypertarget{classgraph_1_1Graph_a34bc6b6957e7b5a200e79d5ef87031d1}\label{classgraph_1_1Graph_a34bc6b6957e7b5a200e79d5ef87031d1}} 
+\index{graph::Graph@{graph::Graph}!RemoveVertex@{RemoveVertex}}
+\index{RemoveVertex@{RemoveVertex}!graph::Graph@{graph::Graph}}
+\doxysubsubsection{\texorpdfstring{RemoveVertex()}{RemoveVertex()}}
+{\footnotesize\ttfamily void graph\+::\+Graph\+::\+Remove\+Vertex (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Удалить вершину из графа. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em id} & Номер вершины.\\
+\hline
+\end{DoxyParams}
+Функция удаляет вершину с номером id из графа. Если вершины с таким номером в графе нет, то функция ничего не делает. 
+
+См. определение в файле graph.\+hpp строка 95
+
+\mbox{\Hypertarget{classgraph_1_1Graph_a32a71b7c3e96ec4da53945d30f7db6f9}\label{classgraph_1_1Graph_a32a71b7c3e96ec4da53945d30f7db6f9}} 
+\index{graph::Graph@{graph::Graph}!Vertices@{Vertices}}
+\index{Vertices@{Vertices}!graph::Graph@{graph::Graph}}
+\doxysubsubsection{\texorpdfstring{Vertices()}{Vertices()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classgraph_1_1VerticesRange}{Vertices\+Range}} graph\+::\+Graph\+::\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Функция для итерирования по вершинам графа. 
+
+Функция возвращает специальный класс-\/промежуток, по которому можно проитерироваться при помощи цикла range-\/base for. 
+
+См. определение в файле graph.\+hpp строка 161
+
+
+
+Объявления и описания членов класса находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{graph_8hpp}{graph.\+hpp}}\end{DoxyCompactItemize}

@@ -83,7 +83,7 @@ static int FindBridgesMethodHelper(const nlohmann::json& input,
     graph.AddEdge(input.at("edges").at(i).at(0), input.at("edges").at(i).at(1));
   }
 
-/* Здесь вызывается сам алгоритм поиска мостов. */
+  /* Здесь вызывается сам алгоритм поиска мостов. */
   std::vector<std::pair<size_t, size_t>> result;
 
   FindBridges(graph, &result);
