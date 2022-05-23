@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
   });
 
   /* Сюда нужно вставить обработчик post запроса для алгоритма. */
-/* /InsertionSort это адрес для запросов на сортировку вставками
+/* /FindBridges это адрес для запросов на сортировку вставками
   на сервере. */
   svr.Post("/FindBridges", [&](const httplib::Request& req,
                                  httplib::Response& res) {
@@ -59,8 +59,6 @@ int main(int argc, char* argv[]) {
     res.set_content(output.dump(), "application/json");
   });
 
-
-  /* Конец вставки. */
 
   // Эта функция запускает сервер на указанном порту. Программа не завершится
   // до тех пор, пока сервер не будет остановлен.

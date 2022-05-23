@@ -14,7 +14,14 @@
 #include "find_bridges.hpp"
 
 namespace graph {
-
+/**
+ * @brief Функция-помошник. Вызывает необходимый метод в зависимости от типа 
+ графа.
+ *
+ * @param input входной json-файл.
+ * @param input выходгой json-файл.
+ * @param type тип графа.
+ */
 template<class T>
 static int FindBridgesMethodHelper(const nlohmann::json& input,
                                      nlohmann::json* output,
@@ -76,8 +83,8 @@ static int FindBridgesMethodHelper(const nlohmann::json& input,
     graph.AddEdge(input.at("edges").at(i).at(0), input.at("edges").at(i).at(1));
   }
 
-/* Здесь вызывается сам алгоритм сортировки вставками. */
-  std::vector<vector<size_t>> result;
+/* Здесь вызывается сам алгоритм поиска мостов. */
+  std::vector<std::pair<size_t, size_t>> result;
 
   FindBridges(graph, &result);
 
@@ -85,10 +92,9 @@ static int FindBridgesMethodHelper(const nlohmann::json& input,
   (*output)["size"] = size;
 
   for (size_t i = 0; i < result.size(); i++) {
-    for (size_t j = 0; j < 2; j++)
-    (*output)["data"][i][j] = result[i][j];
+    (*output)["data"][i][0] = result[i].first;
+    (*output)["data"][i][1] = result[i].second;
   }
-  result.clear();
 
   return 0;
 }

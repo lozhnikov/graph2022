@@ -11,10 +11,6 @@
 #include <vector>
 #include <algorithm>
 #include "graph.hpp"
-#include "weighted_graph.hpp"
-#include "iterators.hpp"
-
-using std::vector;
 
 namespace graph {
 /**
@@ -27,26 +23,26 @@ namespace graph {
  * @param timerIn список времен входа в вершину.
  * @param minTime список минимальный времен входа в вершину.
  * @param v вершина, из которой идет поиск.
- * @param p предок вершины p.
+ * @param p предок вершины v.
  * @param bridges вектор, в котором хранится ответ.
  */
 template<class T>
 
-void DeepFirstSearch(int* timer, std::map<size_t, bool>* used,
+void DeepSearch(int* timer, std::unordered_set<size_t>* used,
          std::map<size_t, int>* timerIn, std::map<size_t, int>* minTime,
-         vector<vector<size_t>>* bridges, T graph, size_t v, size_t p = 0) {
+         std::vector<std::pair<size_t, size_t>>* bridges, T graph, size_t v, size_t p = 0) {
     (*timerIn)[v] = (*timer)++;
     (*minTime)[v] = (*timer)++;
-    (*used)[v] = true;
+    (*used).insert(v);
 
 
     for (auto neighbourId : graph.Edges(v)) {
         size_t to = neighbourId;
         if (to == p)  continue;
-        if ((*used)[to]) {
+        if ((*used).find(to) != (*used).end()) {
             (*minTime)[v] = std::min((*minTime)[v], (*timerIn)[to]);
         } else {
-            DeepFirstSearch(timer, used, timerIn, minTime, bridges, graph,
+            DeepSearch(timer, used, timerIn, minTime, bridges, graph,
                             to, v);
             (*minTime)[v] = std::min((*minTime)[v], (*minTime)[to]);
             if ((*minTime)[to] > (*timerIn)[v]) {
@@ -63,22 +59,16 @@ void DeepFirstSearch(int* timer, std::map<size_t, bool>* used,
  * @param bridges вектор, в котором хранится ответ.
  */
 template<class T>
-void FindBridges(T graph, vector<vector<size_t>>* bridges ) {
+void FindBridges(T graph, std::vector<std::pair<size_t, size_t>>* bridges ) {
     int timer = 0;
-    std::map<size_t, bool> used;
+    std::unordered_set<size_t> used;
     std::map<size_t, int> timerIn;
     std::map<size_t, int> minTime;
 
-    for (auto elem = graph.Vertices().begin();
-         elem != graph.Vertices().end(); ++elem) {
-        used[*elem] = false;
-    }
-
-    for (auto elem = graph.Vertices().begin();
-         elem != graph.Vertices().end(); ++elem) {
-        if (!used[*elem]) {
-            DeepFirstSearch(&timer, &used, &timerIn, &minTime, bridges, graph,
-                            *elem);
+    for (size_t elem : graph.Vertices()) {
+        if (used.find(elem) == used.end()) {
+            DeepSearch(&timer, &used, &timerIn, &minTime, bridges, graph,
+                            elem);
         }
     }
 }

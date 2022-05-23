@@ -15,13 +15,6 @@
 static void SimpleTest(httplib::Client* cli);
 static void RandomTest(httplib::Client* cli);
 
-template<typename T>
-static void RandomIntegerHelperTest(httplib::Client* cli, std::string type);
-
-template<typename T>
-static void RandomFloatingPointHelperTest(httplib::Client* cli,
-                                          std::string type);
-
 void TestFindBridges(httplib::Client* cli) {
   TestSuite suite("TestFindBridges");
 
@@ -77,17 +70,51 @@ static void SimpleTest(httplib::Client* cli) {
     REQUIRE_EQUAL(5, output["size"]);
     REQUIRE_EQUAL(1, output["id"]);
     REQUIRE_EQUAL("graph", output["type"]);
-
     REQUIRE_EQUAL(output["data"].size(), static_cast<size_t>(4));
+
+    /*Второй тест*/
+    nlohmann::json input1 = R"(
+  {
+    "id": 2,
+    "type": "graph",
+    "size": 5,
+    "vertices": [ 3, 2, 4, 5, 1 ],
+    "numEdges": 0,
+    "edges": []
+  }
+)"_json;
+ 
+    httplib::Result res1 = cli->Post("/FindBridges", input1.dump(),
+        "application/json");
+    nlohmann::json output1 = nlohmann::json::parse(res1->body);  
+      
+    REQUIRE_EQUAL(5, output1["size"]);
+    REQUIRE_EQUAL(2, output1["id"]);
+    REQUIRE_EQUAL("graph", output1["type"]);
+    REQUIRE_EQUAL(output1["data"].size(), static_cast<size_t>(0));
+
+    /*Второй тест*/
+    nlohmann::json input2 = R"(
+  {
+    "id": 3,
+    "type": "graph",
+    "size": 0,
+    "vertices": [],
+    "numEdges": 0,
+    "edges": []
+  }
+)"_json;
+ 
+    httplib::Result res2 = cli->Post("/FindBridges", input2.dump(),
+        "application/json");
+    nlohmann::json output2 = nlohmann::json::parse(res2->body);  
+      
+    REQUIRE_EQUAL(0, output2["size"]);
+    REQUIRE_EQUAL(3, output2["id"]);
+    REQUIRE_EQUAL("graph", output2["type"]);
+    REQUIRE_EQUAL(output2["data"].size(), static_cast<size_t>(0));
   }
 }
-
-/**
- * @brief Простейший случайный тест.
- *
- * @param cli Указатель на HTTP клиент.
- */
-
 
 /**
  * @brief Простейший случайный тест для целых чисел.
