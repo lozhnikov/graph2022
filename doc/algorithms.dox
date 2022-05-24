@@ -6,5 +6,5 @@
 @page algorithms Алгоритмы
 
 Список реализованных алгоритмов:
-
+- \subpage find_bridges
 */
