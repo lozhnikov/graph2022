@@ -11,7 +11,6 @@
 #include <algorithm>
 #include <fstream>
 #include <vector>
-#include <bits/stdc++.h>
 #include <iterators.hpp>
 using namespace std;
 

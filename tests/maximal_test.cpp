@@ -3,7 +3,6 @@
 #include <nlohmann/json.hpp>
 #include "test_core.hpp"
 #include "test.hpp"
-#include <bits/stdc++.h>
 
 static void SimpleTest(httplib::Client* cli);
 static void RandomTest(httplib::Client* cli);
@@ -173,6 +172,8 @@ static void RandomIntegerHelperTest(httplib::Client* cli, std::string type) {
           cost[i*n+j] = 0;
         }
       }
+    delete[] cost;
+    delete[] matrix;
       // Записываем элемент в JSON.
     input["id"] = it;
     input["type"] = type;
