@@ -25,6 +25,7 @@ namespace graph {
  */
 
 int FindBridgesMethod(const nlohmann::json& input, nlohmann::json* output);
+int MaximalMethod(const nlohmann::json& input, nlohmann::json* output);
 /* Конец вставки. */
 }  // namespace graph
 

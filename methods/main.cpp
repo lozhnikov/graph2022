@@ -11,7 +11,7 @@
 #include "methods.hpp"
 
 using graph::FindBridgesMethod;
-
+using graph::MaximalMethod;
 int main(int argc, char* argv[]) {
   // Порт по-умолчанию.
   int port = 8080;
@@ -57,6 +57,33 @@ int main(int argc, char* argv[]) {
     JSON данные, то MIME тип следует выставить application/json.
     */
     res.set_content(output.dump(), "application/json");
+  });
+
+
+
+
+  /* /Maximal это адрес для запросов на Алгоритм Крускала. */
+  svr.Post("/Maximal", [&](const httplib::Request& req1,
+                                 httplib::Response& res1) {
+    /*
+    Поле body структуры httplib::Request содержит текст запроса.
+    Функция nlohmann::json::parse() используется для того,
+    чтобы преобразовать текст в объект типа nlohmann::json.
+    */
+    nlohmann::json input1 = nlohmann::json::parse(req1.body);
+    nlohmann::json output1;
+
+    /* Если метод завершился с ошибкой, то выставляем статус 400. */
+    if (MaximalMethod(input1, &output1) < 0)
+      res1.status = 400;
+
+    /*
+    Метод nlohmann::json::dump() используется для сериализации
+    объекта типа nlohmann::json в строку. Метод set_content()
+    позволяет задать содержимое ответа на запрос. Если передаются
+    JSON данные, то MIME тип следует выставить application/json.
+    */
+    res1.set_content(output1.dump(), "application/json");
   });
 
 
