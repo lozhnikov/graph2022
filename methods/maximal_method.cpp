@@ -1,19 +1,13 @@
 #include <string>
+#include <iostream>
 #include <nlohmann/json.hpp>
 #include "maximal.hpp"
-#include <cstring>
-#include <stdexcept>
-#include <sstream>
-#include <fstream>
-#include <vector>
-#include <iostream>
-using namespace std;
 namespace graph {
 
 template<typename T>
 static int MaximalMethodHelper(const nlohmann::json& input,
                                      nlohmann::json* output,
-                                     string type);
+                                     std::string type);
 
 int MaximalMethod(const nlohmann::json& input, nlohmann::json* output) {
   /*
@@ -21,7 +15,7 @@ int MaximalMethod(const nlohmann::json& input, nlohmann::json* output) {
   Метод at() в отличие оператора [] не меняет объект, поэтому
   этот метод можно использовать с константными объектами.
   */
-  string type = input.at("type");
+  std::string type = input.at("type");
 
   /* Пока реализована только поддержка целых чисел и чисел типа double. */
   if (type == "int") {
@@ -55,7 +49,7 @@ int MaximalMethod(const nlohmann::json& input, nlohmann::json* output) {
 template<typename T>
 static int MaximalMethodHelper(const nlohmann::json& input,
                                      nlohmann::json* output,
-                                     string type) {
+                                     std::string type) {
   (*output)["id"] = input.at("id");
   (*output)["type"] = type;
 
