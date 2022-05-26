@@ -14,7 +14,7 @@ namespace graph {
 
 template<class T>
 
-void Dfs_Cut_Points(int* timer, std::unordered_set<size_t>* used, std::map<size_t, int>* entry_time, std::map<size_t, int>* min_of_time, vector<size_t>* points, T graph, size_t v, size_t p = static_cast<size_t>(-1)) {
+void Dfs_Cut_Points(int* timer, std::unordered_set<size_t>* used, std::map<size_t, int>* entry_time, std::map<size_t, int>* min_of_time, std::vector<size_t>* points, T graph, size_t v, size_t p = static_cast<size_t>(-1)) {
 
   (*used).insert(v);
   (*entry_time)[v] = (*timer)++;
@@ -39,7 +39,7 @@ void Dfs_Cut_Points(int* timer, std::unordered_set<size_t>* used, std::map<size_
 }
  
 template<class T>
-void CutPoints(T graph, vector<size_t>* points) {
+void CutPoints(T graph, std::vector<size_t>* points) {
   int timer = 0;
   std::unordered_set<size_t> used;
   std::map<size_t, int> entry_time;
