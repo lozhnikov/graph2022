@@ -32,7 +32,7 @@ void TestWeightedOrientedGraph();
 
 /* Сюда нужно добавить объявления тестовых функций. */
 
-
+void TestCutPoints(httplib::Client* cli);
 
 /* Конец вставки. */
 
