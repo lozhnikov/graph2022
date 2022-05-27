@@ -1,0 +1,11 @@
+/*!
+
+@file cut_points.dox
+@author Daniil Morozov
+
+@page cut_points 
+Алгоритм поиска точек сочленения
+
+Основан на обходе графа в глубину (подробнее на http://e-maxx.ru/algo/cutpoints)
+
+*/
