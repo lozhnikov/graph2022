@@ -42,6 +42,7 @@ int main(int argc, char* argv[]) {
   /* Сюда нужно вставить вызов набора тестов для алгоритма. */
 
     TestFindBridges(&cli);
+    TestBelmanf(&cli);
 
   /* Конец вставки. */
 
