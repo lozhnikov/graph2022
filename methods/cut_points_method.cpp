@@ -14,10 +14,10 @@
 namespace graph {
 
 template<class T>
-static int CutPointsMethodHelper(const nlohmann::json& input, 
-                                 nlohmann::json* output, 
+static int CutPointsMethodHelper(const nlohmann::json& input,
+                                 nlohmann::json* output,
                                  std::string type);
-    
+
 int CutPointsMethod(const nlohmann::json& input, nlohmann::json* output) {
   /*
   С классом nlohmann::json можно работать как со словарём.

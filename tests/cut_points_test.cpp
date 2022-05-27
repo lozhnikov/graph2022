@@ -16,7 +16,8 @@ template<typename T>
 static void RandomIntegerHelperTest(httplib::Client* cli, std::string type);
 
 template<typename T>
-static void RandomFloatingPointHelperTest(httplib::Client* cli, std::string type);
+static void RandomFloatingPointHelperTest(httplib::Client* cli,
+                                          std::string type);
 
 void TestCutPoints(httplib::Client* cli) {
   TestSuite suite("TestCutPoints");
@@ -30,7 +31,6 @@ void TestCutPoints(httplib::Client* cli) {
  * @param cli Указатель на HTTP клиент.
  */
 static void SimpleTest(httplib::Client* cli) {
-  
     /*
      Библиотека nlohmann json позволяет преобразовать
      строку в объект nlohmann::json не только при помощи
@@ -60,7 +60,8 @@ static void SimpleTest(httplib::Client* cli) {
     (Можно было сразу строку передать). При передаче JSON данных
     необходимо поставить тип MIME "application/json".
     */
-  httplib::Result res = cli->Post("/CutPoints", input.dump(), "application/json");
+  httplib::Result res = cli->Post("/CutPoints", input.dump(),
+                                  "application/json");
     /* Используем метод parse() для преобразования строки ответа сервера
     (res->body) в объект JSON. */
   nlohmann::json output = nlohmann::json::parse(res->body);
@@ -69,7 +70,7 @@ static void SimpleTest(httplib::Client* cli) {
     REQUIRE_EQUAL(3, output["size"]);
     REQUIRE_EQUAL(static_cast<size_t>(1), output["data"].size());
 }
-    
+
   /**
  * @brief Простейший случайный тест.
  *
@@ -129,7 +130,6 @@ static void RandomTest(httplib::Client* cli) {
     nlohmann::json output = nlohmann::json::parse(res->body);
 
     /* Проверка результатов метода. */
-    
 
     bool find = false;
     size_t i = 0;
