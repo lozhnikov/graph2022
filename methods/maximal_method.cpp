@@ -2,6 +2,7 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include "maximal.hpp"
+#include "iterators.hpp"
 namespace graph {
 
 template<typename T>
@@ -69,18 +70,23 @@ static int MaximalMethodHelper(const nlohmann::json& input,
     data[i] = input.at("data").at(i);
   }
 
-  /* Здесь вызывается сам алгоритм сортировки вставками. */
-  int* ostov = Maximal(data, size, n);
+  /* Здесь вызывается сам алгоритм Крускала. */
+  Graph ostov = Maximal(data, size, n);
+  std::vector <std::pair<size_t, size_t>> edges;
+  for (size_t v : ostov.Vertices()) {
+    for (size_t neighbour : ostov.Edges(v)) {
+      edges.push_back({v, neighbour});
+    }
+  }
 
   /* Сохраняем в ответе результат работы алгоритма. */
-  (*output)["size"] = n-1;
+  (*output)["size"] = edges.size();
 
 
-  for (size_t i = 0; i < (n-1)*2; i++)
-    (*output)["data"][i] = ostov[i];
+  for (size_t i = 0; i < edges.size(); i++)
+    (*output)["data"][i] = edges[i];
 
   delete[] data;
-  delete[] ostov;
 
   return 0;
 }

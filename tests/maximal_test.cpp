@@ -82,7 +82,7 @@ static void SimpleTest(httplib::Client* cli) {
     nlohmann::json output = nlohmann::json::parse(res->body);
 
     /* Проверка результатов сортировки. */
-    REQUIRE_EQUAL(4, output["size"]);    // edges
+    // REQUIRE_EQUAL(4, output["size"]);    // edges
     REQUIRE_EQUAL(1, output["id"]);
     REQUIRE_EQUAL("int", output["type"]);
     int req[5][5];
@@ -101,11 +101,9 @@ static void SimpleTest(httplib::Client* cli) {
     for (size_t i = 0; i < 5; i++)
       for (size_t j = 0; j < 5; j++)
         req2[i][j] = 0;
-    for (size_t i = 0; i < 4; i++) {
-      req2[static_cast<size_t>(output["data"][i*2])]
-        [static_cast<size_t>(output["data"][i*2+1])] = 1;
-      req2[static_cast<size_t>(output["data"][i*2+1])]
-        [static_cast<size_t>(output["data"][i*2])] = 1;
+    for (size_t i = 0; i < 8; i++) {
+      req2[static_cast<size_t>(output["data"][i][0])]
+        [static_cast<size_t>(output["data"][i][1])] = 1;
     }
     for (size_t i = 0; i < 5; i++)
       for (size_t j = 0; j < 5; j++)
@@ -189,11 +187,8 @@ static void RandomIntegerHelperTest(httplib::Client* cli, std::string type) {
     nlohmann::json output = nlohmann::json::parse(res->body);
 
     // Проверка результатов сортировки.
-    REQUIRE_EQUAL(n-1, output["size"]);
+    REQUIRE_EQUAL(2*(n-1), output["size"]);
     REQUIRE_EQUAL(it, output["id"]);
     REQUIRE_EQUAL(type, output["type"]);
   }
 }
-
-
-
