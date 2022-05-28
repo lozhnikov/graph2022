@@ -109,12 +109,14 @@ include_directories(${GRAPH_INCLUDE_DIRS})
 
 add_executable(
   graph_server
+  include/cut_points.hpp
   include/find_bridges.hpp
   include/graph.hpp
   include/iterators.hpp
   include/oriented_graph.hpp
   include/weighted_graph.hpp
   include/weighted_oriented_graph.hpp
+  methods/cut_points_method.cpp
   methods/find_bridges.cpp
   methods/main.cpp
   methods/methods.hpp
@@ -137,12 +139,14 @@ target_link_libraries(graph_server ${GRAPH_LIBS})
 
 add_executable(
   graph_test
+  include/cut_points.hpp
   include/find_bridges.hpp
   include/graph.hpp
   include/iterators.hpp
   include/oriented_graph.hpp
   include/weighted_graph.hpp
   include/weighted_oriented_graph.hpp
+  tests/cut_points_test.cpp
   tests/find_bridges_test.cpp
   tests/graph_test.cpp
   tests/io.hpp

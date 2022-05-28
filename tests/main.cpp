@@ -41,6 +41,7 @@ int main(int argc, char* argv[]) {
 
   /* Сюда нужно вставить вызов набора тестов для алгоритма. */
 
+  TestCutPoints(&cli);
     TestFindBridges(&cli);
 
   /* Конец вставки. */

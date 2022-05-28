@@ -31,7 +31,12 @@ void TestWeightedGraph();
 void TestWeightedOrientedGraph();
 
 /* Сюда нужно добавить объявления тестовых функций. */
-
+/** 
+ * @brief функции тесты для соответствующих алгоритмов.
+ *
+ * @param cli Указатель на HTTP клиент.
+ */
+void TestCutPoints(httplib::Client* cli);
 void TestFindBridges(httplib::Client* cli);
 
 /* Конец вставки. */
