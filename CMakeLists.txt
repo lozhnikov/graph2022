@@ -112,10 +112,12 @@ add_executable(
   include/graph.hpp
   include/iterators.hpp
   include/oriented_graph.hpp
+  include/topological_sorting.hpp
   include/weighted_graph.hpp
   include/weighted_oriented_graph.hpp
   methods/main.cpp
   methods/methods.hpp
+  methods/topological_sorting_method.cpp
 )
 
 ####################################################################
@@ -138,6 +140,7 @@ add_executable(
   include/graph.hpp
   include/iterators.hpp
   include/oriented_graph.hpp
+  include/topological_sorting.hpp
   include/weighted_graph.hpp
   include/weighted_oriented_graph.hpp
   tests/graph_test.cpp
@@ -147,6 +150,7 @@ add_executable(
   tests/test.hpp
   tests/test_core.cpp
   tests/test_core.hpp
+  tests/topological_sorting_test.cpp
   tests/weighted_graph_test.cpp
   tests/weighted_oriented_graph_test.cpp
 )

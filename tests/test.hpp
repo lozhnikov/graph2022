@@ -1,6 +1,6 @@
 /**
  * @file tests/test.hpp
- * @author Mikhail Lozhnikov
+ * @author Eugene Yakimov
  *
  * Заголовочный файл для объявлений основных тестовых функций.
  */
@@ -32,6 +32,12 @@ void TestWeightedOrientedGraph();
 
 /* Сюда нужно добавить объявления тестовых функций. */
 
+/**
+ * @brief Набор тестов для алгоритма сортировки вставками.
+ *
+ * @param cli Указатель на HTTP клиент.
+ */
+void TestTopologicalSorting(httplib::Client* cli);
 
 
 /* Конец вставки. */

@@ -1,10 +1,12 @@
 /*!
 
 @file algorithms.dox
-@author Mikhail Lozhnikov
+@author Eugene Yakimov
 
-@page algorithms Алгоритмы
+@page algorithms 
 
 Список реализованных алгоритмов:
+
+- \subpage topological_sorting
 
 */
