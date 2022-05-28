@@ -69,16 +69,10 @@ static void SimpleTest(httplib::Client* cli) {
     REQUIRE_EQUAL("graph", output["type"]);
     REQUIRE_EQUAL(3, output["size"]);
     REQUIRE_EQUAL(static_cast<size_t>(1), output["data"].size());
+    REQUIRE_EQUAL(static_cast<size_t>(2), output["data"][0]);
 }
-
-  /**
- * @brief Простейший случайный тест.
- *
- * @param cli Указатель на HTTP клиент.
- */
 /**
  * @brief Простейший случайный тест.
- *
  *
  * @param cli Указатель на HTTP клиент.
  *
@@ -142,12 +136,6 @@ static void RandomTest(httplib::Client* cli) {
     REQUIRE_EQUAL("graph", output["type"]);
     REQUIRE_EQUAL(true, output["data"].size() <= size);
     // Добавленная точка должна быть в ответе.
-    REQUIRE_EQUAL(true, find);
+    REQUIRE(find);
   }
 }
-
-/** 
- * @brief Простейший случайный тест.
- *
- * @param cli Указатель на HTTP клиент.
- */

@@ -1,3 +1,9 @@
+/**
+ * @file find_bridges.hpp
+ * @author Daniil Morozov
+ *
+ * Реализация алгоритма поиска точек сочленения.
+ */
 #ifndef INCLUDE_CUT_POINTS_HPP_
 #define INCLUDE_CUT_POINTS_HPP_
 
@@ -15,15 +21,27 @@
 namespace graph {
 
 template<class T>
-
-void Dfs_Cut_Points(int *timer, std::unordered_set<size_t> *used,
-                    std::map<size_t, int> *entry_time,
-                    std::map<size_t, int> *min_of_time,
-                    std::vector<size_t> *points, T graph, size_t v,
+/**
+ * @brief Обход графа в глубину.
+ *
+ * @tparam T тип графа.
+ *
+ * @param timer описывает времена входа в вершину.
+ * @param used список вершин, в которых уже побывали.
+ * @param entryTime список времен входа в вершину.
+ * @param minTime список времен минимального входа в вершину.
+ * @param v текущая вершина в обходе.
+ * @param p предок вершины v.
+ * @param points вектор-ответ.
+ */
+void DfsCutPoints(int *timer, std::unordered_set<size_t> *used,
+                    std::map<size_t, int> *entryTime,
+                    std::map<size_t, int> *minTime,
+                    std::vector<size_t> *points, const T& graph, size_t v,
                     std::optional<size_t> opt) {
-  (*used).insert(v);
-  (*entry_time)[v] = (*timer)++;
-  (*min_of_time)[v] = (*timer)++;
+  used->insert(v);
+  (*entryTime)[v] = (*timer)++;
+  (*minTime)[v] = (*timer)++;
 
   int children = 0;
   for (size_t to : graph.IncomingEdges(v)) {
@@ -32,12 +50,12 @@ void Dfs_Cut_Points(int *timer, std::unordered_set<size_t> *used,
         continue;
     }
     if ((*used).find(to) != (*used).end()) {
-      (*min_of_time)[v] = std::min ((*min_of_time)[v], (*entry_time)[to]);
+      (*minTime)[v] = std::min ((*minTime)[v], (*entryTime)[to]);
     } else {
-      Dfs_Cut_Points(timer, used, entry_time,
-                     min_of_time, points, graph, to, v);
-      (*min_of_time)[v] = std::min ((*min_of_time)[v], (*min_of_time)[to]);
-      if ((*min_of_time)[to] >= (*entry_time)[v] && (opt))
+      DfsCutPoints(timer, used, entryTime,
+                     minTime, points, graph, to, v);
+      (*minTime)[v] = std::min ((*minTime)[v], (*minTime)[to]);
+      if ((*minTime)[to] >= (*entryTime)[v] && (opt))
         (*points).push_back(v);
       ++children;
     }
@@ -45,19 +63,25 @@ void Dfs_Cut_Points(int *timer, std::unordered_set<size_t> *used,
   if ((!opt) && children > 1)
     (*points).push_back(v);
 }
-
+/**
+ * @brief Сама функция поиска точек сочленения.
+ *
+ * @tparam T тип графа.
+ *
+ * @param points вектор-ответ.
+ */
 template<class T>
-void CutPoints(T graph, std::vector<size_t>* points) {
+void CutPoints(const T& graph, std::vector<size_t>* points) {
   int timer = 0;
   std::unordered_set<size_t> used;
-  std::map<size_t, int> entry_time;
-  std::map<size_t, int> min_of_time;
+  std::map<size_t, int> entryTime;
+  std::map<size_t, int> minTime;
 
   for (size_t v : graph.Vertices()) {
     if (used.find(v) == (used).end()) {
       std::optional<size_t> opt = std::nullopt;
-      Dfs_Cut_Points(&timer, &used, &entry_time,
-                     &min_of_time, points, graph, v, opt);
+      DfsCutPoints(&timer, &used, &entryTime,
+                     &minTime, points, graph, v, opt);
     }
   }
 }

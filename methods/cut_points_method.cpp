@@ -12,7 +12,13 @@
 #include "cut_points.hpp"
 
 namespace graph {
-
+/**
+ * @brief Функция-помощник.
+ *
+ * @param input входной json-файл.
+ * @param output выходгой json-файл.
+ * @param type тип графа.
+ */
 template<class T>
 static int CutPointsMethodHelper(const nlohmann::json& input,
                                  nlohmann::json* output,
