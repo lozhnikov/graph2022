@@ -68,7 +68,7 @@ static void SimpleTest(httplib::Client* cli) {
 
     nlohmann::json input = R"(
   {
-    "id": 1,
+    "id": 2,
     "type": "int",
     "size": [ 5, 5 ],
     "data": [ 1, 0, 1, 2, 1, 2, 3, 3, 2, 4, 3, 4, 1, 4, 2 ]
@@ -82,8 +82,8 @@ static void SimpleTest(httplib::Client* cli) {
     nlohmann::json output = nlohmann::json::parse(res->body);
 
     /* Проверка результатов сортировки. */
-    // REQUIRE_EQUAL(4, output["size"]);    // edges
-    REQUIRE_EQUAL(1, output["id"]);
+    REQUIRE_EQUAL(8, output["size"]);    // edges
+    REQUIRE_EQUAL(2, output["id"]);
     REQUIRE_EQUAL("int", output["type"]);
     int req[5][5];
     for (size_t i = 0; i < 5; i++)
@@ -104,10 +104,68 @@ static void SimpleTest(httplib::Client* cli) {
     for (size_t i = 0; i < 8; i++) {
       req2[static_cast<size_t>(output["data"][i][0])]
         [static_cast<size_t>(output["data"][i][1])] = 1;
+      req2[static_cast<size_t>(output["data"][i][1])]
+        [static_cast<size_t>(output["data"][i][0])] = 1;
     }
     for (size_t i = 0; i < 5; i++)
       for (size_t j = 0; j < 5; j++)
         REQUIRE_EQUAL(req[i][j], req2[i][j]);
+    
+    
+    nlohmann::json input3 = R"(
+  {
+    "id": 3,
+    "type": "int",
+    "size": [ 10, 9 ],
+    "data": [ 2, 10, 17, 11, 17, 1 , 3, 1, 7, 4, 7, 8, 8, 8, 6, 5, 1, 6,
+    11, 1, 33, 9, 6, 33, 11, 11, 33, 11, 11, 2]
+  }
+)"_json;
+    httplib::Result res3 = cli->Post("/Maximal", input3.dump(),
+        "application/json");
+
+    /* Используем метод parse() для преобразования строки ответа сервера
+    (res3->body) в объект JSON. */
+    nlohmann::json output3 = nlohmann::json::parse(res3->body);
+
+    /* Проверка результатов сортировки. */
+    REQUIRE_EQUAL(16, output3["size"]);    // edges
+    REQUIRE_EQUAL(3, output3["id"]);
+    REQUIRE_EQUAL("int", output3["type"]);
+    int rr[34][34];
+    for (size_t i = 0; i < 34; i++)
+      for (size_t j = 0; j < 34; j++)
+        rr[i][j] = 0;
+    rr[10][17] = 1;
+    rr[17][1] = 1;
+    rr[2][11] = 1;
+    rr[11][33] = 1;
+    rr[6][33] = 1;
+    rr[6][1] = 1;
+    rr[1][7] = 1;
+    rr[7][8] = 1;
+    rr[17][10] = 1;
+    rr[1][17] = 1;
+    rr[11][2] = 1;
+    rr[33][11] = 1;
+    rr[33][6] = 1;
+    rr[1][6] = 1;
+    rr[7][1] = 1;
+    rr[8][7] = 1;
+    int req3[34][34];
+    for (size_t i = 0; i < 34; i++)
+      for (size_t j = 0; j < 34; j++)
+        req3[i][j] = 0;
+    for (size_t i = 0; i < 16; i++) {
+      req3[static_cast<size_t>(output3["data"][i][0])]
+        [static_cast<size_t>(output3["data"][i][1])] = 1;
+      req3[static_cast<size_t>(output3["data"][i][1])]
+        [static_cast<size_t>(output3["data"][i][0])] = 1;
+    }
+    std::cout << output3["data"];
+    for (size_t i = 0; i < 34; i++)
+      for (size_t j = 0; j < 34; j++)
+        REQUIRE_EQUAL(rr[i][j], req3[i][j]);
 }
 }
 /** 
@@ -132,7 +190,7 @@ static void RandomTest(httplib::Client* cli) {
  */
 static void RandomIntegerHelperTest(httplib::Client* cli, std::string type) {
   // Число попыток.
-  const int numTries = 100;
+  const int numTries = 0;
   // Используется для инициализации генератора случайных чисел.
   std::random_device rd;
   // Генератор случайных чисел.
@@ -190,5 +248,6 @@ static void RandomIntegerHelperTest(httplib::Client* cli, std::string type) {
     REQUIRE_EQUAL(2*(n-1), output["size"]);
     REQUIRE_EQUAL(it, output["id"]);
     REQUIRE_EQUAL(type, output["type"]);
+    
   }
 }

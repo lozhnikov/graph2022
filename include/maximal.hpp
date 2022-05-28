@@ -18,9 +18,7 @@ namespace graph {
  *
  * @tparam T Тип данных сортируемых элементов.
  *
- * @param data Массив сортируемых элементов.
- * @param m Количество ребер в массиве.
- * @param n Количество вершин в массиве.
+ * @param wGraph Взвешенный граф
  *
  * Функция находит такое поддерево этого графа, 
  * которое бы соединяло все его вершины, и при этом 
@@ -29,16 +27,18 @@ namespace graph {
 
 template<typename T>
 // тип данных для веса вершин
-Graph Maximal(T* data, size_t m, size_t n) {
-  std::vector < std::pair < T, std::pair < size_t, size_t > > > g(m);
+
+Graph Maximal(WeightedGraph<T> wGraph) {
+  std::vector <std::pair<T, std::pair<size_t, size_t>>> g;
   // вес - вершина 1 - вершина 2
 
-  for (size_t k = 0; k < m; k++) {
-    g[k].first = data[k*3];
-    g[k].second.first = static_cast<size_t>(data[k*3+1]);
-    g[k].second.second = static_cast<size_t>(data[k*3+2]);
-  }
   // заполнение вектора для сортировки
+  for (size_t v : wGraph.Vertices()) {
+    for (size_t neighbour : wGraph.Edges(v)) {
+      if (neighbour > v)
+        g.push_back({ wGraph.EdgeWeight(v, neighbour), {v, neighbour}});
+    }
+  }
   // структура граф не подойдет т.к. алгоритм работает
   // для сортированных веторов
   sort(g.begin(), g.end());
@@ -46,32 +46,41 @@ Graph Maximal(T* data, size_t m, size_t n) {
   T cost = 0;
   Graph res;
 
-  std::vector<size_t> tree_id(n);
-  for (size_t i = 0; i < n; ++i)
-    tree_id[i] = i;
+  size_t n = 1;
+  for (size_t v : wGraph.Vertices()) {
+    if (v > n)
+      n = v;
+  }
+  std::vector<size_t> treeId(n+1);
+  for (size_t i = 0; i <= n; ++i)
+    if (wGraph.HasVertex(i))
+      treeId[i] = i;
   // для каждой вершины хранит номер дерева, которому она принадлежит
 
-  for (size_t i = 0; i < m; ++i) {
+  for (size_t i = 0; i < g.size(); ++i) {
     size_t a = g[i].second.first,  b = g[i].second.second;
     T l = g[i].first;
 
     // определяем, принадлежат ли его концы разным деревьям
-    if (tree_id[a] != tree_id[b]) {
+    if (treeId[a] != treeId[b]) {
       cost += l;
       res.AddEdge(a, b);
-      size_t old_id = tree_id[b],  new_id = tree_id[a];
+      size_t oldId = treeId[b],  newId = treeId[a];
 
       // объединение двух деревьев
-      for (size_t j = 0; j < n; ++j)
-        if (tree_id[j] == old_id)
-          tree_id[j] = new_id;
+      for (size_t j = 0; j <= n; ++j)
+        if ((treeId[j] == oldId) && (wGraph.HasVertex(j)))
+          treeId[j] = newId;
     }
   }
-
+  /* for (size_t v : res.Vertices()) {
+    for (size_t neighbour : res.Edges(v)) {
+      std::cout << v << ' ' << neighbour << ' ' ;
+    }
+  } */
 
   return res;
 }
-
 }   // namespace graph
 
 #endif  // INCLUDE_MAXIMAL_HPP_

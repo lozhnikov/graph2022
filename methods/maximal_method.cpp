@@ -45,7 +45,8 @@ int MaximalMethod(const nlohmann::json& input, nlohmann::json* output) {
  *
  * Функция запускает Алгоритм Крускала, используя входные данные
  * в JSON формате. Результат также выдаётся в JSON формате. Функция
- * используется для сокращения кода, необходимого для поддержки различных типов данных.
+ * используется для сокращения кода, необходимого для поддержки различных 
+ * типов данных.
  */
 template<typename T>
 static int MaximalMethodHelper(const nlohmann::json& input,
@@ -62,16 +63,16 @@ static int MaximalMethodHelper(const nlohmann::json& input,
       return 0;
   }
 
-  T* data = new T[size*3];
-
-  for (size_t i = 0; i < size*3; i++) {
-    /* Для словарей используется индекс в виде строки,
+  /* Для словарей используется индекс в виде строки,
     а для массивов просто целое число типа size_t. */
-    data[i] = input.at("data").at(i);
-  }
+  WeightedGraph<T> wGraph;
+  for (size_t i = 0; i < size; i++)
+    wGraph.AddEdge(static_cast<size_t>(input.at("data").at(i*3+1)), 
+                   static_cast<size_t>(input.at("data").at(i*3+2)), 
+                   input.at("data").at(i*3));
 
   /* Здесь вызывается сам алгоритм Крускала. */
-  Graph ostov = Maximal(data, size, n);
+  Graph ostov = Maximal(wGraph);
   std::vector <std::pair<size_t, size_t>> edges;
   for (size_t v : ostov.Vertices()) {
     for (size_t neighbour : ostov.Edges(v)) {
@@ -85,8 +86,6 @@ static int MaximalMethodHelper(const nlohmann::json& input,
 
   for (size_t i = 0; i < edges.size(); i++)
     (*output)["data"][i] = edges[i];
-
-  delete[] data;
 
   return 0;
 }
