@@ -113,6 +113,7 @@ add_executable(
   include/find_bridges.hpp
   include/graph.hpp
   include/iterators.hpp
+  include/negetive_cycle.hpp
   include/oriented_graph.hpp
   include/weighted_graph.hpp
   include/weighted_oriented_graph.hpp
@@ -120,6 +121,7 @@ add_executable(
   methods/find_bridges.cpp
   methods/main.cpp
   methods/methods.hpp
+  methods/negetive_cycle_method.cpp
 )
 
 ####################################################################
@@ -143,6 +145,7 @@ add_executable(
   include/find_bridges.hpp
   include/graph.hpp
   include/iterators.hpp
+  include/negetive_cycle.hpp
   include/oriented_graph.hpp
   include/weighted_graph.hpp
   include/weighted_oriented_graph.hpp
@@ -151,6 +154,7 @@ add_executable(
   tests/graph_test.cpp
   tests/io.hpp
   tests/main.cpp
+  tests/negetive_cycle_test.cpp
   tests/oriented_graph_test.cpp
   tests/test.hpp
   tests/test_core.cpp

@@ -43,6 +43,7 @@ int main(int argc, char* argv[]) {
 
   TestCutPoints(&cli);
     TestFindBridges(&cli);
+  TestNegCycle(&cli);
 
   /* Конец вставки. */
 

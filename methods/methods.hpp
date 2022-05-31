@@ -37,6 +37,7 @@ namespace graph {
  */
 int CutPointsMethod(const nlohmann::json& input, nlohmann::json* output);
 int FindBridgesMethod(const nlohmann::json& input, nlohmann::json* output);
+int NegCycleMethod(const nlohmann::json& input, nlohmann::json* output);
 
 /* Конец вставки. */
 }  // namespace graph
