@@ -8,5 +8,6 @@
 Список реализованных алгоритмов:
 
 - \subpage topological_sorting
-
+- \subpage find_bridges
+- \subpage cut_points
 */

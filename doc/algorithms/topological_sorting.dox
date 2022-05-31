@@ -26,7 +26,7 @@
 
 
 /*!
-@fn graph::TopologicalSorting(T* data, size_t count, Comparator comparator)
+@fn graph::TopologicalSorting(const T& graph, std::vector<size_t>* points)
 
 Функция реализует алгоритм топологической сортировки, описанный в разделе
 @ref topological_sorting.

@@ -39,6 +39,13 @@ void TestWeightedOrientedGraph();
  */
 void TestTopologicalSorting(httplib::Client* cli);
 
+/** 
+ * @brief функции тесты для соответствующих алгоритмов.
+ *
+ * @param cli Указатель на HTTP клиент.
+ */
+void TestCutPoints(httplib::Client* cli);
+void TestFindBridges(httplib::Client* cli);
 
 /* Конец вставки. */
 

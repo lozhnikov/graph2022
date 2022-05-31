@@ -9,6 +9,7 @@
 #include "test.hpp"
 #include "test_core.hpp"
 
+
 int main(int argc, char* argv[]) {
   // Порт по-умолчанию.
   int port = 8080;
@@ -41,6 +42,8 @@ int main(int argc, char* argv[]) {
   /* Сюда нужно вставить вызов набора тестов для алгоритма. */
 
   TestTopologicalSorting(&cli);
+  TestCutPoints(&cli);
+    TestFindBridges(&cli);
 
   /* Конец вставки. */
 

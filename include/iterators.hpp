@@ -8,6 +8,7 @@
 #ifndef INCLUDE_ITERATORS_HPP_
 #define INCLUDE_ITERATORS_HPP_
 
+#include <cstddef>
 #include <unordered_set>
 #include <unordered_map>
 

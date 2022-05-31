@@ -11,11 +11,11 @@
 #include <algorithm>
 #include <iostream>
 #include <map>
-#include "graph.hpp"
 #include <vector>
+#include <unordered_set>
+#include "graph.hpp"
 #include "oriented_graph.hpp"
 #include "iterators.hpp"
-#include <unordered_set>
 
 
 namespace graph {
@@ -27,20 +27,21 @@ namespace graph {
  *
  * @param used список вершин, в которых уже побывали.
  * @param v текущая вершина в обходе..
- * @param vertice вектор-ответ.
+ * @param points вектор-ответ.
  */
-    
+
 template<class T>
 
-void Dfs(std::unordered_set<size_t> *used, std::vector<size_t>* vertice,
-                             const T& graph, size_t v) {
-    used->insert(v); // помечаем вершину посещенной
-    for (size_t to : graph.IncomingEdges(v)) { // пробегаем все вершины, достижимые за 1 шаг из v
+void DfsTopologicalSorting(std::unordered_set<size_t> *used,
+                           std::vector<size_t>* points,
+                           const T& oriented_graph, size_t v) {
+    used->insert(v);
+    for (size_t to : oriented_graph.IncomingEdges(v)) {
       if ((*used).find(to) == (*used).end()) {
-      Dfs(used, vertice, graph, to); // если они не были посещены, то посещаем их
+      DfsTopologicalSorting(used, points, oriented_graph, to);
       }
     }
-    (*vertice).push_back (v); // добавляем вершину в конец списка
+    (*points).push_back(v);
 }
 
 /**
@@ -52,17 +53,16 @@ void Dfs(std::unordered_set<size_t> *used, std::vector<size_t>* vertice,
  */
 
 template<class T>
-    
-void TopologicalSorting(const T& graph, std::vector<size_t>* vertice) {
+
+void TopologicalSorting(const T& oriented_graph, std::vector<size_t>* points) {
     std::unordered_set<size_t> used;
-    
-    for (size_t v : graph.Vertices()) {
+
+    for (size_t v : oriented_graph.Vertices()) {
         if (used.find(v) == (used).end()) {
-          Dfs(&used, vertice, graph, v); // если в вершине ещё не были
-        }  
+          DfsTopologicalSorting(&used, points, oriented_graph, v);
+        }
     }
-    reverse ((*vertice).begin(), (*vertice).end()); // обращаем массив
 }
 
 }  // namespace graph
-#endif // TOPOLOGICAL_SORTING
+#endif  // TOPOLOGICAL_SORTING
