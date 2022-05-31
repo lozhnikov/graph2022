@@ -65,4 +65,4 @@ void TopologicalSorting(const T& oriented_graph, std::vector<size_t>* points) {
 }
 
 }  // namespace graph
-#endif  // TOPOLOGICAL_SORTING
+#endif  // INCLUDE_TOPOLOGICAL_SORTING_HPP_
