@@ -10,7 +10,7 @@
 #include <nlohmann/json.hpp>
 #include "methods.hpp"
 
-using graph::CutPointsMethod;
+using graph::DinicMethod;
 using graph::FindBridgesMethod;
 
 int main(int argc, char* argv[]) {
@@ -51,30 +51,22 @@ int main(int argc, char* argv[]) {
     if (FindBridgesMethod(input, &output) < 0)
       res.status = 400;
 
-  res.set_content(output.dump(), "application/json");
-  });
-  /* /CutPoints это адрес для запросов
-  на сервере. */
-  svr.Post("/CutPoints", [&](const httplib::Request& req,
-                                 httplib::Response& res) {
-    /*
-    Поле body структуры httplib::Request содержит текст запроса.
-    Функция nlohmann::json::parse() используется для того,
-    чтобы преобразовать текст в объект типа nlohmann::json.
-    */
-    nlohmann::json input = nlohmann::json::parse(req.body);
-    nlohmann::json output;
-
-    /* Если метод завершился с ошибкой, то выставляем статус 400. */
-    if (CutPointsMethod(input, &output) < 0)
-      res.status = 400;
-
     /*
     Метод nlohmann::json::dump() используется для сериализации
     объекта типа nlohmann::json в строку. Метод set_content()
     позволяет задать содержимое ответа на запрос. Если передаются
     JSON данные, то MIME тип следует выставить application/json.
     */
+    res.set_content(output.dump(), "application/json");
+  });
+  svr.Post("/Dinic", [&](const httplib::Request& req,
+                                 httplib::Response& res) {
+    nlohmann::json input = nlohmann::json::parse(req.body);
+    nlohmann::json output;
+
+    if (DinicMethod(input, &output) < 0)
+      res.status = 400;
+
     res.set_content(output.dump(), "application/json");
   });
 
