@@ -46,6 +46,7 @@ void TestTopologicalSorting(httplib::Client* cli);
  */
 void TestCutPoints(httplib::Client* cli);
 void TestFindBridges(httplib::Client* cli);
+void TestMaximal(httplib::Client* cli);
 
 /* Конец вставки. */
 

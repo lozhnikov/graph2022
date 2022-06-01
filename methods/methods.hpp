@@ -43,6 +43,20 @@ int TopologicalSortingMethod(const nlohmann::json& input,
 int CutPointsMethod(const nlohmann::json& input, nlohmann::json* output);
 int FindBridgesMethod(const nlohmann::json& input, nlohmann::json* output);
 
+/**
+ * @brief Алгоритм Крускала.
+ *
+ * @param input Входные данные в формате JSON.
+ * @param output Выходные данные в формате JSON.
+ * @return Функция возвращает 0 в случае успеха и отрицательное число
+ * если входные данные заданы некорректно.
+ *
+ * Функция запускает алгоритм сортировки вставками, используя входные данные
+ * в JSON формате. Результат также выдаётся в JSON формате.
+ */
+
+int MaximalMethod(const nlohmann::json& input, nlohmann::json* output);
+
 /* Конец вставки. */
 }  // namespace graph
 
