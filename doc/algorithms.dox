@@ -8,4 +8,5 @@
 Список реализованных алгоритмов:
 - \subpage find_bridges
 - \subpage cut_points
+- \subpage maximal
 */

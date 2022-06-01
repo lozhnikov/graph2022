@@ -38,6 +38,7 @@ void TestWeightedOrientedGraph();
  */
 void TestCutPoints(httplib::Client* cli);
 void TestFindBridges(httplib::Client* cli);
+void TestMaximal(httplib::Client* cli);
 
 /* Конец вставки. */
 
