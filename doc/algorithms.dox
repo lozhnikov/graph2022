@@ -1,11 +1,18 @@
 /*!
 
 @file algorithms.dox
-@author Mikhail Lozhnikov
+@author Eugene Yakimov
 
-@page algorithms Алгоритмы
+@page algorithms 
 
 Список реализованных алгоритмов:
+<<<<<<< HEAD
 - \subpage dinic
+=======
+
+- \subpage topological_sorting
+>>>>>>> 50aa088846cd3d1b83055467d8ac41beb86a3364
 - \subpage find_bridges
+- \subpage cut_points
+- \subpage maximal
 */

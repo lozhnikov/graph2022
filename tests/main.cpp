@@ -1,6 +1,6 @@
 /**
  * @file tests/main.cpp
- * @author Mikhail Lozhnikov
+ * @author Eugene Yakimov
  *
  * Файл с функией main() для клиентской части программы (набора тестов).
  */
@@ -41,8 +41,15 @@ int main(int argc, char* argv[]) {
 
   /* Сюда нужно вставить вызов набора тестов для алгоритма. */
 
+<<<<<<< HEAD
   TestFindBridges(&cli);
   TestDinic(&cli);
+=======
+  TestTopologicalSorting(&cli);
+  TestCutPoints(&cli);
+    TestFindBridges(&cli);
+  TestMaximal(&cli);
+>>>>>>> 50aa088846cd3d1b83055467d8ac41beb86a3364
 
   /* Конец вставки. */
 

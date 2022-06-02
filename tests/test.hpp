@@ -1,6 +1,6 @@
 /**
  * @file tests/test.hpp
- * @author Mikhail Lozhnikov
+ * @author Eugene Yakimov
  *
  * Заголовочный файл для объявлений основных тестовых функций.
  */
@@ -32,8 +32,26 @@ void TestWeightedOrientedGraph();
 
 /* Сюда нужно добавить объявления тестовых функций. */
 
+<<<<<<< HEAD
 void TestFindBridges(httplib::Client *cli);
 void TestDinic(httplib::Client *cli);
+=======
+/**
+ * @brief Набор тестов для алгоритма сортировки вставками.
+ *
+ * @param cli Указатель на HTTP клиент.
+ */
+void TestTopologicalSorting(httplib::Client* cli);
+
+/** 
+ * @brief функции тесты для соответствующих алгоритмов.
+ *
+ * @param cli Указатель на HTTP клиент.
+ */
+void TestCutPoints(httplib::Client* cli);
+void TestFindBridges(httplib::Client* cli);
+void TestMaximal(httplib::Client* cli);
+>>>>>>> 50aa088846cd3d1b83055467d8ac41beb86a3364
 
 /* Конец вставки. */
 

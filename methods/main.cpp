@@ -1,6 +1,6 @@
 /**
  * @file methods/main.cpp
- * @author Mikhail Lozhnikov
+ * @author Eugene Yakimov
  *
  * Файл с функией main() для серверной части программы.
  */
@@ -10,8 +10,14 @@
 #include <nlohmann/json.hpp>
 #include "methods.hpp"
 
+<<<<<<< HEAD
 using graph::DinicMethod;
+=======
+using graph::TopologicalSortingMethod;
+using graph::CutPointsMethod;
+>>>>>>> 50aa088846cd3d1b83055467d8ac41beb86a3364
 using graph::FindBridgesMethod;
+using graph::MaximalMethod;
 
 int main(int argc, char* argv[]) {
   // Порт по-умолчанию.
@@ -51,6 +57,50 @@ int main(int argc, char* argv[]) {
     if (FindBridgesMethod(input, &output) < 0)
       res.status = 400;
 
+    res.set_content(output.dump(), "application/json");
+  });
+
+  /* /TopologicalSorting это адрес для запросов на топологическую сортировку
+  на сервере. */  
+  svr.Post("/TopologicalSorting", [&](const httplib::Request& req,
+                                 httplib::Response& res) {
+    /*
+    Поле body структуры httplib::Request содержит текст запроса.
+    Функция nlohmann::json::parse() используется для того,
+    чтобы преобразовать текст в объект типа nlohmann::json.
+    */
+    nlohmann::json input = nlohmann::json::parse(req.body);
+    nlohmann::json output;
+
+    /* Если метод завершился с ошибкой, то выставляем статус 400. */
+    if (TopologicalSortingMethod(input, &output) < 0)
+      res.status = 400;
+
+    /*
+    Метод nlohmann::json::dump() используется для сериализации
+    объекта типа nlohmann::json в строку. Метод set_content()
+    позволяет задать содержимое ответа на запрос. Если передаются
+    JSON данные, то MIME тип следует выставить application/json.
+    */
+    res.set_content(output.dump(), "application/json");
+  });
+
+  /* /CutPoints это адрес для запросов
+  на сервере. */
+  svr.Post("/CutPoints", [&](const httplib::Request& req,
+                                 httplib::Response& res) {
+    /*
+    Поле body структуры httplib::Request содержит текст запроса.
+    Функция nlohmann::json::parse() используется для того,
+    чтобы преобразовать текст в объект типа nlohmann::json.
+    */
+    nlohmann::json input = nlohmann::json::parse(req.body);
+    nlohmann::json output;
+
+    /* Если метод завершился с ошибкой, то выставляем статус 400. */
+    if (CutPointsMethod(input, &output) < 0)
+      res.status = 400;
+
     /*
     Метод nlohmann::json::dump() используется для сериализации
     объекта типа nlohmann::json в строку. Метод set_content()
@@ -68,6 +118,31 @@ int main(int argc, char* argv[]) {
       res.status = 400;
 
     res.set_content(output.dump(), "application/json");
+  });
+
+
+/* /Maximal это адрес для запросов на Алгоритм Крускала. */
+  svr.Post("/Maximal", [&](const httplib::Request& req1,
+                                 httplib::Response& res1) {
+    /*
+    Поле body структуры httplib::Request содержит текст запроса.
+    Функция nlohmann::json::parse() используется для того,
+    чтобы преобразовать текст в объект типа nlohmann::json.
+    */
+    nlohmann::json input1 = nlohmann::json::parse(req1.body);
+    nlohmann::json output1;
+
+    /* Если метод завершился с ошибкой, то выставляем статус 400. */
+    if (MaximalMethod(input1, &output1) < 0)
+      res1.status = 400;
+
+    /*
+    Метод nlohmann::json::dump() используется для сериализации
+    объекта типа nlohmann::json в строку. Метод set_content()
+    позволяет задать содержимое ответа на запрос. Если передаются
+    JSON данные, то MIME тип следует выставить application/json.
+    */
+    res1.set_content(output1.dump(), "application/json");
   });
 
 
