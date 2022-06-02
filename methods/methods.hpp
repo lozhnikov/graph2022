@@ -12,6 +12,7 @@
 
 namespace graph {
 /* Сюда нужно вставить объявление серверной части алгоритма. */
+int DinicMethod(const nlohmann::json& input, nlohmann::json* output);
 /**
  * @brief Метод поиска мостов.
  *

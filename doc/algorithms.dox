@@ -6,5 +6,6 @@
 @page algorithms Алгоритмы
 
 Список реализованных алгоритмов:
+- \subpage dinic
 - \subpage find_bridges
 */

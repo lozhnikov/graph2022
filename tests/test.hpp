@@ -32,7 +32,8 @@ void TestWeightedOrientedGraph();
 
 /* Сюда нужно добавить объявления тестовых функций. */
 
-void TestFindBridges(httplib::Client* cli);
+void TestFindBridges(httplib::Client *cli);
+void TestDinic(httplib::Client *cli);
 
 /* Конец вставки. */
 
