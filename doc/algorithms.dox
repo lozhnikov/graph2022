@@ -7,4 +7,5 @@
 
 Список реализованных алгоритмов:
 - \subpage find_bridges
+- \subpage maximal
 */
