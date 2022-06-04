@@ -10,12 +10,9 @@
 #include <nlohmann/json.hpp>
 #include "methods.hpp"
 
-<<<<<<< HEAD
-using graph::DinicMethod;
-=======
 using graph::TopologicalSortingMethod;
 using graph::CutPointsMethod;
->>>>>>> 50aa088846cd3d1b83055467d8ac41beb86a3364
+using graph::DinicMethod;
 using graph::FindBridgesMethod;
 using graph::MaximalMethod;
 

@@ -109,11 +109,8 @@ include_directories(${GRAPH_INCLUDE_DIRS})
 
 add_executable(
   graph_server
-<<<<<<< HEAD
-  include/dinic.hpp
-=======
   include/cut_points.hpp
->>>>>>> 50aa088846cd3d1b83055467d8ac41beb86a3364
+  include/dinic.hpp
   include/find_bridges.hpp
   include/graph.hpp
   include/iterators.hpp
@@ -122,11 +119,8 @@ add_executable(
   include/topological_sorting.hpp
   include/weighted_graph.hpp
   include/weighted_oriented_graph.hpp
-<<<<<<< HEAD
-  methods/dinic.cpp
-=======
   methods/cut_points_method.cpp
->>>>>>> 50aa088846cd3d1b83055467d8ac41beb86a3364
+  methods/dinic.cpp
   methods/find_bridges.cpp
   methods/main.cpp
   methods/maximal_method.cpp
@@ -151,11 +145,8 @@ target_link_libraries(graph_server ${GRAPH_LIBS})
 
 add_executable(
   graph_test
-<<<<<<< HEAD
-  include/dinic.hpp
-=======
   include/cut_points.hpp
->>>>>>> 50aa088846cd3d1b83055467d8ac41beb86a3364
+  include/dinic.hpp
   include/find_bridges.hpp
   include/graph.hpp
   include/iterators.hpp
@@ -164,11 +155,8 @@ add_executable(
   include/topological_sorting.hpp
   include/weighted_graph.hpp
   include/weighted_oriented_graph.hpp
-<<<<<<< HEAD
-  tests/dinic_test.cpp
-=======
   tests/cut_points_test.cpp
->>>>>>> 50aa088846cd3d1b83055467d8ac41beb86a3364
+  tests/dinic_test.cpp
   tests/find_bridges_test.cpp
   tests/graph_test.cpp
   tests/io.hpp

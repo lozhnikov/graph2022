@@ -32,10 +32,6 @@ void TestWeightedOrientedGraph();
 
 /* Сюда нужно добавить объявления тестовых функций. */
 
-<<<<<<< HEAD
-void TestFindBridges(httplib::Client *cli);
-void TestDinic(httplib::Client *cli);
-=======
 /**
  * @brief Набор тестов для алгоритма сортировки вставками.
  *
@@ -49,9 +45,9 @@ void TestTopologicalSorting(httplib::Client* cli);
  * @param cli Указатель на HTTP клиент.
  */
 void TestCutPoints(httplib::Client* cli);
+void TestDinic(httplib::Client *cli);
 void TestFindBridges(httplib::Client* cli);
 void TestMaximal(httplib::Client* cli);
->>>>>>> 50aa088846cd3d1b83055467d8ac41beb86a3364
 
 /* Конец вставки. */
 

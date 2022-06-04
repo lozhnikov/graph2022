@@ -41,15 +41,11 @@ int main(int argc, char* argv[]) {
 
   /* Сюда нужно вставить вызов набора тестов для алгоритма. */
 
-<<<<<<< HEAD
-  TestFindBridges(&cli);
-  TestDinic(&cli);
-=======
   TestTopologicalSorting(&cli);
   TestCutPoints(&cli);
-    TestFindBridges(&cli);
+  TestDinic(&cli);
+  TestFindBridges(&cli);
   TestMaximal(&cli);
->>>>>>> 50aa088846cd3d1b83055467d8ac41beb86a3364
 
   /* Конец вставки. */
 
