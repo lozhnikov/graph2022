@@ -1,0 +1,23 @@
+/*!
+
+@file cut_points.dox
+@author Daniil Morozov
+
+@page cut_points 
+Алгоритм поиска точек сочленения
+
+Основан на обходе графа в глубину (подробнее на http://e-maxx.ru/algo/cutpoints)
+
+Реализован в функции graph::CutPoints().
+
+*/
+
+/*!
+@fn graph::CutPoints(const T& graph, std::vector<size_t>* points)
+
+Функция реализует алгоритм поиска точек сочленения, описанный в разделе
+@ref cut_points
+
+Алгоритм очень хороший, рекомендую.
+
+*/
