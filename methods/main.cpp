@@ -132,7 +132,7 @@ int main(int argc, char* argv[]) {
     res1.set_content(output1.dump(), "application/json");
   });
     
-    /* /NegCycle это адрес для запросов на поиск антицикла на сервере. */
+/* /NegCycle это адрес для запросов на поиск антицикла на сервере. */
     svr.Post("/NegCycle", [&](const httplib::Request& req,
                               httplib::Response& res) {
         /*
@@ -154,7 +154,6 @@ int main(int argc, char* argv[]) {
         JSON данные, то MIME тип следует выставить application/json.
         */
         res.set_content(output.dump(), "application/json");
-    
     });
 
   // Эта функция запускает сервер на указанном порту. Программа не завершится

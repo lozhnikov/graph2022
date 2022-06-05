@@ -4,20 +4,18 @@
  *
  * Реализация метода поиска антицикла.
 **/
-
 #ifndef NEGETIVE_CYCLE_HPP_
 #define NEGETIVE_CYCLE_HPP_
-
 #include <iostream>
 #include <unordered_map>
 #include <unordered_set>
+#include <vector>
 #include <algorithm>
 #include "iterators.hpp"
 #include <cstddef>
 #include "weighted_oriented_graph.hpp"
 
 namespace graph {
-    
 /**
  * @brief Алгоритм поиска отрицательного цикла в графе.
  *
@@ -34,13 +32,13 @@ void NegCycle(size_t size, const T& graph, std::vector<size_t>* path) {
     // заводим массив расстояний от вершины v до других вершин
     std::unordered_map<size_t, typename T::WeightType> d;
     // для каждой вершины антицикла будем хранить его предка
-    std::unordered_map<size_t, size_t> p; 
-    size_t x = 0; //индикатор отсутствия антицикла (нумерация вершин 
-                  //начинается с как мининимум с 1)
-    size_t j = 0;
+    std::unordered_map<size_t, size_t> p;
+    // индикатор отсутствия антицикла 
+    // (нумерация вершин начинается как мининимум с 1)
+    size_t x = 0, j = 0;
     
     /* Запускаем алгоритм Форда-Беллмана */    
-    for (size_t i = 0; i < size; i++) {         
+    for (size_t i = 0; i < size; i++) {
         x = 0;
         for (size_t elem : graph.Vertices()) {
             size_t v = elem;
@@ -52,7 +50,8 @@ void NegCycle(size_t size, const T& graph, std::vector<size_t>* path) {
                 auto it1 = d.find(to);
                 if (it1 == d.end()) {
                     d[to] = d[v] + graph.EdgeWeight(v, to);
-                    std::unordered_map<size_t, size_t>::iterator it = p.find(to);
+                    std::unordered_map<size_t, 
+                    size_t>::iterator it = p.find(to);
                     if (it == p.end()) {
                         p.insert({to, v});
                     } else {
@@ -61,7 +60,8 @@ void NegCycle(size_t size, const T& graph, std::vector<size_t>* path) {
                 } else {
                     if (d[to] > d[v] + graph.EdgeWeight(v, to)) {
                         d[to] = d[v] + graph.EdgeWeight(v, to);
-                        std::unordered_map<size_t, size_t>::iterator it = p.find(to);
+                        std::unordered_map<size_t, 
+                        size_t>::iterator it = p.find(to);
                         if (it == p.end()) {
                             p.insert({to, v});
                         } else {
@@ -76,7 +76,7 @@ void NegCycle(size_t size, const T& graph, std::vector<size_t>* path) {
     }
     
     if (x == 0) {
-        (*path) = std::vector<size_t>();    
+        (*path) = std::vector<size_t>();
     } else {
         size_t y = x;
         for (size_t i = 0; i < p.size(); ++i) {
@@ -91,6 +91,6 @@ void NegCycle(size_t size, const T& graph, std::vector<size_t>* path) {
         reverse((*path).begin(), (*path).end());
     }
 }
-}// namespace graph
+}  // namespace graph
 
 #endif  // NEGETIVE_CYCLE_HPP_

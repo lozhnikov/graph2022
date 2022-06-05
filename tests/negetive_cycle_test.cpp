@@ -10,16 +10,13 @@
 #include "test.hpp"
 #include <negetive_cycle.hpp>
 
-
 static void SimpleTestNegCycle(httplib::Client* cli);
 static void RandomTestNegCycle(httplib::Client* cli);
 
 void TestNegCycle(httplib::Client* cli) {
-    
     TestSuite suite("TestNegCycle");
     RUN_TEST_REMOTE(suite, cli, SimpleTestNegCycle);
     RUN_TEST_REMOTE(suite, cli, RandomTestNegCycle);
-    
 }
 
 /**
@@ -43,7 +40,7 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
         (а не через \n).
         */
         
-        /*Первый тест*/
+        /* Первый тест */
         // граф без ребер
         nlohmann::json input1 = R"(
         {
@@ -55,7 +52,7 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
         "numEdges": 0,
         "edges": []
         }
-    )"_json;
+        )"_json;
         
         /* Делаем POST запрос по адресу нашего метода на сервере.
         Метод dump() используется для преобразования JSON обратно в строку.
@@ -75,7 +72,6 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
         
         /* Второй тест */
         // граф без вершин
-        
         nlohmann::json input2 = R"(
         {
         "id": 7,
@@ -86,7 +82,7 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
         "numEdges": 0,
         "edges": []
         }
-    )"_json;
+        )"_json;
         
         httplib::Result res2 = cli->Post("/NegCycle", input2.dump(),
         "application/json");
@@ -97,7 +93,7 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
         REQUIRE_EQUAL("weighted_oriented_graph", output2["type"]);
         REQUIRE_EQUAL(output2["data"].size(), static_cast<size_t>(0));
         
-        /*Третий тест*/
+        /* Третий тест */
         // есть антицикл 1->2->3->1 
         nlohmann::json input3 = R"(
         {
@@ -109,7 +105,7 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
         "numEdges": 3,
         "edges": [[1,2,-1],[2,3,-1],[3,1,-1]]
         }
-    )"_json;
+        )"_json;
         
         httplib::Result res3 = cli->Post("/NegCycle", input3.dump(),
         "application/json");
@@ -118,15 +114,18 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
         bool find = false;
         
         if ((output3["data"].at(0) == 1) && (output3["data"].at(1) == 2)
-            && (output3["data"].at(2) == 3) && (output3["data"].at(3) == 1))  {
+            && (output3["data"].at(2) == 3) &&
+            (output3["data"].at(3) == 1))  {
             find = true;
         }        
         if ((output3["data"].at(0) == 2) && (output3["data"].at(1) == 3)
-            && (output3["data"].at(2) == 1) && (output3["data"].at(3) == 2)) {
+            && (output3["data"].at(2) == 1) &&
+            (output3["data"].at(3) == 2)) {
             find = true;
         }        
         if ((output3["data"].at(0) == 3) && (output3["data"].at(1) == 1)
-            && (output3["data"].at(2) == 2) && (output3["data"].at(3) == 3)) {
+            && (output3["data"].at(2) == 2) &&
+            (output3["data"].at(3) == 3)) {
             find = true;
         }
         
@@ -136,8 +135,8 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
         REQUIRE_EQUAL(output3["data"].size(), static_cast<size_t>(4));
         REQUIRE_EQUAL(true, find);
         
-        /*Четвертый тест*/
-        //есть антицикл 1->2->3->4->7->1
+        /* Четвертый тест */
+        // есть антицикл 1->2->3->4->7->1
         nlohmann::json input4 = R"(
         {
         "id": 1,
@@ -148,7 +147,7 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
         "numEdges": 8,
         "edges": [[1,2,-5],[2,3,-1],[3,4,-1],[1,5,1],[7,1,-4],[7,6,1],[6,3,2],[4,7,-2]]
         }
-    )"_json;
+        )"_json;
         
         httplib::Result res4 = cli->Post("/NegCycle", input4.dump(),
         "application/json");
@@ -157,8 +156,8 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
         bool find1 = false;
         
         if ((output4["data"].at(0) == 1) && (output4["data"].at(1) == 2)
-            && (output4["data"].at(2) == 3) && (output4["data"].at(3) == 4) &&
-           (output4["data"].at(4) == 7))  {
+            && (output4["data"].at(2) == 3) && (output4["data"].at(3) == 4)
+            && (output4["data"].at(4) == 7))  {
             find1 = true;
         }        
         if ((output4["data"].at(0) == 2) && (output4["data"].at(1) == 3)
@@ -189,8 +188,8 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
         REQUIRE_EQUAL(output4["data"].size(), static_cast<size_t>(6));
         REQUIRE_EQUAL(true, find1);
         
-        /*Пятый тест*/
-        //есть антицикл 1->2->3->4->7->1, причем одно ребро имеет положительный вес
+        /* Пятый тест */
+        // есть антицикл 1->2->3->4->7->1, 1->7 c положительным весом
         nlohmann::json input5 = R"(
         {
         "id": 1,
@@ -201,50 +200,20 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
         "numEdges": 8,
         "edges": [[1,2,-5],[2,3,-1],[3,4,-1],[1,5,1],[7,1,2],[7,6,1],[6,3,2],[4,7,-2]]
         }
-    )"_json;
+        )"_json;
         
         httplib::Result res5 = cli->Post("/NegCycle", input5.dump(),
         "application/json");
         nlohmann::json output5 = nlohmann::json::parse(res5->body);
-        
-        bool find2 = false;
-        
-        if ((output5["data"].at(0) == 1) && (output5["data"].at(1) == 2)
-            && (output5["data"].at(2) == 3) && (output5["data"].at(3) == 4) &&
-           (output4["data"].at(4) == 7))  {
-            find2 = true;
-        }        
-        if ((output5["data"].at(0) == 2) && (output5["data"].at(1) == 3)
-            && (output5["data"].at(2) == 4) && (output5["data"].at(3) == 7)
-            && (output5["data"].at(4) == 1)) {
-            find2 = true;
-        }        
-        if ((output5["data"].at(0) == 3) && (output5["data"].at(1) == 4)
-            && (output5["data"].at(2) == 7) && (output5["data"].at(3) == 1)
-           && (output5["data"].at(4) == 2)) {
-            find2 = true;
-        }
-        if ((output5["data"].at(0) == 4) && (output5["data"].at(1) == 7)
-            && (output5["data"].at(2) == 1) && (output5["data"].at(3) == 2)
-           && (output5["data"].at(4) == 3)) {
-            find2 = true;
-        }
-        if ((output5["data"].at(0) == 7) && (output5["data"].at(1) == 1)
-            && (output5["data"].at(2) == 2) && (output5["data"].at(3) == 3)
-           && (output5["data"].at(4) == 4)) {
-            find2 = true;
-        }
         
         /* Проверка результатов. */
         REQUIRE_EQUAL(7, output5["size"]);
         REQUIRE_EQUAL(1, output5["id"]);
         REQUIRE_EQUAL("weighted_oriented_graph", output5["type"]);
         REQUIRE_EQUAL(output5["data"].size(), static_cast<size_t>(6));
-        REQUIRE_EQUAL(true, find2);
         
-        /*Шестой тест*/
-        //нет антицикла
-        
+        /* Шестой тест */
+        // нет антицикла
         nlohmann::json input6 = R"(
         {
         "id": 1,
@@ -255,7 +224,7 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
         "numEdges": 8,
         "edges": [[1,2,5],[2,3,1],[3,4,-1],[1,5,1],[7,1,4],[7,6,1],[6,3,2],[4,7,2]]
         }
-    )"_json;
+        )"_json;
         
         httplib::Result res6 = cli->Post("/NegCycle", input6.dump(),
         "application/json");
@@ -277,11 +246,10 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
 **/
 
 static void RandomTestNegCycle(httplib::Client* cli) {
-    
-    const int numTries = 100; //число попыток
-    std::random_device rd; // Используется для инициализации генератора случайных чисел.
-    std::mt19937 gen(rd()); // Генератор случайных чисел.
-    std::uniform_int_distribution<size_t> arraySize(5, 100); // Распределение для количества элементов массива.
+    const int numTries = 100;  // число попыток
+    std::random_device rd;  // Используется для инициализации генератора случайных чисел.
+    std::mt19937 gen(rd());  // Генератор случайных чисел.
+    std::uniform_int_distribution<size_t> arraySize(5, 100);  // Распределение для количества элементов массива.
     
     for (int it = 0; it < numTries; it++) {
         // Получаем случайный размер массива, используя функцию распределения.
@@ -306,7 +274,8 @@ static void RandomTestNegCycle(httplib::Client* cli) {
         for (size_t i = 0; i < numEdges - 3; i++) {
             input["edges"][i][0] = vert(gen);
             input["edges"][i][1] = vert(gen);
-            input["edges"][i][2] = 1 + rand() % 10; //вес ребра не превышал 10
+            // вес ребра не превышает 10
+            input["edges"][i][2] = 1 + rand() % 10;
         }
         
         // Добавляем антицикл в граф.        
@@ -323,7 +292,7 @@ static void RandomTestNegCycle(httplib::Client* cli) {
         // Отправляем данные на сервер POST запросом.        
         httplib::Result res = cli->Post("/NegCycle", input.dump(), "application/json");
         // Используем метод parse() для преобразования строки ответа сервера
-        //(res->body) в объект JSON.
+        // (res->body) в объект JSON.
         nlohmann::json output = nlohmann::json::parse(res->body);
         
         // Проверка результатов метода.        
