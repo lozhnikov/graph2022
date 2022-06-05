@@ -114,6 +114,7 @@ add_executable(
   include/graph.hpp
   include/iterators.hpp
   include/maximal.hpp
+  include/negetive_cycle.hpp
   include/oriented_graph.hpp
   include/topological_sorting.hpp
   include/weighted_graph.hpp
@@ -123,6 +124,7 @@ add_executable(
   methods/main.cpp
   methods/maximal_method.cpp
   methods/methods.hpp
+  methods/negetive_cycle_method.cpp
   methods/topological_sorting_method.cpp
 )
 
@@ -148,6 +150,7 @@ add_executable(
   include/graph.hpp
   include/iterators.hpp
   include/maximal.hpp
+  include/negetive_cycle.hpp
   include/oriented_graph.hpp
   include/topological_sorting.hpp
   include/weighted_graph.hpp
@@ -158,6 +161,7 @@ add_executable(
   tests/io.hpp
   tests/main.cpp
   tests/maximal_test.cpp
+  tests/negetive_cycle_test.cpp
   tests/oriented_graph_test.cpp
   tests/test.hpp
   tests/test_core.cpp

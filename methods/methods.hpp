@@ -57,6 +57,24 @@ int FindBridgesMethod(const nlohmann::json& input, nlohmann::json* output);
 
 int MaximalMethod(const nlohmann::json& input, nlohmann::json* output);
 
+/**
+ * @brief Метод поиска цикла отрицательного веса.
+ *
+ * @tparam T Тип графа.
+ * @tparam Weight Тип веса ребер графа.
+ *
+ * @param input Входные данные в формате JSON.
+ * @param output Выходные данные в формате JSON.
+ * @param type Строковое представление типа данных мортируемых элементов.
+ * @return Функция возвращает 0 в случае успеха и отрицательное число
+ * если входные данные заданы некорректно.
+ *
+ * Функция запускает алгоритм сортировки вставками, используя входные данные
+ * в JSON формате. Результат также выдаётся в JSON формате. Функция
+ * используется для сокращения кода, необходимого для поддержки различных типов данных.
+**/
+int NegCycleMethod(const nlohmann::json& input, nlohmann::json* output);
+
 /* Конец вставки. */
 }  // namespace graph
 

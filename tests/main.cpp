@@ -1,6 +1,6 @@
 /**
  * @file tests/main.cpp
- * @author Eugene Yakimov
+ * @author Vladislav Zyuzin
  *
  * Файл с функией main() для клиентской части программы (набора тестов).
  */
@@ -12,7 +12,7 @@
 
 int main(int argc, char* argv[]) {
   // Порт по-умолчанию.
-  int port = 8080;
+  int port = 2002;
   // Адрес сервера по-умолчанию.
   std::string host = "127.0.0.1";
 
@@ -45,6 +45,7 @@ int main(int argc, char* argv[]) {
   TestCutPoints(&cli);
     TestFindBridges(&cli);
   TestMaximal(&cli);
+  TestNegCycle(&cli);
 
   /* Конец вставки. */
 

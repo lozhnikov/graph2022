@@ -1,6 +1,6 @@
 /**
  * @file methods/main.cpp
- * @author Eugene Yakimov
+ * @author Vladislav Zyuzin
  *
  * Файл с функией main() для серверной части программы.
  */
@@ -14,10 +14,11 @@ using graph::TopologicalSortingMethod;
 using graph::CutPointsMethod;
 using graph::FindBridgesMethod;
 using graph::MaximalMethod;
+using graph::NegCycleMethod;
 
 int main(int argc, char* argv[]) {
   // Порт по-умолчанию.
-  int port = 8080;
+  int port = 2002;
 
   if (argc >= 2) {
     // Меняем порт по умолчанию, если предоставлен соответствующий
@@ -130,7 +131,31 @@ int main(int argc, char* argv[]) {
     */
     res1.set_content(output1.dump(), "application/json");
   });
-
+    
+    /* /NegCycle это адрес для запросов на поиск антицикла на сервере. */
+    svr.Post("/NegCycle", [&](const httplib::Request& req,
+                              httplib::Response& res) {
+        /*
+        Поле body структуры httplib::Request содержит текст запроса.
+        Функция nlohmann::json::parse() используется для того,
+        чтобы преобразовать текст в объект типа nlohmann::json.
+        */
+        nlohmann::json input = nlohmann::json::parse(req.body);
+        nlohmann::json output;
+        
+        /* Если метод завершился с ошибкой, то выставляем статус 400. */
+        if (NegCycleMethod(input, &output) < 0)
+            res.status = 400;
+        
+        /*
+        Метод nlohmann::json::dump() используется для сериализации
+        объекта типа nlohmann::json в строку. Метод set_content()
+        позволяет задать содержимое ответа на запрос. Если передаются
+        JSON данные, то MIME тип следует выставить application/json.
+        */
+        res.set_content(output.dump(), "application/json");
+    
+    });
 
   // Эта функция запускает сервер на указанном порту. Программа не завершится
   // до тех пор, пока сервер не будет остановлен.
