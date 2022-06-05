@@ -13,7 +13,7 @@
 namespace graph {
 
 template<class T>
-static int NegCycleMethodHelper(const nlohmann::json& input, 
+static int NegCycleMethodHelper(const nlohmann::json& input,
                                 nlohmann::json* output, std::string type);
 int NegCycleMethod(const nlohmann::json& input, nlohmann::json* output) {
     /* 
@@ -23,21 +23,21 @@ int NegCycleMethod(const nlohmann::json& input, nlohmann::json* output) {
     */
     std::string type = input.at("type");
     std::string typeweight = input.at("TypeWeights");
-    
-    /* Пока реализована только поддержка для взвешенных ориентированных графов.*/    
+    /* Пока реализована только поддержка для взвешенных 
+    ориентированных графов.*/
     if (type == "weighted_oriented_graph") {
         if (typeweight == "int") {
-            return NegCycleMethodHelper<WeightedOrientedGraph<int>>(input,
-                                                                    output, type);
+            return NegCycleMethodHelper<WeightedOrientedGraph<int>>(
+                input, output, type);
         } else if (typeweight == "float") {
-            return NegCycleMethodHelper<WeightedOrientedGraph<float>>(input,
-                                                                      output, type);
+            return NegCycleMethodHelper<WeightedOrientedGraph<float>>(
+                input, output, type);
         } else if (typeweight == "double") {
-            return NegCycleMethodHelper<WeightedOrientedGraph<double>>(input,
-                                                                       output, type);
+            return NegCycleMethodHelper<WeightedOrientedGraph<double>>(
+                input, output, type);
         } else if (typeweight == "long double") {
-            return NegCycleMethodHelper<WeightedOrientedGraph<long double>>(input,
-                                                                            output, type);
+            return NegCycleMethodHelper<WeightedOrientedGraph<long double>>(
+                input, output, type);
         }
     }
     return -1;
@@ -66,17 +66,14 @@ static int NegCycleMethodHelper(const nlohmann::json& input,
     (*output)["id"] = input.at("id");
     size_t size = input.at("size");
     size_t numEdges = input.at("numEdges");
-    
     if (numEdges == 0) {
         (*output)["size"] = size;
         (*output)["type"] = type;
         return -1;
     }
-    
     T graph;
     // path - вектор, в котором хранится ответ
     std::vector<size_t> path;
-    
     for (size_t i = 0; i < size; i++) {
         /* Для словарей используется индекс в виде строки,
         а для массивов просто целое число типа size_t. */
@@ -85,21 +82,17 @@ static int NegCycleMethodHelper(const nlohmann::json& input,
             graph.AddVertex(el);
         }
     }
-    
     // Добавляем ребра
     for (size_t j = 0; j < numEdges; j++) {
         graph.AddEdge(input.at("edges").at(j).at(0), 
                       input.at("edges").at(j).at(1),
                       input.at("edges").at(j).at(2));
     }
-    
     /* Здесь вызывается сам алгоритм поиска антицикла. */
     NegCycle(size, graph, &path);
-    
     /* Сохраняем в ответе результат работы алгоритма. */
     (*output)["size"] = size;
     (*output)["type"] = type;
-    
     if (path.size() == 0) {
         (*output)["data"] = nullptr;
     } else {
@@ -107,7 +100,6 @@ static int NegCycleMethodHelper(const nlohmann::json& input,
             (*output)["data"][i] = path[i];
         }
     }
-    
     return 0;
 }
 }  // namespace graph

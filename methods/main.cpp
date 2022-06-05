@@ -131,8 +131,7 @@ int main(int argc, char* argv[]) {
     */
     res1.set_content(output1.dump(), "application/json");
   });
-    
-/* /NegCycle это адрес для запросов на поиск антицикла на сервере. */
+    /* /NegCycle это адрес для запросов на поиск антицикла на сервере. */
     svr.Post("/NegCycle", [&](const httplib::Request& req,
                               httplib::Response& res) {
         /*
@@ -142,11 +141,9 @@ int main(int argc, char* argv[]) {
         */
         nlohmann::json input = nlohmann::json::parse(req.body);
         nlohmann::json output;
-        
         /* Если метод завершился с ошибкой, то выставляем статус 400. */
         if (NegCycleMethod(input, &output) < 0)
             res.status = 400;
-        
         /*
         Метод nlohmann::json::dump() используется для сериализации
         объекта типа nlohmann::json в строку. Метод set_content()

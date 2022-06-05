@@ -27,17 +27,17 @@ namespace graph {
  * @param p предок.
  *
 **/
-template<class T>    
+template<class T>
 void NegCycle(size_t size, const T& graph, std::vector<size_t>* path) {
     // заводим массив расстояний от вершины v до других вершин
     std::unordered_map<size_t, typename T::WeightType> d;
     // для каждой вершины антицикла будем хранить его предка
     std::unordered_map<size_t, size_t> p;
-    // индикатор отсутствия антицикла 
+    // индикатор отсутствия антицикла
     // (нумерация вершин начинается как мининимум с 1)
     size_t x = 0, j = 0;
     
-    /* Запускаем алгоритм Форда-Беллмана */    
+    /* Запускаем алгоритм Форда-Беллмана */
     for (size_t i = 0; i < size; i++) {
         x = 0;
         for (size_t elem : graph.Vertices()) {
@@ -48,10 +48,10 @@ void NegCycle(size_t size, const T& graph, std::vector<size_t>* path) {
             for (auto neighbourId : graph.Edges(v)) {
                 size_t to = neighbourId;
                 auto it1 = d.find(to);
+                std::unordered_map<size_t, size_t>::iterator it;
                 if (it1 == d.end()) {
                     d[to] = d[v] + graph.EdgeWeight(v, to);
-                    std::unordered_map<size_t, 
-                    size_t>::iterator it = p.find(to);
+                    it = p.find(to);
                     if (it == p.end()) {
                         p.insert({to, v});
                     } else {
@@ -60,8 +60,7 @@ void NegCycle(size_t size, const T& graph, std::vector<size_t>* path) {
                 } else {
                     if (d[to] > d[v] + graph.EdgeWeight(v, to)) {
                         d[to] = d[v] + graph.EdgeWeight(v, to);
-                        std::unordered_map<size_t, 
-                        size_t>::iterator it = p.find(to);
+                        it = p.find(to);
                         if (it == p.end()) {
                             p.insert({to, v});
                         } else {
