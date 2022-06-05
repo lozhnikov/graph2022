@@ -43,7 +43,8 @@ int main(int argc, char* argv[]) {
 
   TestTopologicalSorting(&cli);
   TestCutPoints(&cli);
-    TestFindBridges(&cli);
+  TestDinic(&cli);
+  TestFindBridges(&cli);
   TestMaximal(&cli);
 
   /* Конец вставки. */

@@ -6,7 +6,7 @@
 @page algorithms 
 
 Список реализованных алгоритмов:
-
+- \subpage dinic
 - \subpage topological_sorting
 - \subpage find_bridges
 - \subpage cut_points

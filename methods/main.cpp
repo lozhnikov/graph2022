@@ -12,6 +12,7 @@
 
 using graph::TopologicalSortingMethod;
 using graph::CutPointsMethod;
+using graph::DinicMethod;
 using graph::FindBridgesMethod;
 using graph::MaximalMethod;
 
@@ -103,6 +104,16 @@ int main(int argc, char* argv[]) {
     позволяет задать содержимое ответа на запрос. Если передаются
     JSON данные, то MIME тип следует выставить application/json.
     */
+    res.set_content(output.dump(), "application/json");
+  });
+  svr.Post("/Dinic", [&](const httplib::Request& req,
+                                 httplib::Response& res) {
+    nlohmann::json input = nlohmann::json::parse(req.body);
+    nlohmann::json output;
+
+    if (DinicMethod(input, &output) < 0)
+      res.status = 400;
+
     res.set_content(output.dump(), "application/json");
   });
 
