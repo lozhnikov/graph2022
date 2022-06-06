@@ -119,7 +119,7 @@ static void SimpleTest(httplib::Client* cli) {
               matrix[i*n+j] = 0;
             }
           }
-      
+
         size_t size = 0;
         std::vector<int> cost(n*n);
         for (size_t i = 0; i < n; i++)

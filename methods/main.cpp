@@ -15,7 +15,7 @@ using graph::CutPointsMethod;
 using graph::FindBridgesMethod;
 using graph::MaximalMethod;
 using graph::NegCycleMethod;
-using graph::Belmanf;
+using graph::BelmanfMethod;
 
 int main(int argc, char* argv[]) {
   // Порт по-умолчанию.
