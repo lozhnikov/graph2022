@@ -12,4 +12,5 @@
 - \subpage cut_points
 - \subpage maximal
 - \subpage belmanf
+- \subpage dinic
 */

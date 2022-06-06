@@ -51,6 +51,12 @@ void TestTopologicalSorting(httplib::Client* cli);
 void TestNegCycle(httplib::Client* cli);
 void TestNegCycle(httplib::Client* cli);
 void TestBelmanf(httplib::Client* cli);
+/**
+ * @brief Набор тестов для алгоритма Диница.
+ *
+ * @param cli Указатель на HTTP клиент.
+ */
+void TestDinic(httplib::Client *cli);
 /* Конец вставки. */
 
 #endif  // TESTS_TEST_HPP_
