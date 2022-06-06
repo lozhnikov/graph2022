@@ -4,8 +4,8 @@
  *
  * Реализация метода поиска антицикла.
 **/
-#ifndef NEGETIVE_CYCLE_HPP_
-#define NEGETIVE_CYCLE_HPP_
+#ifndef INCLUDE_NEGETIVE_CYCLE_HPP_
+#define INCLUDE_NEGETIVE_CYCLE_HPP_
 #include <iostream>
 #include <unordered_map>
 #include <vector>
