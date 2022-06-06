@@ -46,6 +46,7 @@ int main(int argc, char* argv[]) {
   TestFindBridges(&cli);
   TestMaximal(&cli);
   TestNegCycle(&cli);
+  TestBelmanf(&cli);
   TestIngeborgadapkunaite(&cli);
   /* Конец вставки. */
   // Отправляем GET запрос для остановки сервера.
