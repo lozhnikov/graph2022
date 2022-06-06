@@ -49,6 +49,8 @@ void TestFindBridges(httplib::Client* cli);
 void TestMaximal(httplib::Client* cli);
 void TestTopologicalSorting(httplib::Client* cli);
 void TestNegCycle(httplib::Client* cli);
+void TestNegCycle(httplib::Client* cli);
+void TestBelmanf(httplib::Client* cli);
 /* Конец вставки. */
 
 #endif  // TESTS_TEST_HPP_

@@ -74,6 +74,7 @@ int MaximalMethod(const nlohmann::json& input, nlohmann::json* output);
  * используется для сокращения кода, необходимого для поддержки различных типов данных.
 **/
 int NegCycleMethod(const nlohmann::json& input, nlohmann::json* output);
+int BelmanfMethod(const nlohmann::json& input, nlohmann::json* output);
 
 /* Конец вставки. */
 }  // namespace graph
