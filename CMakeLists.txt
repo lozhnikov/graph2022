@@ -111,6 +111,7 @@ add_executable(
   graph_server
   include/belmanf.hpp
   include/cut_points.hpp
+  include/dinic.hpp
   include/find_bridges.hpp
   include/graph.hpp
   include/iterators.hpp
@@ -122,6 +123,7 @@ add_executable(
   include/weighted_oriented_graph.hpp
   methods/belmanf_method.cpp
   methods/cut_points_method.cpp
+  methods/dinic.cpp
   methods/find_bridges.cpp
   methods/main.cpp
   methods/maximal_method.cpp
@@ -149,6 +151,7 @@ add_executable(
   graph_test
   include/belmanf.hpp
   include/cut_points.hpp
+  include/dinic.hpp
   include/find_bridges.hpp
   include/graph.hpp
   include/iterators.hpp
@@ -160,6 +163,7 @@ add_executable(
   include/weighted_oriented_graph.hpp
   tests/belmanf_test.cpp
   tests/cut_points_test.cpp
+  tests/dinic_test.cpp
   tests/find_bridges_test.cpp
   tests/graph_test.cpp
   tests/io.hpp

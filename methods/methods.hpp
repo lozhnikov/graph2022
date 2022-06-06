@@ -41,6 +41,7 @@ namespace graph {
 int TopologicalSortingMethod(const nlohmann::json& input,
                              nlohmann::json* output);
 int CutPointsMethod(const nlohmann::json& input, nlohmann::json* output);
+int DinicMethod(const nlohmann::json& input, nlohmann::json* output);
 int FindBridgesMethod(const nlohmann::json& input, nlohmann::json* output);
 
 /**
