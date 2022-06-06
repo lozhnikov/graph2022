@@ -45,6 +45,7 @@ int main(int argc, char* argv[]) {
   TestCutPoints(&cli);
     TestFindBridges(&cli);
   TestMaximal(&cli);
+    TestFindMaxMatching(&cli);
 
   /* Конец вставки. */
 

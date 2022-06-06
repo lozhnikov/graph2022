@@ -111,6 +111,7 @@ add_executable(
   graph_server
   include/cut_points.hpp
   include/find_bridges.hpp
+  include/find_max_matching.hpp
   include/graph.hpp
   include/iterators.hpp
   include/maximal.hpp
@@ -120,6 +121,7 @@ add_executable(
   include/weighted_oriented_graph.hpp
   methods/cut_points_method.cpp
   methods/find_bridges.cpp
+  methods/find_max_matching_method.cpp
   methods/main.cpp
   methods/maximal_method.cpp
   methods/methods.hpp
@@ -145,6 +147,7 @@ add_executable(
   graph_test
   include/cut_points.hpp
   include/find_bridges.hpp
+  include/find_max_matching.hpp
   include/graph.hpp
   include/iterators.hpp
   include/maximal.hpp
@@ -154,6 +157,7 @@ add_executable(
   include/weighted_oriented_graph.hpp
   tests/cut_points_test.cpp
   tests/find_bridges_test.cpp
+  tests/find_max_matching_test.cpp
   tests/graph_test.cpp
   tests/io.hpp
   tests/main.cpp
