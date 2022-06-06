@@ -43,13 +43,11 @@ int main(int argc, char* argv[]) {
 
   TestTopologicalSorting(&cli);
   TestCutPoints(&cli);
-    TestFindBridges(&cli);
+  TestFindBridges(&cli);
   TestMaximal(&cli);
   TestNegCycle(&cli);
   TestIngeborgadapkunaite(&cli);
-
   /* Конец вставки. */
-
   // Отправляем GET запрос для остановки сервера.
   httplib::Result res = cli.Get("/stop");
 

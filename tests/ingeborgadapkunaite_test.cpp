@@ -92,13 +92,13 @@ static void SimpleTest(httplib::Client* cli) {
     /* Проверка результатов сортировки. */
     bool flag = (((output["data"][0][0] == 101) &&
                   (output["data"][0][1] == 1001)) ||
-                 ((output["data"][0][1] == 101) && 
+                 ((output["data"][0][1] == 101) &&
                   (output["data"][0][0] == 1001)));
     REQUIRE_EQUAL(flag, 1);
     REQUIRE_EQUAL(2, output["size"]);    // edges
     REQUIRE_EQUAL(2, output["id"]);
     REQUIRE_EQUAL("int", output["type"]);
-        
+    
     nlohmann::json input3 = R"(
   {
     "id": 3,
