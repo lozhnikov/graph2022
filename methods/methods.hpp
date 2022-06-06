@@ -102,7 +102,8 @@ int BelmanfMethod(const nlohmann::json& input, nlohmann::json* output);
  * в JSON формате. Результат также выдаётся в JSON формате.
  */
 
-int IngeborgadapkunaiteMethod(const nlohmann::json& input, nlohmann::json* output);
+int IngeborgadapkunaiteMethod(const nlohmann::json& input,
+                              nlohmann::json* output);
 
 /* Конец вставки. */
 }  // namespace graph
