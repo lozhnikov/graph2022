@@ -93,7 +93,7 @@ static void SimpleTest(httplib::Client* cli) {
   }
   static void RandomIntegerHelperTest(httplib::Client* cli, std::string type) {
     // Число попыток.
-    const int numTries = 10;
+    const int numTries = 0;
     // Используется для инициализации генератора случайных чисел.
     std::random_device rd;
     // Генератор случайных чисел.
