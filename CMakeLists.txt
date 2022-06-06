@@ -125,7 +125,7 @@ add_executable(
   methods/belmanf_method.cpp
   methods/cut_points_method.cpp
   methods/dinic.cpp
-  methods/ingeborgadapkunaite.cpp
+  methods/ingeborgadapkunaite_method.cpp
   methods/find_bridges.cpp
   methods/main.cpp
   methods/maximal_method.cpp
@@ -169,7 +169,7 @@ add_executable(
   tests/dinic_test.cpp
   tests/find_bridges_test.cpp
   tests/graph_test.cpp
-  tests/ingeborgadapkunaite.hpp
+  tests/ingeborgadapkunaite_test.cpp
   tests/io.hpp
   tests/main.cpp
   tests/maximal_test.cpp
