@@ -45,6 +45,7 @@ void TestTopologicalSorting(httplib::Client* cli);
  * @param cli Указатель на HTTP клиент.
  */
 void TestCutPoints(httplib::Client* cli);
+void TestDinic(httplib::Client *cli);
 void TestFindBridges(httplib::Client* cli);
 void TestMaximal(httplib::Client* cli);
 void TestTopologicalSorting(httplib::Client* cli);
