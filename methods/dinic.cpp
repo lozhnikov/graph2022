@@ -75,7 +75,7 @@ static int DinicMethodHelper(const nlohmann::json& input,
 
   T result;
   /* вызов алгоритма */
-  Dinic<int>(graph, result, s, t);
+  Dinic<int>(graph, &result, s, t);
 
   (*output)["size"] = result.NumVertices();
   size_t resEdges = 0;

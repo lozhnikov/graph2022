@@ -15,18 +15,19 @@
 #include <stdexcept>
 #include <limits>
 #include <vector>
+#include <utility>
 #include "weighted_oriented_graph.hpp"
 
 namespace graph {
 
 template<typename Weight>
 void Dinic(const graph::WeightedOrientedGraph<Weight> &g,
-  graph::WeightedOrientedGraph<Weight> &result,
+  graph::WeightedOrientedGraph<Weight> *result,
   const size_t s, const size_t t);
 template<typename Weight>
-bool BFS(const size_t cur, graph::WeightedOrientedGraph<Weight> &level,
-  graph::WeightedOrientedGraph<Weight> &result,
-  const size_t s, const size_t t, Weight &min);
+bool BFS(const size_t cur, graph::WeightedOrientedGraph<Weight> *level,
+  graph::WeightedOrientedGraph<Weight> *result,
+  const size_t s, const size_t t, Weight *min);
 
 
 
@@ -40,7 +41,7 @@ template<typename Weight>
  * @param t сток.
  */
 void Dinic(const graph::WeightedOrientedGraph<Weight> &g,
-  graph::WeightedOrientedGraph<Weight> &result,
+  graph::WeightedOrientedGraph<Weight> *result,
   const size_t s, const size_t t) {
 #ifdef DINIC_DEBUG
   printf("\nDINIC\n");
@@ -55,25 +56,25 @@ void Dinic(const graph::WeightedOrientedGraph<Weight> &g,
   std::vector<std::pair<size_t, size_t>> edges;
   std::vector<size_t> verts;
 
-  for (size_t v : result.Vertices()) {
-    for (size_t e : result.Edges(v))
+  for (size_t v : result->Vertices()) {
+    for (size_t e : result->Edges(v))
       edges.push_back(std::pair<size_t, size_t>(v, e));
     verts.push_back(v);
   }
 
   for (auto e : edges)
-    result.RemoveEdge(std::get<0>(e), std::get<1>(e));
+    result->RemoveEdge(std::get<0>(e), std::get<1>(e));
 
   for (size_t v : verts)
-    result.RemoveVertex(v);
+    result->RemoveVertex(v);
 
   // Создать копию графа g с нулевыми весами
   for (size_t v : g.Vertices())
-    result.AddVertex(v);
+    result->AddVertex(v);
   for (size_t v : g.Vertices())
     for (size_t e : g.Edges(v))
-      result.AddEdge(v, e, 0);
-  assert(g.NumVertices() == result.NumVertices());
+      result->AddEdge(v, e, 0);
+  assert(g.NumVertices() == result->NumVertices());
 
   // Построить остаточную сеть с нулевыми весами
   graph::WeightedOrientedGraph<Weight> residual;
@@ -101,9 +102,9 @@ void Dinic(const graph::WeightedOrientedGraph<Weight> &g,
       for (size_t e : g.Edges(v)) {
         residual.EdgeWeight(v, e) +=
           g.EdgeWeight(v, e) -
-          result.EdgeWeight(v, e);
+          result->EdgeWeight(v, e);
         residual.EdgeWeight(e, v) +=
-         result.EdgeWeight(v, e);
+         result->EdgeWeight(v, e);
       }
 #ifdef DINIC_DEBUG
     printf("\nRESIDUAL:\n");
@@ -145,11 +146,11 @@ void Dinic(const graph::WeightedOrientedGraph<Weight> &g,
 
     // Прибавить блокирующий поток
     int min = std::numeric_limits<int>::max();
-    if (!BFS(s, level, result, s, t, min))
+    if (!BFS(s, level, result, s, t, &min))
       return;
     do {
       min = std::numeric_limits<int>::max();;
-    } while (BFS(s, level, result, s, t, min));
+    } while (BFS(s, level, result, s, t, &min));
 
 #ifdef DINIC_DEBUG
     printf("RESULT:\n");
@@ -166,27 +167,27 @@ void Dinic(const graph::WeightedOrientedGraph<Weight> &g,
  */
 template<typename Weight>
 bool BFS(const size_t cur, graph::WeightedOrientedGraph<Weight> &level,
-    graph::WeightedOrientedGraph<Weight> &result,
-    const size_t s, const size_t t, Weight &min) {
+    graph::WeightedOrientedGraph<Weight> *result,
+    const size_t s, const size_t t, Weight *min) {
   if (cur == t)
     return true;
   for (size_t child : level.Edges(cur)) {
     const Weight weight = level.EdgeWeight(cur, child);
     if (weight <= Weight())
       continue;
-    if (weight < min)
-      min = weight;
-    const int tmp = min;
+    if (weight < *min)
+      *min = weight;
+    const int tmp = *min;
     if (BFS(child, level, result, s, t, min)) {
-      level.EdgeWeight(cur, child) -= min;
+      level.EdgeWeight(cur, child) -= *min;
       try {
-        result.EdgeWeight(cur, child) += min;
+        result->EdgeWeight(cur, child) += *min;
       } catch (std::out_of_range &e) {
-      result.EdgeWeight(child, cur) -= min;
+      result->EdgeWeight(child, cur) -= *min;
       }
       return true;
     }
-    min = tmp;
+    *min = tmp;
   }
   return false;
 }
