@@ -16,13 +16,13 @@
 #include "graph.hpp"
 
 namespace graph {
-bool TryKuhn(size_t v, std::vector<char>* used,
-             std::unordered_map<size_t, std::vector<size_t>>* g,
-             std::vector<int>* mt);
-bool isBipartite(std::vector<std::vector<size_t>> *graph,
-                 std::vector<int>* color);
+bool TryKuhn(size_t v, std::vector<char>& used,
+             std::unordered_map<size_t, std::vector<size_t>>& g,
+             std::vector<int>& mt);
+bool isBipartite(std::vector<std::vector<size_t>> &graph,
+                 std::vector<int>& color);
 bool checkDFS(size_t node, std::vector<std::vector<size_t>> adj,
-              std::vector<int> *color);
+              std::vector<int> &color);
 
 /**
  * @brief Алгоритм Куна нахождения наибольшего паросочетания
@@ -97,9 +97,9 @@ Graph Ingeborgadapkunaite(const Graph Tolstoi) {
  * @param граф
  * @param массив паросочетаний
  */
-bool TryKuhn(size_t v, std::vector<char>* used,
-             std::unordered_map<size_t, std::vector<size_t>>* g,
-             std::vector<int>* mt) {
+bool TryKuhn(size_t v, std::vector<char>& used,
+             std::unordered_map<size_t, std::vector<size_t>>& g,
+             std::vector<int>& mt) {
     if (used[v])
       return false;
     used[v] = true;
@@ -119,8 +119,8 @@ bool TryKuhn(size_t v, std::vector<char>* used,
  * @param граф
  * @param массив цветов вершин
  */
-bool isBipartite(std::vector<std::vector<size_t>> *graph,
-                 std::vector<int>* color) {
+bool isBipartite(std::vector<std::vector<size_t>> &graph,
+                 std::vector<int>& color) {
   size_t n = graph.size();
   for (size_t  i = 0; i < n; i++) {
     if ((color[i] == -1) && (checkDFS(i, graph, color) == false))
@@ -137,7 +137,7 @@ bool isBipartite(std::vector<std::vector<size_t>> *graph,
  * @param массив цветов вершин
  */
 bool checkDFS(size_t node, std::vector<std::vector<size_t>> adj,
-              std::vector<int> *color) {
+              std::vector<int> &color) {
   if (color[node] == -1)
     color[node] = 1;
 
