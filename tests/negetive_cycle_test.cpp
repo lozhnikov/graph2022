@@ -87,7 +87,7 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
         REQUIRE_EQUAL("weighted_oriented_graph", output2["type"]);
         REQUIRE_EQUAL(output2["data"].size(), static_cast<size_t>(0));
         /* Третий тест */
-        // есть антицикл 1->2->3->1 
+        // есть антицикл 1->2->3->1
         nlohmann::json input3 = R"(
         {
         "id": 1,
@@ -107,12 +107,12 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
             && (output3["data"].at(2) == 3) &&
             (output3["data"].at(3) == 1))  {
             find = true;
-        }        
+        }
         if ((output3["data"].at(0) == 2) && (output3["data"].at(1) == 3)
             && (output3["data"].at(2) == 1) &&
             (output3["data"].at(3) == 2)) {
             find = true;
-        }        
+        }
         if ((output3["data"].at(0) == 3) && (output3["data"].at(1) == 1)
             && (output3["data"].at(2) == 2) &&
             (output3["data"].at(3) == 3)) {
@@ -144,12 +144,12 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
             && (output4["data"].at(2) == 3) && (output4["data"].at(3) == 4)
             && (output4["data"].at(4) == 7))  {
             find1 = true;
-        }        
+        }
         if ((output4["data"].at(0) == 2) && (output4["data"].at(1) == 3)
             && (output4["data"].at(2) == 4) && (output4["data"].at(3) == 7)
             && (output4["data"].at(4) == 1)) {
             find1 = true;
-        }        
+        }
         if ((output4["data"].at(0) == 3) && (output4["data"].at(1) == 4)
             && (output4["data"].at(2) == 7) && (output4["data"].at(3) == 1)
            && (output4["data"].at(4) == 2)) {
@@ -225,10 +225,12 @@ static void SimpleTestNegCycle(httplib::Client* cli) {
 
 static void RandomTestNegCycle(httplib::Client* cli) {
     const int numTries = 100;  // число попыток
-    std::random_device rd;  // Используется для инициализации генератора случайных чисел.
-    std::mt19937 gen(rd());  // Генератор случайных чисел.
-    std::uniform_int_distribution<size_t> arraySize(5, 100);  // Распределение для количества элементов массива.
-    
+    // Используется для инициализации генератора случайных чисел.
+    std::random_device rd;
+    // Генератор случайных чисел.
+    std::mt19937 gen(rd());
+    // Распределение для количества элементов массива.
+    std::uniform_int_distribution<size_t> arraySize(5, 100);
     for (int it = 0; it < numTries; it++) {
         // Получаем случайный размер массива, используя функцию распределения.
         size_t size = arraySize(gen);
@@ -246,38 +248,39 @@ static void RandomTestNegCycle(httplib::Client* cli) {
             // Записываем элемент в JSON.
             input["vertices"][i] = i + 1;
         }
-        // Генирируем ребра случайный образом.        
+        // Генирируем ребра случайный образом.
         for (size_t i = 0; i < numEdges - 3; i++) {
             input["edges"][i][0] = vert(gen);
             input["edges"][i][1] = vert(gen);
             // вес ребра не превышает 10
-            input["edges"][i][2] = 1 + rand() % 10;
+            input["edges"][i][2] = 1 + i % 10;
         }
-        // Добавляем антицикл в граф.        
+        // Добавляем антицикл в граф.
         input["edges"][numEdges-3][0] =  1;
         input["edges"][numEdges-3][1] = 2;
         input["edges"][numEdges-3][2] = -1;
         input["edges"][numEdges-2][0] =  2;
         input["edges"][numEdges-2][1] = 3;
-        input["edges"][numEdges-2][2] = -1; 
+        input["edges"][numEdges-2][2] = -1;
         input["edges"][numEdges-1][0] =  3;
         input["edges"][numEdges-1][1] = 1;
-        input["edges"][numEdges-1][2] = -1; 
-        // Отправляем данные на сервер POST запросом.        
-        httplib::Result res = cli->Post("/NegCycle", input.dump(), "application/json");
+        input["edges"][numEdges-1][2] = -1;
+        // Отправляем данные на сервер POST запросом.
+        httplib::Result res = cli->Post("/NegCycle",
+                                        input.dump(), "application/json");
         // Используем метод parse() для преобразования строки ответа сервера
         // (res->body) в объект JSON.
         nlohmann::json output = nlohmann::json::parse(res->body);
-        // Проверка результатов метода.        
+        // Проверка результатов метода.
         bool find = false;
         if ((output["data"].at(0) == 1) && (output["data"].at(1) == 2)
             && (output["data"].at(2) == 3) && (output["data"].at(3) == 1))  {
             find = true;
-        }        
+        }
         if ((output["data"].at(0) == 2) && (output["data"].at(1) == 3)
             && (output["data"].at(2) == 1) && (output["data"].at(3) == 2)) {
             find = true;
-        }        
+        }
         if ((output["data"].at(0) == 3) && (output["data"].at(1) == 1)
             && (output["data"].at(2) == 2) && (output["data"].at(3) == 3)) {
             find = true;

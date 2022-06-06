@@ -84,7 +84,7 @@ static int NegCycleMethodHelper(const nlohmann::json& input,
     }
     // Добавляем ребра
     for (size_t j = 0; j < numEdges; j++) {
-        graph.AddEdge(input.at("edges").at(j).at(0), 
+        graph.AddEdge(input.at("edges").at(j).at(0),
                       input.at("edges").at(j).at(1),
                       input.at("edges").at(j).at(2));
     }

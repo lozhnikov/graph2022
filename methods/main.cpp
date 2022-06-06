@@ -18,7 +18,7 @@ using graph::NegCycleMethod;
 
 int main(int argc, char* argv[]) {
   // Порт по-умолчанию.
-  int port = 2002;
+  int port = 2022;
 
   if (argc >= 2) {
     // Меняем порт по умолчанию, если предоставлен соответствующий

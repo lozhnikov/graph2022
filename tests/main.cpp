@@ -12,7 +12,7 @@
 
 int main(int argc, char* argv[]) {
   // Порт по-умолчанию.
-  int port = 2002;
+  int port = 2022;
   // Адрес сервера по-умолчанию.
   std::string host = "127.0.0.1";
 

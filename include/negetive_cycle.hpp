@@ -8,11 +8,10 @@
 #define NEGETIVE_CYCLE_HPP_
 #include <iostream>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
 #include <algorithm>
-#include "iterators.hpp"
 #include <cstddef>
+#include "iterators.hpp"
 #include "weighted_oriented_graph.hpp"
 
 namespace graph {
@@ -36,7 +35,6 @@ void NegCycle(size_t size, const T& graph, std::vector<size_t>* path) {
     // индикатор отсутствия антицикла
     // (нумерация вершин начинается как мининимум с 1)
     size_t x = 0, j = 0;
-    
     /* Запускаем алгоритм Форда-Беллмана */
     for (size_t i = 0; i < size; i++) {
         x = 0;
@@ -73,7 +71,6 @@ void NegCycle(size_t size, const T& graph, std::vector<size_t>* path) {
             j++;
         }
     }
-    
     if (x == 0) {
         (*path) = std::vector<size_t>();
     } else {
@@ -92,4 +89,4 @@ void NegCycle(size_t size, const T& graph, std::vector<size_t>* path) {
 }
 }  // namespace graph
 
-#endif  // NEGETIVE_CYCLE_HPP_
+#endif  // INCLUDE_NEGETIVE_CYCLE_HPP_
