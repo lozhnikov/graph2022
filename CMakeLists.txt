@@ -112,6 +112,7 @@ add_executable(
   include/cut_points.hpp
   include/find_bridges.hpp
   include/graph.hpp
+  include/ingeborgadapkunaite.hpp
   include/iterators.hpp
   include/maximal.hpp
   include/negetive_cycle.hpp
@@ -121,6 +122,7 @@ add_executable(
   include/weighted_oriented_graph.hpp
   methods/cut_points_method.cpp
   methods/find_bridges.cpp
+  methods/ingeborgadapkunaite_method.cpp
   methods/main.cpp
   methods/maximal_method.cpp
   methods/methods.hpp
@@ -148,6 +150,7 @@ add_executable(
   include/cut_points.hpp
   include/find_bridges.hpp
   include/graph.hpp
+  include/ingeborgadapkunaite.hpp
   include/iterators.hpp
   include/maximal.hpp
   include/negetive_cycle.hpp
@@ -158,6 +161,7 @@ add_executable(
   tests/cut_points_test.cpp
   tests/find_bridges_test.cpp
   tests/graph_test.cpp
+  tests/ingeborgadapkunaite_test.cpp
   tests/io.hpp
   tests/main.cpp
   tests/maximal_test.cpp
