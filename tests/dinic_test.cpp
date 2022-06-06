@@ -134,7 +134,7 @@ static void SimpleTest(httplib::Client *cli) {
                 (output2.at("edges").at(i).at(1) == 3)) ||
                 ((output2.at("edges").at(i).at(0) == 3) &&
                  (output2.at("edges").at(i).at(1) == 2)))) {
-            REQUIRE_EQUAL(1,output2.at("edges").at(i).at(2));
+            REQUIRE_EQUAL(1, output2.at("edges").at(i).at(2));
         }
     }
   }
