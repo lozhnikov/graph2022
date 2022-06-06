@@ -46,6 +46,8 @@ int main(int argc, char* argv[]) {
     TestFindBridges(&cli);
   TestMaximal(&cli);
   TestNegCycle(&cli);
+  TestIngeborgadapkunaite(&cli);
+  
 
   /* Конец вставки. */
 
