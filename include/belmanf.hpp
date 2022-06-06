@@ -30,28 +30,28 @@
     if (v2 > c)
       c = v2;
   }
-    for (size_t i = 0; i < c; i++)
-      if (wog.HasVertex(i))
-        res[i].first = 0;
-    res[v].second = 0;
-    res[v].first = 1;
-    for (size_t v1 : wog.Vertices()) {
-      for (size_t neighbour : wog.Edges(v1)) {
-        if (res[v1].first != 0) {
-          if (res[neighbour].first != 0) {
-            res[neighbour].second = std::min(res[neighbour].second,
-            res[v1].second + wog.EdgeWeight(v1, neighbour));
-            res[neighbour].first = 1;
-          } else {
-            res[neighbour].second = res[v1].second +
-            wog.EdgeWeight(v1, neighbour);
-            res[neighbour].first = 1;
-          }
+  for (size_t i = 0; i < c; i++)
+    if (wog.HasVertex(i))
+      res[i].first = 0;
+  res[v].second = 0;
+  res[v].first = 1;
+  for (size_t v1 : wog.Vertices()) {
+    for (size_t neighbour : wog.Edges(v1)) {
+      if (res[v1].first != 0) {
+        if (res[neighbour].first != 0) {
+          res[neighbour].second = std::min(res[neighbour].second,
+          res[v1].second + wog.EdgeWeight(v1, neighbour));
+          res[neighbour].first = 1;
+        } else {
+          res[neighbour].second = res[v1].second +
+          wog.EdgeWeight(v1, neighbour);
+          res[neighbour].first = 1;
         }
       }
     }
+  }
 
-    return res;
+  return res;
 }
 
 }   // namespace graph

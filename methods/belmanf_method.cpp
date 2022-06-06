@@ -19,18 +19,18 @@ int BelmanfMethod(const nlohmann::json& input, nlohmann::json* output) {
 
   std::string type = input.at("type");
 
-/* Пока реализована только поддержка целых чисел и чисел типа double. */
-if (type == "int") {
-return BelmanfMethodHelper<int>(input, output, type);
-} else if (type == "float") {
-return BelmanfMethodHelper<float>(input, output, type);
-} else if (type == "double") {
-return BelmanfMethodHelper<double>(input, output, type);
-} else if (type == "long double") {
-return BelmanfMethodHelper<long double>(input, output, type);
-}
+  /* Пока реализована только поддержка целых чисел и чисел типа double. */
+  if (type == "int") {
+    return BelmanfMethodHelper<int>(input, output, type);
+  } else if (type == "float") {
+    return BelmanfMethodHelper<float>(input, output, type);
+  } else if (type == "double") {
+    return BelmanfMethodHelper<double>(input, output, type);
+  } else if (type == "long double") {
+    return BelmanfMethodHelper<long double>(input, output, type);
+  }
 
-return -1;
+  return -1;
 }
 
 /**
@@ -51,19 +51,19 @@ return -1;
 template<typename T>
 static int BelmanfMethodHelper(const nlohmann::json& input,
 nlohmann::json* output, std::string type) {
-(*output)["id"] = input.at("id");
-(*output)["type"] = type;
+  (*output)["id"] = input.at("id");
+  (*output)["type"] = type;
 
-size_t size = input.at("size").at(0);
-size_t n = input.at("size").at(1);
-size_t v = input.at("size").at(2);
-std::vector<int> data(size*3);
+  size_t size = input.at("size").at(0);
+  size_t n = input.at("size").at(1);
+  size_t v = input.at("size").at(2);
+  std::vector<int> data(size*3);
 
-for (size_t i = 0; i < size*3; i++) {
-/* Для словарей используется индекс в виде строки,
-а для массивов просто целое число типа size_t. */
-data[i] = input.at("data").at(i);
-}
+  for (size_t i = 0; i < size*3; i++) {
+  /* Для словарей используется индекс в виде строки,
+  а для массивов просто целое число типа size_t. */
+    data[i] = input.at("data").at(i);
+  }
   if (n == 0) {
     (*output)["size"] = 0;
     (*output)["data"] = "empty graph";
@@ -84,24 +84,24 @@ data[i] = input.at("data").at(i);
   std::unordered_map<size_t , std::pair<bool, int>> res = Belmanf(wog, v);
 
 /* Сохраняем в ответе результат работы алгоритма. */
-(*output)["size"] = n;
+  (*output)["size"] = n;
   size_t j = 0;
-    for (auto it = res.begin(); it != res.end(); it++) {  // выводим их
-      if ((it->second).first == 1) {
-        size_t tmp1 = it->first;
-        int tmp2 = (it->second).second;
-        std::string s2 = std::to_string(tmp2);
-        (*output)["data"][j][0] = tmp1;
-        (*output)["data"][j][1] = s2;
-      } else {
-        size_t tmp1 = it->first;
-        (*output)["data"][j][0] = tmp1;
-        (*output)["data"][j][1] = "no";
-      }
-      j++;
+  for (auto it = res.begin(); it != res.end(); it++) {  // выводим их
+    if ((it->second).first == 1) {
+      size_t tmp1 = it->first;
+      int tmp2 = (it->second).second;
+      std::string s2 = std::to_string(tmp2);
+      (*output)["data"][j][0] = tmp1;
+      (*output)["data"][j][1] = s2;
+    } else {
+      size_t tmp1 = it->first;
+      (*output)["data"][j][0] = tmp1;
+      (*output)["data"][j][1] = "no";
     }
+    j++;
+  }
 
-return 0;
+  return 0;
 }
 
 }   // namespace graph

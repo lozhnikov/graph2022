@@ -16,7 +16,7 @@
 */
 
 /*!
-@fn graph::Belmanf(T* data, size_t m, size_t n, size_t v)
+@fn graph::Belmanf(const WeightedOrientedGraph<int>& wog, size_t v)
 
 Функция реализует алгоритм Форда-Беллмана, описанный в разделе
 @ref belmanf.
