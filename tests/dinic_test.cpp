@@ -20,9 +20,26 @@ void TestDinic(httplib::Client *cli) {
   RUN_TEST_REMOTE(suite, cli, RandomTest);
 }
 
+/** 
+ * @brief Простейший статический тест.
+ *
+ * @param cli Указатель на HTTP клиент.
+ */
 static void SimpleTest(httplib::Client *cli) {
   {
-  /*первый тест*/
+    /*
+     Библиотека nlohmann json позволяет преобразовать
+     строку в объект nlohmann::json не только при помощи
+     функции nlohmann::json::parse(), но и при помощи
+     специального литерала _json. Если его поставить после строки
+     в кавычках, то она конвертируется в json объект.
+     
+     R"(
+     )" Так записывается строка, содержащая символы перевода строки
+     в C++. Всё, что между скобками это символы строки. Перводы строк
+     можно ставить просто как перевод строки в текстовом редактора
+     (а не через \n).     
+    */
     nlohmann::json input = R"(
   {
     "id": 0,
@@ -37,7 +54,11 @@ static void SimpleTest(httplib::Client *cli) {
 )"_json;
 
 
-    /* Делаем POST запрос по адресу нашего метода на сервере.*/
+    /* Делаем POST запрос по адресу нашего метода на сервере.
+    Метод dump() используется для преобразования JSON обратно в строку.
+    (Можно было сразу строку передать). При передаче JSON данных
+    необходимо поставить тип MIME "application/json".
+    */
     httplib::Result res = cli->Post("/Dinic", input.dump(),
         "application/json");
 
@@ -56,7 +77,6 @@ static void SimpleTest(httplib::Client *cli) {
         REQUIRE_EQUAL(0, output.at("edges").at(i).at(2));  //  Вес
     }
 
-    /*первый тест*/
     nlohmann::json input1 = R"(
   {
     "id": 1,
@@ -74,7 +94,6 @@ static void SimpleTest(httplib::Client *cli) {
         "application/json");
     nlohmann::json output1 = nlohmann::json::parse(res1->body);
 
-    /* Проверка результатов. */
     REQUIRE_EQUAL(4, output1["size"]);
     REQUIRE_EQUAL(1, output1["id"]);
     REQUIRE_EQUAL(6, output1["numEdges"]);
@@ -106,7 +125,6 @@ static void SimpleTest(httplib::Client *cli) {
         }
     }
 
-    /*третий тест*/
     nlohmann::json input2 = R"(
   {
     "id": 2,
@@ -124,7 +142,6 @@ static void SimpleTest(httplib::Client *cli) {
         "application/json");
     nlohmann::json output2 = nlohmann::json::parse(res2->body);
 
-    /* Проверка результатов. */
     REQUIRE_EQUAL(8, output2["size"]);
     REQUIRE_EQUAL(2, output2["id"]);
     REQUIRE_EQUAL(10, output2["numEdges"]);
@@ -140,16 +157,30 @@ static void SimpleTest(httplib::Client *cli) {
   }
 }
 
-/*Случайый тест*/
+/**
+ * @brief Простейший случайный тест.
+ *
+ * @param cli Указатель на HTTP клиент.
+ *
+ * Функция используется для сокращения кода, необходимого для поддержки
+ * различных типов данных.
+ */
 static void RandomTest(httplib::Client *cli) {
+  // Число попыток.
   const int numTries = 10;
+  // Используется для инициализации генератора случайных чисел.
   std::random_device rd;
+  // Генератор случайных чисел.
   std::mt19937 gen(rd());
+  // Распределение для количества элементов массива.
   std::uniform_int_distribution<size_t> arraySize(15, 30);
+  // Получаем случайный размер массива, используя функцию распределения.
   const size_t size = arraySize(gen);
+  // Распределение для рёбер первой половины графа.
   std::uniform_int_distribution<size_t> vert1(1, 10);
+  // Распределение для рёбер второй половины графа.
   std::uniform_int_distribution<size_t> vert2(11, size);
-  std::uniform_int_distribution<size_t> randommin(1, 10);
+  // Распределение весов рёбер.
   std::uniform_int_distribution<size_t> weight(1, 30);
 
   for (int id = 0; id < numTries; id++) {
@@ -162,6 +193,7 @@ static void RandomTest(httplib::Client *cli) {
 
 
     for (size_t i = 0; i < size; i++) {
+      // Записываем элемент в JSON.
       input["vertices"][i] = i + 1;
     }
     input["start"] = 1;
@@ -170,6 +202,7 @@ static void RandomTest(httplib::Client *cli) {
     input["edges"][0][0] = 10;
     input["edges"][0][1] = 11;
     input["edges"][0][2] = n;
+    // Генирируем рёбра случайный образом.
     for (size_t i = 1; i < 11; i++) {
         input["edges"][i][0] = vert1(gen);
         input["edges"][i][1] = vert1(gen);
@@ -181,9 +214,12 @@ static void RandomTest(httplib::Client *cli) {
         input["edges"][i][2] = weight(gen);
     }
 
+    /* Отправляем данные на сервер POST запросом. */
      httplib::Result res = cli->Post("/Dinic", input.dump(),
         "application/json");
 
+    /* Используем метод parse() для преобразования строки ответа сервера
+    (res->body) в объект JSON. */
     nlohmann::json output = nlohmann::json::parse(res->body);
 
     size_t s = 0, t = 0;

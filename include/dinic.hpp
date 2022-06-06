@@ -35,8 +35,8 @@ template<typename Weight>
 /**
  * @brief Алгоритма Диница.
  *
- * @tparam Weigh тип графа.
- *
+ * @param g исходный граф.
+ * @param result поток.
  * @param s исток.
  * @param t сток.
  */
@@ -164,6 +164,12 @@ void Dinic(const graph::WeightedOrientedGraph<Weight> &g,
 
 /**
  * @brief Обход в глубину с выбором минимальног веса.
+ * @param level слоистая сеть.
+ * @param result поток.
+ * @param s исток.
+ * @param t сток.
+ * @param t минимальный вес ребра в цепочке рёбер.
+ * @param cur текущая вершина.
  */
 template<typename Weight>
 bool BFS(const size_t cur, graph::WeightedOrientedGraph<Weight> *level,

@@ -45,13 +45,18 @@ void TestTopologicalSorting(httplib::Client* cli);
  * @param cli Указатель на HTTP клиент.
  */
 void TestCutPoints(httplib::Client* cli);
-void TestDinic(httplib::Client *cli);
 void TestFindBridges(httplib::Client* cli);
 void TestMaximal(httplib::Client* cli);
 void TestTopologicalSorting(httplib::Client* cli);
 void TestNegCycle(httplib::Client* cli);
 void TestNegCycle(httplib::Client* cli);
 void TestBelmanf(httplib::Client* cli);
+/**
+ * @brief Набор тестов для алгоритма Диница.
+ *
+ * @param cli Указатель на HTTP клиент.
+ */
+void TestDinic(httplib::Client *cli);
 /* Конец вставки. */
 
 #endif  // TESTS_TEST_HPP_

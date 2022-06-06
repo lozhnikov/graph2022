@@ -25,6 +25,11 @@ static int DinicMethodHelper(const nlohmann::json& input,
 
 int DinicMethod(const nlohmann::json& input, nlohmann::json* output) {
   std::string type = input.at("type");
+  /*
+  С классом nlohmann::json можно работать как со словарём.
+  Метод at() в отличие оператора [] не меняет объект, поэтому
+  этот метод можно использовать с константными объектами.
+  */
 
   if (type == "weighted_oriented_graph")
     return graph::DinicMethodHelper
@@ -58,6 +63,8 @@ static int DinicMethodHelper(const nlohmann::json& input,
   const size_t t = input.at("theEnd");
 
   T graph;
+  /* Для словарей используется индекс в виде строки,
+  а для массивов просто целое число типа size_t. */
   for (size_t i = 0; i < size; i++) {
     graph.AddVertex(input.at("vertices").at(i));
   }
@@ -77,6 +84,7 @@ static int DinicMethodHelper(const nlohmann::json& input,
   /* вызов алгоритма */
   Dinic<int>(graph, &result, s, t);
 
+  /* Сохраняем в ответе результат работы алгоритма. */
   (*output)["size"] = result.NumVertices();
   size_t resEdges = 0;
   for (size_t v : result.Vertices())

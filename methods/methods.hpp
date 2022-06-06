@@ -41,6 +41,19 @@ namespace graph {
 int TopologicalSortingMethod(const nlohmann::json& input,
                              nlohmann::json* output);
 int CutPointsMethod(const nlohmann::json& input, nlohmann::json* output);
+/**
+ * @brief Метод Диница.
+ *
+ * @tparam T Тип графа.
+ *
+ * @param input Входные данные в формате JSON.
+ * @param output Выходные данные в формате JSON.
+ * @param type Строковое представление типа данных мортируемых элементов.
+ *
+ * Функция запускает алгоритм поиска мостов, используя входные данные
+ * в JSON формате. Результат также выдаётся в JSON формате. Функция
+ * используется для сокращения кода, необходимого для поддержки различных типов данных.
+ */
 int DinicMethod(const nlohmann::json& input, nlohmann::json* output);
 int FindBridgesMethod(const nlohmann::json& input, nlohmann::json* output);
 
