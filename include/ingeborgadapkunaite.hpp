@@ -16,13 +16,13 @@
 #include "graph.hpp"
 
 namespace graph {
-bool TryKuhn(size_t v, std::vector<char>& used,
-             std::unordered_map<size_t, std::vector<size_t>>& g,
-             std::vector<int>& mt);
-bool isBipartite(std::vector<std::vector<size_t>> &graph,
-                 std::vector<int>& color);
-bool checkDFS(size_t node, std::vector<std::vector<size_t>> adj,
-              std::vector<int> &color);
+bool TryKuhn(size_t v, std::vector<char>* used,
+             std::unordered_map<size_t, std::vector<size_t>>* g,
+             std::vector<int>* mt);
+bool IsBipartite(std::vector<std::vector<size_t>> *graph,
+                 std::vector<int>* color);
+bool CheckDFS(size_t node, std::vector<std::vector<size_t>> adj,
+              std::vector<int> *color);
 
 /**
  * @brief Алгоритм Куна нахождения наибольшего паросочетания
@@ -45,7 +45,7 @@ Graph Ingeborgadapkunaite(const Graph Tolstoi) {
       graph1[vertToId[v]].push_back(vertToId[neighbour]);
 
   std::vector<int> color(numv, -1);
-  if (!isBipartite(graph1, color))
+  if (!IsBipartite(&graph1, &color))
     throw "graph is not Bipartite";
   std::unordered_map<size_t, std::vector<size_t>> g1;
   std::unordered_map<size_t, std::vector<size_t>> g2;
@@ -80,7 +80,7 @@ Graph Ingeborgadapkunaite(const Graph Tolstoi) {
     std::vector<char> used;
     for (size_t j = 0; j < n; ++j) {
       used.assign(n, false);
-      TryKuhn(j, used, g1, mt);
+      TryKuhn(j, &used, &g1, &mt);
     }
     Graph res;
     for (size_t i = 0; i < k; ++i)
@@ -97,16 +97,16 @@ Graph Ingeborgadapkunaite(const Graph Tolstoi) {
  * @param граф
  * @param массив паросочетаний
  */
-bool TryKuhn(size_t v, std::vector<char>& used,
-             std::unordered_map<size_t, std::vector<size_t>>& g,
-             std::vector<int>& mt) {
-    if (used[v])
+bool TryKuhn(size_t v, std::vector<char>* used,
+             std::unordered_map<size_t, std::vector<size_t>>* g,
+             std::vector<int>* mt) {
+    if ((*used)[v])
       return false;
-    used[v] = true;
-    for (size_t i = 0; i < g[v].size(); ++i) {
-      size_t to = g[v][i];
-      if ((mt[to] == -1) || (TryKuhn(size_t(mt[to]), used, g, mt))) {
-        mt[to] = static_cast<int>(v);
+    (*used)[v] = true;
+    for (size_t i = 0; i < (*g)[v].size(); ++i) {
+      size_t to = (*g)[v][i];
+      if (((*mt)[to] == -1) || (TryKuhn(size_t((*mt)[to]), used, g, mt))) {
+        (*mt)[to] = static_cast<int>(v);
         return true;
       }
     }
@@ -119,11 +119,11 @@ bool TryKuhn(size_t v, std::vector<char>& used,
  * @param граф
  * @param массив цветов вершин
  */
-bool isBipartite(std::vector<std::vector<size_t>> &graph,
-                 std::vector<int>& color) {
-  size_t n = graph.size();
+bool IsBipartite(std::vector<std::vector<size_t>> *graph,
+                 std::vector<int>* color) {
+  size_t n = (*graph).size();
   for (size_t  i = 0; i < n; i++) {
-    if ((color[i] == -1) && (checkDFS(i, graph, color) == false))
+    if (((*color)[i] == -1) && (CheckDFS(i, (*graph), color) == false))
       return false;
   }
   return true;
@@ -136,17 +136,17 @@ bool isBipartite(std::vector<std::vector<size_t>> &graph,
  * @param граф
  * @param массив цветов вершин
  */
-bool checkDFS(size_t node, std::vector<std::vector<size_t>> adj,
-              std::vector<int> &color) {
-  if (color[node] == -1)
-    color[node] = 1;
+bool CheckDFS(size_t node, std::vector<std::vector<size_t>> adj,
+              std::vector<int> *color) {
+  if ((*color)[node] == -1)
+    (*color)[node] = 1;
 
   for (size_t v : adj[node]) {
-    if (color[v] == -1) {
-        color[v] = 1 - color[node];
-        if (checkDFS(v, adj, color) == false)
+    if ((*color)[v] == -1) {
+        (*color)[v] = 1 - (*color)[node];
+        if (CheckDFS(v, adj, color) == false)
             return false;
-    } else if (color[v] == color[node]) {
+    } else if ((*color)[v] == (*color)[node]) {
         return false;
     }
   }
