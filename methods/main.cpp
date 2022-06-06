@@ -162,7 +162,7 @@ int main(int argc, char* argv[]) {
     чтобы преобразовать текст в объект типа nlohmann::json.
     */
     nlohmann::json input = nlohmann::json::parse(req.body);
-    nlohmann::json::parse output;
+    nlohmann::json output;
 
     /* Если метод завершился с ошибкой, то выставляем статус 400. */
     if (BelmanfMethod(input, &output) < 0)
