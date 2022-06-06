@@ -50,10 +50,10 @@ static void SimpleTest(httplib::Client *cli) {
     REQUIRE_EQUAL(0, output["id"]);
     REQUIRE_EQUAL(3, output["numEdges"]);
     REQUIRE_EQUAL("weighted_oriented_graph", output["type"]);
-    for (size_t i = 0; i < output.at("numEdges"); i++) {// Перебор ребер
-        //output.at("edges").at(i).at(0);// Откуда
-        //output.at("edges").at(i).at(1);// Куда
-        REQUIRE_EQUAL(0,output.at("edges").at(i).at(2));// Вес
+    for (size_t i = 0; i < output.at("numEdges"); i++) {  // Перебор ребер
+        //  output.at("edges").at(i).at(0);// Откуда
+        //  output.at("edges").at(i).at(1);// Куда
+        REQUIRE_EQUAL(0, output.at("edges").at(i).at(2));  //  Вес
     }
 
     /*первый тест*/
@@ -79,24 +79,30 @@ static void SimpleTest(httplib::Client *cli) {
     REQUIRE_EQUAL(1, output1["id"]);
     REQUIRE_EQUAL(6, output1["numEdges"]);
     REQUIRE_EQUAL("weighted_oriented_graph", output1["type"]);
-    for (size_t i = 0; i < output1.at("numEdges"); i++) {// Перебор ребер
-        if((output1.at("edges").at(i).at(0) == 1)&&(output1.at("edges").at(i).at(1) == 2)){
-            REQUIRE_EQUAL(5,output1.at("edges").at(i).at(2));
+    for (size_t i = 0; i < output1.at("numEdges"); i++) {  //  Перебор ребер
+        if ((output1.at("edges").at(i).at(0) == 1)&&
+           (output1.at("edges").at(i).at(1) == 2)) {
+            REQUIRE_EQUAL(5, output1.at("edges").at(i).at(2));
         }
-        if((output1.at("edges").at(i).at(0) == 1)&&(output1.at("edges").at(i).at(1) == 3)){
-            REQUIRE_EQUAL(2,output1.at("edges").at(i).at(2));
+        if ((output1.at("edges").at(i).at(0) == 1)&&
+           (output1.at("edges").at(i).at(1) == 3)) {
+            REQUIRE_EQUAL(2, output1.at("edges").at(i).at(2));
         }
-        if((output1.at("edges").at(i).at(0) == 2)&&(output1.at("edges").at(i).at(1) == 3)){
-            REQUIRE_EQUAL(5,output1.at("edges").at(i).at(2));
+        if ((output1.at("edges").at(i).at(0) == 2)&&
+           (output1.at("edges").at(i).at(1) == 3)) {
+            REQUIRE_EQUAL(5, output1.at("edges").at(i).at(2));
         }
-        if((output1.at("edges").at(i).at(0) == 3)&&(output1.at("edges").at(i).at(1) == 1)){
-            REQUIRE_EQUAL(0,output1.at("edges").at(i).at(2));
+        if ((output1.at("edges").at(i).at(0) == 3)&&
+           (output1.at("edges").at(i).at(1) == 1)) {
+            REQUIRE_EQUAL(0, output1.at("edges").at(i).at(2));
         }
-        if((output1.at("edges").at(i).at(0) == 3)&&(output1.at("edges").at(i).at(1) == 4)){
-            REQUIRE_EQUAL(7,output1.at("edges").at(i).at(2));
+        if ((output1.at("edges").at(i).at(0) == 3)&&
+           (output1.at("edges").at(i).at(1) == 4)) {
+            REQUIRE_EQUAL(7, output1.at("edges").at(i).at(2));
         }
-        if((output1.at("edges").at(i).at(0) == 1)&&(output1.at("edges").at(i).at(1) == 4)){
-            REQUIRE_EQUAL(1,output1.at("edges").at(i).at(2));
+        if ((output1.at("edges").at(i).at(0) == 1)&&
+           (output1.at("edges").at(i).at(1) == 4)) {
+            REQUIRE_EQUAL(1, output1.at("edges").at(i).at(2));
         }
     }
 
@@ -123,9 +129,11 @@ static void SimpleTest(httplib::Client *cli) {
     REQUIRE_EQUAL(2, output2["id"]);
     REQUIRE_EQUAL(10, output2["numEdges"]);
     REQUIRE_EQUAL("weighted_oriented_graph", output2["type"]);
-    for (size_t i = 0; i < output2.at("numEdges"); i++) {// Перебор ребер
-        if(!(((output2.at("edges").at(i).at(0) == 2) && (output2.at("edges").at(i).at(1) == 3)) ||
-                ((output2.at("edges").at(i).at(0) == 3) && (output2.at("edges").at(i).at(1) == 2)))) {
+    for (size_t i = 0; i < output2.at("numEdges"); i++) {  //  Перебор ребер
+        if  (!(((output2.at("edges").at(i).at(0) == 2) &&
+                (output2.at("edges").at(i).at(1) == 3)) ||
+                ((output2.at("edges").at(i).at(0) == 3) &&
+                 (output2.at("edges").at(i).at(1) == 2)))) {
             REQUIRE_EQUAL(1,output2.at("edges").at(i).at(2));
         }
     }
@@ -180,10 +188,10 @@ static void RandomTest(httplib::Client *cli) {
 
     size_t s = 0, t = 0;
     for (size_t i = 0; i < output.at("numEdges"); i++) {
-      if(output.at("edges").at(i).at(0) == 1){
+      if (output.at("edges").at(i).at(0) == 1) {
         s += static_cast<size_t>(output.at("edges").at(i).at(2));
       }
-      if(output.at("edges").at(i).at(1) == size){
+      if (output.at("edges").at(i).at(1) == size) {
         t += static_cast<size_t>(output.at("edges").at(i).at(2));
       }
     }
@@ -194,9 +202,9 @@ static void RandomTest(httplib::Client *cli) {
     REQUIRE_EQUAL(id, output["id"]);
     REQUIRE_EQUAL(s, t);
     for (size_t i = 0; i < 2 * size + 1; i++)
-	    if (output["edges"][i][0] == 10 &&
-			    output["edges"][i][0] == 11)
-		    REQUIRE_EQUAL(s, output["edges"][i][2]);
+      if ((output["edges"][i][0] == 10) &&
+        (output["edges"][i][0] == 11))
+        REQUIRE_EQUAL(s, output["edges"][i][2]);
     REQUIRE_EQUAL((s <= n), true);
   }
 }

@@ -27,7 +27,8 @@ int DinicMethod(const nlohmann::json& input, nlohmann::json* output) {
   std::string type = input.at("type");
 
   if (type == "weighted_oriented_graph")
-    return graph::DinicMethodHelper<graph::WeightedOrientedGraph<int>>(input, output, type);
+    return graph::DinicMethodHelper
+      <graph::WeightedOrientedGraph<int>>(input, output, type);
   return -1;
 }
 
@@ -58,19 +59,18 @@ static int DinicMethodHelper(const nlohmann::json& input,
 
   T graph;
   for (size_t i = 0; i < size; i++) {
-
     graph.AddVertex(input.at("vertices").at(i));
   }
   for (size_t i = 0; i < numEdges; i++) {
     /*
     printf("DEBUG: add(%zu, %zu, %zu)\n",
-		    static_cast<size_t>(input.at("edges").at(i).at(0)),
-		    static_cast<size_t>(input.at("edges").at(i).at(1)),
-		    static_cast<size_t>(input.at("edges").at(i).at(2)));
+      static_cast<size_t>(input.at("edges").at(i).at(0)),
+      static_cast<size_t>(input.at("edges").at(i).at(1)),
+      static_cast<size_t>(input.at("edges").at(i).at(2)));
     */
     graph.AddEdge(input.at("edges").at(i).at(0), input.at("edges").at(i).at(1),
-		    input.at("edges").at(i).at(2));
-    //printf("DEBUG: size=%d\n", graph.Edges(1).size());
+      input.at("edges").at(i).at(2));
+      //  printf("DEBUG: size=%d\n", graph.Edges(1).size());
   }
 
   T result;
@@ -80,21 +80,21 @@ static int DinicMethodHelper(const nlohmann::json& input,
   (*output)["size"] = result.NumVertices();
   size_t resEdges = 0;
   for (size_t v : result.Vertices())
-	  resEdges += result.Edges(v).size();
+    resEdges += result.Edges(v).size();
   (*output)["numEdges"] = resEdges;
   size_t i = 0;
   for (size_t v : result.Vertices())
-	  (*output)["vertices"][i++] = v;
+    (*output)["vertices"][i++] = v;
   size_t j = 0;
   for (size_t v : result.Vertices())
-	  for (size_t e : result.Edges(v)) {
-		  (*output)["edges"][j][0] = v;
-		  (*output)["edges"][j][1] = e;
-		  (*output)["edges"][j][2] = result.EdgeWeight(v, e);
-		  j++;
-	  }
+    for (size_t e : result.Edges(v)) {
+      (*output)["edges"][j][0] = v;
+      (*output)["edges"][j][1] = e;
+      (*output)["edges"][j][2] = result.EdgeWeight(v, e);
+      j++;
+  }
 
   return 0;
 }
 
-}// namespace graph
+}  //  namespace graph
