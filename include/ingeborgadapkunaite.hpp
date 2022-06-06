@@ -49,30 +49,30 @@ Graph Ingeborgadapkunaite(const Graph Tolstoi) {
     throw "graph is not Bipartite";
   std::unordered_map<size_t, std::vector<size_t>> g1;
   std::unordered_map<size_t, std::vector<size_t>> g2;
-  std::unordered_map<size_t, size_t> IDtoG1;
-  std::unordered_map<size_t, size_t> IDtoG2;
-  std::unordered_map<size_t, size_t> G1toID;
-  std::unordered_map<size_t, size_t> G2toID;
+  std::unordered_map<size_t, size_t> iDtoG1;
+  std::unordered_map<size_t, size_t> iDtoG2;
+  std::unordered_map<size_t, size_t> g1toID;
+  std::unordered_map<size_t, size_t> g2toID;
   size_t it1 = 0, it2 = 0;
   for (size_t i = 0; i < numv; i++) {
     if (color[i]) {
       g1[it1] = graph1[i];
-      IDtoG1[i] = it1;
-      G1toID[it1] = i;
+      iDtoG1[i] = it1;
+      g1toID[it1] = i;
       it1++;
     } else {
       g2[it2] = graph1[i];
-      IDtoG2[i] = it2;
-      G2toID[it2] = i;
+      iDtoG2[i] = it2;
+      g2toID[it2] = i;
       it2++;
     }
   }
   for (size_t i = 0; i < it1; i++)
     for (size_t ii = 0; ii < g1[i].size(); ii++)
-      g1[i][ii] = IDtoG2[g1[i][ii]];
+      g1[i][ii] = iDtoG2[g1[i][ii]];
   // for (size_t i = 0; i < it2; i++)
     // for (size_t ii = 0; ii < g2[i].size(); ii++)
-      // g2[i][ii] = IDtoG1[g2[i][ii]];
+      // g2[i][ii] = iDtoG1[g2[i][ii]];
 
     size_t n = g1.size();
     size_t k = numv - n;
@@ -85,7 +85,7 @@ Graph Ingeborgadapkunaite(const Graph Tolstoi) {
     Graph res;
     for (size_t i = 0; i < k; ++i)
       if (mt[i] != -1)
-        res.AddEdge(idToVert[G1toID[size_t(mt[i])]], idToVert[G2toID[i]]);
+        res.AddEdge(idToVert[g1toID[size_t(mt[i])]], idToVert[g2toID[i]]);
     return res;
 }
 

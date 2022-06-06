@@ -26,7 +26,8 @@ static int IngeborgadapkunaiteMethodHelper(const nlohmann::json& input,
                                      nlohmann::json* output,
                                      std::string type);
 
-int IngeborgadapkunaiteMethod(const nlohmann::json& input, nlohmann::json* output) {
+int IngeborgadapkunaiteMethod(const nlohmann::json& input,
+                              nlohmann::json* output) {
   /*
   С классом nlohmann::json можно работать как со словарём.
   Метод at() в отличие оператора [] не меняет объект, поэтому
@@ -81,8 +82,8 @@ static int IngeborgadapkunaiteMethodHelper(const nlohmann::json& input,
     а для массивов просто целое число типа size_t. */
   Graph Tolstoi;
   for (size_t i = 0; i < size; i++)
-    Tolstoi.AddEdge(static_cast<size_t>(input.at("data").at(i*2)), 
-                   static_cast<size_t>(input.at("data").at(i*2+1))); 
+    Tolstoi.AddEdge(static_cast<size_t>(input.at("data").at(i*2)),
+                   static_cast<size_t>(input.at("data").at(i*2+1)));
 
   /* Здесь вызывается сам алгоритм Куна. */
   Graph Orlov = Ingeborgadapkunaite(Tolstoi);

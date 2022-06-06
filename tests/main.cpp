@@ -47,7 +47,6 @@ int main(int argc, char* argv[]) {
   TestMaximal(&cli);
   TestNegCycle(&cli);
   TestIngeborgadapkunaite(&cli);
-  
 
   /* Конец вставки. */
 
