@@ -43,6 +43,7 @@ int main(int argc, char* argv[]) {
 
   TestTopologicalSorting(&cli);
   TestCutPoints(&cli);
+  TestDinic(&cli);
     TestFindBridges(&cli);
   TestMaximal(&cli);
   TestNegCycle(&cli);
