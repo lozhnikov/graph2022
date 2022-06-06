@@ -177,11 +177,10 @@ int main(int argc, char* argv[]) {
     */
     res.set_content(output.dump(), "application/json");
   });
-    
+
   /* /Dinic это адрес для запросов на алгоритм Диница. */
     svr.Post("/Dinic", [&](const httplib::Request& req,
                                  httplib::Response& res) {
-          
     /*
     Поле body структуры httplib::Request содержит текст запроса.
     Функция nlohmann::json::parse() используется для того,
@@ -190,7 +189,6 @@ int main(int argc, char* argv[]) {
     nlohmann::json input = nlohmann::json::parse(req.body);
     nlohmann::json output;
 
-          
     /* Если метод завершился с ошибкой, то выставляем статус 400. */
     if (DinicMethod(input, &output) < 0)
       res.status = 400;

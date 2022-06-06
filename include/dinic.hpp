@@ -146,11 +146,11 @@ void Dinic(const graph::WeightedOrientedGraph<Weight> &g,
 
     // Прибавить блокирующий поток
     int min = std::numeric_limits<int>::max();
-    if (!BFS(s, level, result, s, t, &min))
+    if (!BFS(s, &level, result, s, t, &min))
       return;
     do {
       min = std::numeric_limits<int>::max();;
-    } while (BFS(s, level, result, s, t, &min));
+    } while (BFS(s, &level, result, s, t, &min));
 
 #ifdef DINIC_DEBUG
     printf("RESULT:\n");
@@ -158,28 +158,28 @@ void Dinic(const graph::WeightedOrientedGraph<Weight> &g,
       for (size_t e : result.Edges(v))
         printf("Edge: (%zu, %zu, %zu)\n", v, e,
           result.EdgeWeight(v, e));
-#endif// DINIC_DEBUG
-	}
+#endif  // DINIC_DEBUG
+  }
 }
 
 /**
  * @brief Обход в глубину с выбором минимальног веса.
  */
 template<typename Weight>
-bool BFS(const size_t cur, graph::WeightedOrientedGraph<Weight> &level,
+bool BFS(const size_t cur, graph::WeightedOrientedGraph<Weight> *level,
     graph::WeightedOrientedGraph<Weight> *result,
     const size_t s, const size_t t, Weight *min) {
   if (cur == t)
     return true;
-  for (size_t child : level.Edges(cur)) {
-    const Weight weight = level.EdgeWeight(cur, child);
+  for (size_t child : level->Edges(cur)) {
+    const Weight weight = level->EdgeWeight(cur, child);
     if (weight <= Weight())
       continue;
     if (weight < *min)
       *min = weight;
     const int tmp = *min;
     if (BFS(child, level, result, s, t, min)) {
-      level.EdgeWeight(cur, child) -= *min;
+      level->EdgeWeight(cur, child) -= *min;
       try {
         result->EdgeWeight(cur, child) += *min;
       } catch (std::out_of_range &e) {
@@ -194,4 +194,4 @@ bool BFS(const size_t cur, graph::WeightedOrientedGraph<Weight> &level,
 
 }  //  namespace graph
 
-#endif // INCLUDE_DINIC_HPP_
+#endif  //  INCLUDE_DINIC_HPP_
