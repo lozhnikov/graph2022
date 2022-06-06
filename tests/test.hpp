@@ -51,6 +51,7 @@ void TestTopologicalSorting(httplib::Client* cli);
 void TestNegCycle(httplib::Client* cli);
 void TestNegCycle(httplib::Client* cli);
 void TestBelmanf(httplib::Client* cli);
+void TestIngeborgadapkunaite(httplib::Client* cli);
 /**
  * @brief Набор тестов для алгоритма Диница.
  *

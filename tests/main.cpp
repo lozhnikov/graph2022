@@ -44,10 +44,11 @@ int main(int argc, char* argv[]) {
   TestTopologicalSorting(&cli);
   TestCutPoints(&cli);
   TestDinic(&cli);
-    TestFindBridges(&cli);
+  TestFindBridges(&cli);
   TestMaximal(&cli);
   TestNegCycle(&cli);
   TestBelmanf(&cli);
+  TestIngeborgadapkunaite(&cli);
 
   /* Конец вставки. */
 

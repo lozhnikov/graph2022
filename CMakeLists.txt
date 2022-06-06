@@ -114,6 +114,7 @@ add_executable(
   include/dinic.hpp
   include/find_bridges.hpp
   include/graph.hpp
+  include/ingeborgadapkunaite.hpp
   include/iterators.hpp
   include/maximal.hpp
   include/negetive_cycle.hpp
@@ -124,6 +125,7 @@ add_executable(
   methods/belmanf_method.cpp
   methods/cut_points_method.cpp
   methods/dinic.cpp
+  methods/ingeborgadapkunaite.cpp
   methods/find_bridges.cpp
   methods/main.cpp
   methods/maximal_method.cpp
@@ -154,6 +156,7 @@ add_executable(
   include/dinic.hpp
   include/find_bridges.hpp
   include/graph.hpp
+  include/ingeborgadapkunaite.hpp
   include/iterators.hpp
   include/maximal.hpp
   include/negetive_cycle.hpp
@@ -166,6 +169,7 @@ add_executable(
   tests/dinic_test.cpp
   tests/find_bridges_test.cpp
   tests/graph_test.cpp
+  tests/ingeborgadapkunaite.hpp
   tests/io.hpp
   tests/main.cpp
   tests/maximal_test.cpp
